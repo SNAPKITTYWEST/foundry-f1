@@ -131,6 +131,47 @@ the licensed proof package.
 
 ---
 
+## I4 Frontier
+
+The centerpiece behind the video is not just finite-field arithmetic. It is
+the **I4 program**: the quartic invariant line running from Boolean closure
+through Freudenthal structure into the E7 frontier.
+
+What is already real in this repo:
+
+- **`SKW-001` is closed**: the commutative-ring `I4_homogeneous` lane for
+  `GKN_I4_State56_CommRing.lean` was discharged with `ring`
+- the closure receipt is sealed in
+  [`sorry-engine/trainer/sledgehammer_receipts.jsonl`](./sorry-engine/trainer/sledgehammer_receipts.jsonl)
+- the broader sweep status is packaged in
+  [`sorry-engine/SORRY_SOLVER_STATUS.md`](./sorry-engine/SORRY_SOLVER_STATUS.md)
+- the full mathematical spine is documented in the local GKN paper lineage
+
+What remains open:
+
+- the older **Float-based `State108` formulation is not yet a valid quartic**
+  as written
+- `I4_E7_Invariant` on that path remains open
+- the frontier is therefore **real mathematics in progress**, not a fake
+  “solved Millennium Prize” headline
+
+The right commercial story is stronger than hype:
+
+> Foundry F1 already demonstrates a proof-carrying route into deep invariant
+> computation: exact closures, sealed receipts, replayable witnesses, and a
+> visible frontier where the open problems actually still are.
+
+That is why the YouTube link matters. It shows the system as an executable
+mathematical surface: not just code running, but claims being bounded,
+checked, sealed, and carried forward.
+
+If you want the short positioning line beside the demo:
+
+**Foundry F1 does not claim the Millennium Prize. It shows a live machine
+path toward the invariant-heavy terrain those problems live in.**
+
+---
+
 ## What This Is
 
 A **deterministic orchestration substrate** for agentic systems, built on a
