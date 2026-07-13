@@ -1,7 +1,11 @@
 <!--OMEGA-FIELD:START-->
 <div align="center">
 
-[![Foundry F1 — Sovereign Compute](https://img.youtube.com/vi/xRz00jloRpU/maxresdefault.jpg)](https://www.youtube.com/watch?v=xRz00jloRpU)
+<a href="https://www.youtube.com/watch?v=xRz00jloRpU">
+  <img src="./docs/brand/snapkitty-official-logo.png" alt="Foundry F1 mathematical certainty video" width="760" />
+</a>
+
+**Watch the Foundry F1 demo:** [Mathematical Certainty in Motion](https://www.youtube.com/watch?v=xRz00jloRpU)
 
 ---
 
@@ -48,6 +52,28 @@
 Reverse-engineered and rebuilt from `foundry-intel-2026-07-11` (archived). This is the same system, the same architecture, the same guarantees — but better. Cleaner. Auditable. Written in portable C++ with C99/C11 compatibility paths.
 
 > No hallucination, malicious injection, or out-of-bounds mutation can ever reach physical execution.
+
+---
+
+## Mathematical Certainty Demo
+
+The video is not a style piece. It is the commercial proof story in one surface:
+
+- **17/17 tests pass** across the rebuilt C++ substrate
+- **Goldilocks arithmetic** is reduced with the verified fold identity
+- **Banach contraction bounds** enforce convergence before execution
+- **Triple-Lock gateway** constrains publishable state transitions
+- **WORM attestations** package the result as auditable evidence
+
+If you are evaluating Foundry F1 commercially, the video is the fastest
+entry point into the architecture, the certainty model, and the value of
+the licensed proof package.
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=xRz00jloRpU">
+    <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Watch Foundry F1 YouTube demo" width="920" />
+  </a>
+</div>
 
 ---
 
