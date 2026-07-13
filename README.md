@@ -53,6 +53,40 @@
 | Test Suite | **17/17 pass** |
 | Trust Model | Banach contraction + WORM chain + 3-witness consensus |
 
+## Mission And Trust Structure
+
+This repository is operated as part of **THE SHARED PRIMORDIAL FOUNDATION**
+trust structure and exists to solve mathematics, close proof debt, and turn
+that work into support for the mission carried in memory of
+**Eric Brandon Westerhoff**.
+
+Current top-level structure reflected in the repo:
+
+| Field | Value |
+|---|---|
+| Legal Name | `THE SHARED PRIMORDIAL FOUNDATION` |
+| EIN | `42-6976431` |
+| Draft Trust Form | `Grantor Retained Annuity Trust (GRAT) overlay / irrevocable trust structure in formation` |
+| Governing Law | `California` |
+| Grantor | `Ahmad Ali Parr` |
+| Trustee | `Jessica L. Westerhoff, TTEE` |
+| Trust Protector | `Ahmad Ali Parr` |
+| Advisory System Role | `BOB — administrative/advisory only, not sole legal trustee` |
+| Corpus | `Foundry F1 IP, proofs, sorry-engine, prior art, brands, licensing rights, derivative mathematical work product` |
+| IRS Filing | `Form 1041 — first due April 15, 2027` |
+| Gift Tax Filing | `Form 709 required at formation for GRAT treatment` |
+| Section 7520 Rate | `5.2% for July 2026` |
+
+The purpose of the trust, as reflected in the current formation draft, is:
+
+1. pursue solutions to Millennium Prize problems and related unsolved
+   mathematical problems through formal verification and sovereign compute
+   infrastructure
+2. execute commercial licensing and research transactions around the trust
+   corpus for the benefit of the trust and its beneficiaries
+3. honor the memory of Eric Brandon Westerhoff, in whose name this proof and
+   verification mission is being carried forward
+
 </div>
 
 <!--OMEGA-FIELD:END-->
