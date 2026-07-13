@@ -95,6 +95,18 @@ The purpose of the trust, as reflected in the current formation draft, is:
 3. honor the memory of Eric Brandon Westerhoff, in whose name this proof and
    verification mission is being carried forward
 
+### Support The Mission
+
+If you want to support the mission directly, use the same donation surface
+already used in the DEVFLOW-FINANCE stack:
+
+- **Primary support page:** [collectivekitty.com/saint-errant](https://collectivekitty.com/saint-errant)
+- **Open Collective rail:** [opencollective.com/saint-errant-digital-society](https://opencollective.com/saint-errant-digital-society)
+
+This repository's commercial proceeds support the Eric Westerhoff mission.
+Direct donations through the Saint Errant surface support the broader sovereign
+compute and mission infrastructure around that work.
+
 </div>
 
 <!--OMEGA-FIELD:END-->
