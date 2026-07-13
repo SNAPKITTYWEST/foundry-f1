@@ -9,11 +9,11 @@
 
 ---
 
-## ⟦ Ω ⟧ PRIME MATERIA COMMONS — FOUNDRY F1
+## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════╗
-║  FOUNDRY F1 — PRIME MATERIA COMMONS v2                                 ║
+║  FOUNDRY F1 — THE SHARED PRIMORDIAL FOUNDATION v2                      ║
 ║  Deterministic Orchestration Substrate for Sovereign Compute            ║
 ║  C++ · C99 · C11 · NASM                                                ║
 ║                                                                         ║
@@ -37,9 +37,9 @@
 
 ---
 
-# Prime Materia Commons — Foundry F1
+# The Shared Primordial Foundation — Foundry F1
 
-**The world's first trustless, formally verified orchestration substrate over 𝔽₁.**
+**The fundamental, first-matter substrate held in common — from which higher-order, sovereign systems (agents, proofs, governance, reality) can be reliably constructed.**
 
 Reverse-engineered and rebuilt from `foundry-intel-2026-07-11` (archived). This is the same system, the same architecture, the same guarantees — but better. Cleaner. Auditable. Written in portable C++ with C99/C11 compatibility paths.
 
@@ -509,7 +509,7 @@ cd build
 
 ## Implications for Agentic Protocols
 
-This stack provides the definitive blueprint for aligning advanced AI agent output with physical systems. By treating policy as geometry and deployments as mathematical theorems, the Prime Materia Commons ensures:
+This stack provides the definitive blueprint for aligning advanced AI agent output with physical systems. By treating policy as geometry and deployments as mathematical theorems, the The Shared Primordial Foundation ensures:
 
 - **Total Traceability:** Every execution outputs a cryptographically verified `UnifiedWitness` anchored to the WORM chain.
 - **Determinism:** Agentic output cannot bypass the Triple-Lock.
@@ -618,7 +618,7 @@ q_t = ‖Ξ_t‖ + ‖Λ_t‖ · ‖T‖ < 1 - ε
 
 **No sorry remains.**
 
-*Prime Materia Commons · Foundry F1 · 2026*
+*The Shared Primordial Foundation · Foundry F1 · 2026*
 *Ahmad Ali Parr*
 
 ```
