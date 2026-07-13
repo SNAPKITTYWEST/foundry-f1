@@ -930,6 +930,30 @@ gcc -std=c99 -O2 -c ../src/goldilocks.cpp -I../include
 
 ---
 
+## Solved Mathematicians
+
+At the bottom of the repo, the branded lineage card now names the actual
+mathematician-linked closures this tree can defend without bluffing.
+
+<div align="center">
+  <img src="./docs/brand/solved-mathematicians-lineage.svg" alt="Solved mathematicians lineage for Foundry F1" width="100%" />
+</div>
+
+It currently shows:
+
+- **Augustus De Morgan** — `OM-001`, where the open benchmark proof debt was
+  closed by witness construction rather than theorem rewriting
+- **Gunaydin / Koepsell / Nicolai** — `SKW-001`, where the commutative-ring
+  `State56` lane proves `I₄(c·Ψ) = c⁴·I₄(Ψ)` cleanly with `ring`
+
+And it says the important quiet part explicitly:
+
+- **Boole remains lineage**, not a falsely claimed direct closure in this repo
+- **the Float State108 path remains open**, so the repo does not pretend the
+  entire I₄ frontier is already done
+
+---
+
 <div align="center">
 
 **The cage holds.**

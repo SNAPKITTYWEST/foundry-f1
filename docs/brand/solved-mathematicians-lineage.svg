@@ -1,0 +1,84 @@
+<svg width="1440" height="1160" viewBox="0 0 1440 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1440" y2="1160" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07101C"/>
+      <stop offset="0.52" stop-color="#0E1122"/>
+      <stop offset="1" stop-color="#180A20"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="108" y1="140" x2="1338" y2="1018" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2BE6FF"/>
+      <stop offset="0.5" stop-color="#FF44D0"/>
+      <stop offset="1" stop-color="#F7B500"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFE47A"/>
+      <stop offset="1" stop-color="#F0A602"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#72F4FF"/>
+      <stop offset="1" stop-color="#13B8FF"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FF7AE2"/>
+      <stop offset="1" stop-color="#FF3CC7"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1440" height="1160" rx="34" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1384" height="1104" rx="30" stroke="#1D3250" stroke-width="2"/>
+  <rect x="54" y="54" width="1332" height="1052" rx="28" stroke="url(#frame)" stroke-width="3"/>
+
+  <text x="720" y="110" fill="#F7D36B" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" text-anchor="middle">SNAPKITTY FOUNDRY F1</text>
+  <text x="720" y="156" fill="#D9E8FF" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" text-anchor="middle">Solved Mathematicians Lineage</text>
+  <text x="720" y="202" fill="#98B5D8" font-family="Arial, Helvetica, sans-serif" font-size="24" text-anchor="middle">named theorem debts closed in-repo, with formulas, closure tactics, and the exact obstruction surface addressed</text>
+
+  <rect x="104" y="248" width="1232" height="94" rx="18" fill="#0D1829" stroke="#223754" stroke-width="2"/>
+  <text x="152" y="292" fill="#73F3FF" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Current closed mathematical targets</text>
+  <text x="152" y="326" fill="#D5E4FA" font-family="Arial, Helvetica, sans-serif" font-size="22">OM-001: De Morgan logic closure  •  SKW-001: commutative-ring I₄ degree-4 homogeneity closure</text>
+
+  <rect x="104" y="384" width="592" height="530" rx="24" fill="#0A1424" stroke="#2A476B" stroke-width="2.5"/>
+  <circle cx="186" cy="464" r="32" fill="url(#cyan)" filter="url(#glow)"/>
+  <text x="242" y="454" fill="#F5F9FF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Augustus De Morgan</text>
+  <text x="242" y="490" fill="#9FC6E6" font-family="Arial, Helvetica, sans-serif" font-size="21">1806–1871  •  logic, algebra, symbolic distribution of negation</text>
+
+  <text x="144" y="552" fill="#73F3FF" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Closed target</text>
+  <text x="144" y="590" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="23">OM-001  •  De Morgan's Law</text>
+  <text x="144" y="626" fill="#C4D7F2" font-family="Arial, Helvetica, sans-serif" font-size="21">¬(P ∨ Q) ↔ (¬P ∧ ¬Q)</text>
+
+  <text x="144" y="692" fill="#F7D36B" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Formula / theorem surface</text>
+  <text x="144" y="730" fill="#E4EEFF" font-family="Courier New, Courier, monospace" font-size="22">not (P or Q)  ↔  (not P) and (not Q)</text>
+  <text x="144" y="766" fill="#E4EEFF" font-family="Courier New, Courier, monospace" font-size="22">Lean closure: constructor / rintro</text>
+
+  <text x="144" y="832" fill="#FF79D8" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">What flaw was removed</text>
+  <text x="144" y="870" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="21">An open benchmark sorry in the logic path. The issue was not a broken theorem.</text>
+  <text x="144" y="902" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="21">It was an unfinished proof script. SnapKitty closed the missing witness chain.</text>
+
+  <rect x="744" y="384" width="592" height="530" rx="24" fill="#0A1424" stroke="#523869" stroke-width="2.5"/>
+  <circle cx="826" cy="464" r="32" fill="url(#pink)" filter="url(#glow)"/>
+  <text x="882" y="454" fill="#F5F9FF" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Günaydin • Koepsell • Nicolai</text>
+  <text x="882" y="490" fill="#CDB4E7" font-family="Arial, Helvetica, sans-serif" font-size="21">E₇ quartic invariant line  •  exceptional Jordan / Freudenthal geometry</text>
+
+  <text x="784" y="552" fill="#FF79D8" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Closed target</text>
+  <text x="784" y="590" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="23">SKW-001  •  I₄ degree-4 homogeneity on State56</text>
+  <text x="784" y="626" fill="#C4D7F2" font-family="Arial, Helvetica, sans-serif" font-size="21">State56 = (α, β, P, Q) over a commutative ring R</text>
+
+  <text x="784" y="692" fill="#F7D36B" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Formula / theorem surface</text>
+  <text x="784" y="730" fill="#E4EEFF" font-family="Courier New, Courier, monospace" font-size="22">I₄(c·Ψ) = c⁴ · I₄(Ψ)</text>
+  <text x="784" y="766" fill="#E4EEFF" font-family="Courier New, Courier, monospace" font-size="22">Lean closure: ring</text>
+
+  <text x="784" y="832" fill="#73F3FF" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">What flaw was removed</text>
+  <text x="784" y="870" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="21">The commutative-ring State56 lane was repaired and closed as a real quartic</text>
+  <text x="784" y="902" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="21">homogeneity proof. The older Float State108 lane remains open and is not faked.</text>
+
+  <rect x="104" y="956" width="1232" height="130" rx="24" fill="#0C1827" stroke="#243C5B" stroke-width="2"/>
+  <text x="144" y="1008" fill="#F7D36B" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Lineage note</text>
+  <text x="144" y="1046" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="22">George Boole is still part of the spine here, but as lineage rather than a separately closed in-repo mathematician target.</text>
+  <text x="144" y="1078" fill="#E4EEFF" font-family="Arial, Helvetica, sans-serif" font-size="22">The repo currently claims only the closures it can name, receipt, and replay: De Morgan and the commutative-ring GKN I₄ lane.</text>
+</svg>
