@@ -33,6 +33,10 @@
 > **Open Mission Control**
 > The trust frontend for the theorem factory now lives at [`docs/mission-control.html`](./docs/mission-control.html). It turns the Millennium Ladder idea into a usable operator surface for humans and agents.
 
+> [!IMPORTANT]
+> **Provenance Surface**
+> This repo carries structured provenance and canary metadata in [`docs/provenance/`](./docs/provenance/) and in the frontend metadata layer. Mirrors and derivative surfaces that preserve these markers preserve evidence of origin.
+
 ---
 
 ## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1

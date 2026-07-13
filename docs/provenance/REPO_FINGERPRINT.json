@@ -1,0 +1,18 @@
+{
+  "repo_name": "foundry-f1",
+  "owner": "SNAPKITTYWEST",
+  "canonical_repo": "https://github.com/SNAPKITTYWEST/foundry-f1",
+  "trust_name": "THE SHARED PRIMORDIAL FOUNDATION",
+  "ein": "42-6976431",
+  "license_surface": "Source Available - no use without written license",
+  "provenance_anchor_commit": "3c44f5019fc8359049b1e74eaf4e895248003a43",
+  "provenance_anchor_ts": "2026-07-13T16:15:44.4725498-06:00",
+  "canary_family": "SPF-F1",
+  "canary_tokens": [
+    "SPF-F1-OMEGA-001",
+    "SPF-F1-OMEGA-002",
+    "SPF-F1-WORM-003",
+    "SPF-F1-MISSION-ERIC-004"
+  ],
+  "notice": "Presence of these markers in mirrors, embeddings, datasets, derivative repos, or copied commercial deployments is evidence of derivation from the canonical SnapKitty trust corpus."
+}
