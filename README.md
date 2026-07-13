@@ -937,6 +937,17 @@ This repository is source-visible and commercially licensable.
 - AI / ML training: prohibited without written permission
 - Exclusive proof portfolio: included in paid tiers and custom deals
 
+## Trust Record
+
+An official IRS trust record is now included in the repository as supporting
+formation evidence for the trust layer:
+
+- [IRS CP575B trust EIN notice](./docs/legal/irs-cp575b-trust-ein-notice.pdf)
+
+The README does not restate sensitive identifiers in plain text. The source
+document is carried as the formal record while CARTO prepares the fuller trust
+document set.
+
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                         PROVENANCE                                       │
