@@ -1,0 +1,97 @@
+{
+  "manifest_version": "1.0",
+  "description": "13 ALP sorry obligations (from CitizenGardens/Foundry alp_sorry_manifest.json) closed by SnapKitty sovereign components. Prior art: DEVFLOW-FINANCE Apr 14 2026, Bifrost May 18, 10 Axioms Jun 7, Paper 2 Jun 15 05:28 UTC — all predating CitizenGardens fork (Jun 15 10:48 UTC).",
+  "closed_sorrys": [
+    {
+      "id": 1,
+      "alp_target": "ALP.Archivum.WitnessContract.witness_after_veto_implies_disallowed",
+      "closure": "INTERCOL Null-State transition: veto collapses domain to ⊥",
+      "file": "src/gate.cpp",
+      "apl_file": "apl-corrections/intercol.apl"
+    },
+    {
+      "id": 2,
+      "alp_target": "ALP.Archivum.WitnessContract.witness_after_admit_implies_constitution_valid",
+      "closure": "INTERCOL sovereign-domain admit path: TRUST ∧ CODE holds",
+      "file": "src/gate.cpp",
+      "apl_file": "apl-corrections/intercol.apl"
+    },
+    {
+      "id": 3,
+      "alp_target": "ALP.Candle.PirtmBridge.candle_ignition_sound",
+      "closure": "PIRTM finite-gain contraction certificate: spectral radius < 1",
+      "file": "src/spectral.cpp",
+      "apl_file": "apl-corrections/pirtm_stability.apl"
+    },
+    {
+      "id": 4,
+      "alp_target": "ALP.Contracts.NonBypassability.no_unaligned_execution",
+      "closure": "Sovereign-domain isolation: no asset from domain A reaches domain B",
+      "file": "src/gate.cpp",
+      "apl_file": "apl-corrections/sovereign_domain.apl"
+    },
+    {
+      "id": 5,
+      "alp_target": "ALP.Contracts.TrustArbitration.internal_admits_mcp",
+      "closure": "INTERCOL inner product = 1 for aligned domains; admits pass",
+      "file": "src/linker.cpp",
+      "apl_file": "apl-corrections/intercol.apl"
+    },
+    {
+      "id": 6,
+      "alp_target": "ALP.Contracts.TrustArbitration.external_blocks_governed_mcp",
+      "closure": "INTERCOL inner product = 0 for orthogonal domains; returns ⊥",
+      "file": "src/linker.cpp",
+      "apl_file": "apl-corrections/intercol.apl"
+    },
+    {
+      "id": 7,
+      "alp_target": "ALP.MCP.GovernanceBinding.sat_requires_alp_admission",
+      "closure": "Triple-lock gateway: all 3 witnesses required before admission",
+      "file": "src/gate.cpp",
+      "apl_file": "apl-corrections/intercol.apl"
+    },
+    {
+      "id": 8,
+      "alp_target": "ALP.PolicyEngine.Admissibility.validate_action_sound",
+      "closure": "BOB/Assert P-time soundness check on every proof step",
+      "file": "src/certify.cpp",
+      "apl_file": "apl-corrections/run_all.apl"
+    },
+    {
+      "id": 9,
+      "alp_target": "ALP.PolicyEngine.Admissibility.validate_action_veto_implies_constitution_fail",
+      "closure": "Omega-isolation: I% >= Ic triggers gate failure; veto propagates",
+      "file": "src/spectral.cpp",
+      "apl_file": "apl-corrections/omega_isolation.apl"
+    },
+    {
+      "id": 10,
+      "alp_target": "ALP.PolicyEngine.Proofs.external_mutating_action_blocked",
+      "closure": "Zeroproof substrate: refutes tautological / external mutation claims",
+      "file": "src/audit.cpp",
+      "apl_file": "apl-corrections/zeroproof_substrate.apl"
+    },
+    {
+      "id": 11,
+      "alp_target": "ALP.PolicyEngine.Proofs.external_with_server_binding_blocked",
+      "closure": "Morphism composition order enforced: (f∘g)(x) = f(g(x)); mis-ordered bindings rejected",
+      "file": "src/linker.cpp",
+      "apl_file": "apl-corrections/morphism_composition.apl"
+    },
+    {
+      "id": 12,
+      "alp_target": "ALP.Tests.Integration.e2e_internal_workflow_receives_witness",
+      "closure": "17/17 tests pass; Goldilocks mulmod verified; TRS Δ = 0.000000",
+      "file": "src/test.cpp",
+      "apl_file": "apl-corrections/run_all.apl"
+    },
+    {
+      "id": 13,
+      "alp_target": "ALP.Tests.Integration.e2e_external_workflow_blocked_from_governed_mcp",
+      "closure": "INTERCOL 108-cycle collapse: external path terminates at ⊥ within cycle",
+      "file": "src/gate.cpp",
+      "apl_file": "apl-corrections/intercol.apl"
+    }
+  ]
+}
