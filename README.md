@@ -2,7 +2,7 @@
 <div align="center">
 
 <a href="https://www.youtube.com/watch?v=xRz00jloRpU">
-  <img src="./docs/brand/snapkitty-official-logo.png" alt="Foundry F1 mathematical certainty video" width="760" />
+  <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 mathematical certainty video" width="920" />
 </a>
 
 **Watch the Foundry F1 demo:** [Mathematical Certainty in Motion](https://www.youtube.com/watch?v=xRz00jloRpU)
@@ -38,10 +38,6 @@
 ---
 
 # Prime Materia Commons — Foundry F1
-
-<div align="center">
-  <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 sovereign brand mark" width="920" />
-</div>
 
 **The world's first trustless, formally verified orchestration substrate over 𝔽₁.**
 
