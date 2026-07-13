@@ -1,6 +1,8 @@
 <!--OMEGA-FIELD:START-->
 <div align="center">
 
+[![Foundry F1 — Sovereign Compute](https://img.youtube.com/vi/xRz00jloRpU/maxresdefault.jpg)](https://www.youtube.com/watch?v=xRz00jloRpU)
+
 ---
 
 ## ⟦ Ω ⟧ PRIME MATERIA COMMONS — FOUNDRY F1
@@ -33,6 +35,14 @@
 
 # Prime Materia Commons — Foundry F1
 
+<div align="center">
+  <img src="./docs/brand/snapkitty-official-logo.png" alt="SnapKitty official logo" width="520" />
+</div>
+
+<div align="center">
+  <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 sovereign brand mark" width="920" />
+</div>
+
 **The world's first trustless, formally verified orchestration substrate over 𝔽₁.**
 
 Reverse-engineered and rebuilt from `foundry-intel-2026-07-11` (archived). This is the same system, the same architecture, the same guarantees — but better. Cleaner. Auditable. Written in portable C++ with C99/C11 compatibility paths.
@@ -51,6 +61,61 @@ The system guarantees: **no hallucination, malicious injection, or
 out-of-bounds mutation can ever reach physical execution.**
 
 This is Foundry F1. The archived original is immutable. This version is better.
+
+---
+
+## Commercial Licensing
+
+Foundry F1 is available as a commercial sovereign infrastructure package
+for teams that need formal verification work product, private delivery,
+commercial use rights, and support.
+
+| Tier | Description | Pricing (Annual) | Best For |
+|---|---|---:|---|
+| **Community** | AGPL-3.0 community release for designated open modules | **Free** | Individuals, research, open projects |
+| **Startup** | Commercial license for small teams · up to 5 developers · basic support | **$4,900 / year** | Early-stage companies |
+| **Professional** | Full commercial license · up to 20 seats · priority email support · indemnification | **$24,900 / year** | Growing teams and internal tools |
+| **Enterprise** | Unlimited seats · premium support + SLAs · custom development hours · private updates · on-prem / air-gapped options | **$79,000-$149,000 / year** | Large organizations, mission-critical use |
+| **Custom / OEM** | White-label, embedded, or high-volume deployment · custom modules | **Custom quote** | Hardware partners, OEMs, SaaS platforms |
+
+### Paid Tiers Include
+
+- **Commercial Use Rights** — no AGPL copyleft obligations for licensed deliverables
+- **Indemnification** against covered IP claims
+- **Support** — email, priority, and SLA-backed support paths
+- **Private Access** — private patches, private updates, and controlled releases
+- **WORM / Verification Attestations** — compliance-facing receipts and provenance packaging
+- **Training and Onboarding** — structured rollout for licensed deployments
+- **Exclusive Proof Portfolio** — closed proof obligations and commercial certainty assets
+
+### Exclusive Proof Assets
+
+Foundry F1 carries a 13-obligation ALP proof portfolio sourced from
+[`alp_sorry_manifest.json`](./alp_sorry_manifest.json). Those obligations
+are positioned as part of the commercial proof package rather than just
+source code.
+
+See [Exclusive Proof Portfolio](./docs/EXCLUSIVE_PROOF_PORTFOLIO.md).
+
+What customers are buying is not just code access. They are buying
+commercial rights, proof-backed implementation certainty, provenance,
+and closed governance work product.
+
+### Add-Ons
+
+- **Dedicated Support Engineer** — `+$45,000 / year`
+- **Custom Formal Verification or Module Development** — `$250-$450 / hour`
+- **On-Prem / Air-Gapped License** — `+30%`
+- **Perpetual License** — Enterprise tier only, `3x annual + 22% annual maintenance`
+
+### Recommended Entry Point
+
+The strongest default commercial offer is **Professional** at
+**$24,900 / year**. It is the clean middle tier for teams that need
+serious deployment rights and a formal verification story without
+jumping straight to enterprise procurement.
+
+Commercial licensing and OEM inquiries: `jessicalw34@gmail.com`
 
 ---
 
@@ -463,6 +528,18 @@ originally forked from `PhaseMirror/Foundry`. This clean C++ reimplementation
 replaces the Rust/LLVM implementation with a minimal, auditable codebase.
 
 The original is archived. This version is better. Same architecture. Same guarantees. Cleaner code.
+
+---
+
+## License
+
+This repository is source-visible and commercially licensable.
+
+- License file: [LICENSE](./LICENSE)
+- Base license family: `Sovereign Source License v2.0`
+- Commercial use: requires written license
+- AI / ML training: prohibited without written permission
+- Exclusive proof portfolio: included in paid tiers and custom deals
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
