@@ -44,6 +44,61 @@
 
 ---
 
+## Sorry Hunt Dashboard
+
+> Last sweep: `2026-07-13` · Engine: `sledgehammer.py` + `roster_sweep.py` · Chain: [`sweep_output/sweep_chain.jsonl`](./sorry-engine/sweep_output/sweep_chain.jsonl)
+
+| Status | Count |
+|--------|-------|
+| ✅ SOLVED | **2** |
+| 🔴 UNSOLVED | **18** |
+| ⚪ NO\_SORRY (audited clean) | **2** |
+| **Total tracked** | **22** |
+
+### Active Targets
+
+| ID | Repo | File | Family | Sorries | Status |
+|----|------|------|--------|---------|--------|
+| `FLT-001` | `ImperialCollegeLondon/FLT` | `FLT/Proof.lean` | number\_theory | 64 | 🔴 UNSOLVED |
+| `ANT-001` | `motanova84/Riemann-adelic` | `Friedrichs.lean` | analytic\_nt | 2 | 🔴 UNSOLVED |
+| `PNP-001` | `konard/p-vs-np` | `KatkovRefutation.lean` | complexity | 8 | 🔴 UNSOLVED |
+| `SKW-002` | `SNAPKITTYWEST` | `MTheory.lean` — I₄ E₇ invariance | physics\_math | 2 | 🔴 UNSOLVED |
+| `QNT-001` | `eiKeViN/Lean-LiebConcavity` | `Rpow.lean` | quantum\_math | 1 | 🔴 UNSOLVED |
+| `NT-001` | `kckennylau/local-langlands-abelian` | `torus.lean` | number\_theory | 6 | 🔴 UNSOLVED |
+| `ML4-002` | `duong-ngo/mathlib4` | `TFAE.lean` | tactics | 14 | 🔴 UNSOLVED |
+| `HT-001` | `lean-dojo/ITPEval` | `hundred-theorems #058` | combinatorics | 21 | 🔴 UNSOLVED |
+| `EDU-001` | `sinhp/ProofLab` | `hw7.lean` | education | 49 | 🔴 UNSOLVED |
+| `CS-001` | `GaloisInc/lean-protocol-support` | `arith.lean` | crypto\_cs | 12 | 🔴 UNSOLVED |
+| `QEC-001` | `QTM3x/Quantum-Internet` | `matrix_ops.lean` | quantum\_computing | 14 | 🔴 UNSOLVED |
+| `ALG-001` | `101damnations/test` | `koszul_scratch.lean` | algebra | 1 | 🔴 UNSOLVED |
+| `ALG-002` | `cmu-phil/Spectral` | `component.hlean` | algebraic\_topology | 5 | 🔴 UNSOLVED |
+| `AC-001` | `YaelDillies/apap` | `Integer.lean` | additive\_combinatorics | 1 | 🔴 UNSOLVED |
+| `TOP-001` | `Sterrs/leaning` | `compactness.lean` | topology | 2 | 🔴 UNSOLVED |
+| `LA-001` | `ssomayyajula/linear` | `span.lean` | linear\_algebra | 2 | 🔴 UNSOLVED |
+| `LA-002` | `kevinsullivan/affine_lib` | `multidim_test.lean` | linear\_algebra | 5 | 🔴 UNSOLVED |
+| `HT-002` | `sinhp/HoTTLean` | `Prelude.lean` — path induction | homotopy\_type\_theory | 0 | ⚪ NO\_SORRY |
+| `ST-001` | `flypitch/flypitch` | `peano.lean` | set\_theory | 0 | ⚪ NO\_SORRY |
+
+### Closed
+
+| ID | Repo | File | Family | Tactic | Receipt |
+|----|------|------|--------|--------|---------|
+| ✅ `OM-001` | `SNAPKITTYWEST` | `OM-001_sledged.lean` — De Morgan | logic | `constructor/rintro` | `a812fd02` |
+| ✅ `SKW-001` | `SNAPKITTYWEST` | `GKN_I4_State56_CommRing.lean` — I₄ homogeneous | physics\_math | `ring` | `28832252` |
+
+### Roster Coverage
+
+| Roster | Targets | Source |
+|--------|---------|--------|
+| `sorry_roster_real.json` | real GitHub open sorries | [`sorry-engine/rosters/`](./sorry-engine/rosters/) |
+| `multiprover_sorry_roster.json` | 707 (Coq 296 · HOL Light 200 · HOL4 85 · Metamath 126) | [`sorry-engine/rosters/`](./sorry-engine/rosters/) |
+| `isabelle_sorry_roster.json` | 360 (PutnamBench · seL4 · Marlowe · EVM · CBC Casper) | [`sorry-engine/rosters/`](./sorry-engine/rosters/) |
+| `flt_sorries_audit.json` | 64 sorries audited in `ImperialCollegeLondon/FLT` | [`sorry-engine/sweep_output/`](./sorry-engine/sweep_output/) |
+
+**Total roster targets: 1,367**
+
+---
+
 # The Shared Primordial Foundation — Foundry F1
 
 **The fundamental, first-matter substrate held in common — from which higher-order, sovereign systems (agents, proofs, governance, reality) can be reliably constructed.**
