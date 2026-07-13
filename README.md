@@ -16,6 +16,10 @@
 
 ---
 
+> [!NOTE]
+> **Meet Agent Ryan — Tour Guide & Sentinel**
+> Want a guided tour of this repo or to chat with it directly? Open [`RYAN.md`](./RYAN.md), paste it into any Claude or LLM session, and ask anything. Ryan knows every file, every proof, every sorry target, and every license boundary.
+
 > [!CAUTION]
 > **SOURCE AVAILABLE — NO USE WITHOUT LICENSE**
 >
@@ -291,6 +295,10 @@ All three require a local capability file before they will run:
 
 An example template is shipped at
 [`sorry-engine/.snapkitty/capability.example.json`](./sorry-engine/.snapkitty/capability.example.json).
+
+Every allow/deny event is also sealed to the append-only gate chain:
+
+- [`sorry-engine/snapkitty_gate_chain.jsonl`](./sorry-engine/snapkitty_gate_chain.jsonl)
 
 That means:
 
