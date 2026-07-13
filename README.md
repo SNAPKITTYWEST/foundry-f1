@@ -944,9 +944,21 @@ formation evidence for the trust layer:
 
 - [IRS CP575B trust EIN notice](./docs/legal/irs-cp575b-trust-ein-notice.pdf)
 
-The README does not restate sensitive identifiers in plain text. The source
-document is carried as the formal record while CARTO prepares the fuller trust
-document set.
+Current trust structure being carried in the repo:
+
+| Field | Value |
+|---|---|
+| Trust Name | `THE SHARED PRIMORDIAL FOUNDATION` |
+| EIN | `42-6976431` |
+| Trust Layer | `Irrevocable trust structure with GRAT overlay in formation` |
+| Grantor | `Ahmad Ali Parr` |
+| IRS Contact on Notice | `Jessica L. Westerhoff, TTEE` |
+| Core Corpus | `Foundry F1 IP, proofs, sorry-engine, prior art, brands, licensing rights` |
+| Mission | `Mathematics, proof closure, licensing, and support for the Eric Westerhoff mission` |
+
+The CP575B is the current official IRS record in the repository. CARTO is
+preparing the fuller trust instrument set and final legal documentation around
+this structure.
 
 ## Mission
 
