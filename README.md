@@ -1113,4 +1113,10 @@ q_t = ‖Ξ_t‖ + ‖Λ_t‖ · ‖T‖ < 1 - ε
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
+---
+
+[![Powered by mylaw](https://img.shields.io/badge/legal%20documents-powered%20by%20mylaw-black?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyTDIgN2wxMCA1IDEwLTV6TTIgMTdsOCA0IDgtNFY3bC04IDQtOC00eiIvPjwvc3ZnPg==)](https://mylaw.com)
+
+*Trust formation documents for THE SHARED PRIMORDIAL FOUNDATION drafted via [mylaw](https://mylaw.com) · EIN 42-6976431 · [View GRAT Formation Document](./legal/GRAT_FORMATION_DOCUMENT.md)*
+
 </div>
