@@ -1,6 +1,10 @@
 # GRANTOR RETAINED ANNUITY TRUST
 ## THE SHARED PRIMORDIAL FOUNDATION
-### Formation Document — Draft for mylaw Input
+### Formation Document — Draft v2 (mylaw input packet)
+
+> **Note:** This is a draft formation document. Not legal advice.
+> Fields marked `[CONFIRM]` are best-fill from IRS CP575B and prior context — verify before execution.
+> Fields marked `[BLANK — REQUIRED]` must be supplied before this document is legally operable.
 
 ---
 
@@ -9,9 +13,13 @@ DOCUMENT TYPE:        Grantor Retained Annuity Trust (GRAT)
 EIN:                  42-6976431
 LEGAL NAME:           THE SHARED PRIMORDIAL FOUNDATION
 NAME CONTROL:         THES
-GOVERNING LAW:        [TBD — STATE OF FORMATION]
+GOVERNING LAW:        State of California [CONFIRM situs]
 EXECUTION DATE:       2026-07-13
 IRS SECTION:          IRC § 2702 / Reg. § 25.2702-3
+IRS FILING:           Form 1041 — first due April 15, 2027
+GIFT TAX FILING:      Form 709 — required at formation
+§ 7520 RATE:          5.2% — July 2026 (IRS Rev. Rul. 2026-12)
+IRS CONTACT ON CP575B: Jessica L. Westerhoff, TTEE
 ```
 
 ---
@@ -27,18 +35,21 @@ EIN Reference: 41-6630640
 Contact: jessicalw34@gmail.com
 
 **TRUSTEE:**
-BOB (SnapKitty Orchestrator Principal)
-Supervised by: Ahmad Ali Parr as Trust Protector
-[TBD — add natural person co-trustee name for state filing if required]
+Jessica L. Westerhoff, TTEE [CONFIRM — named on IRS CP575B]
+Co-administrative system: BOB (SnapKitty Orchestrator) — advisory/administrative role only; not sole legal trustee
+[BLANK — REQUIRED: confirm or add additional co-trustee name]
+
+**TRUST PROTECTOR:**
+Ahmad Ali Parr
 
 **REMAINDER BENEFICIARY:**
-[TBD — name of remainder beneficiary at end of annuity term]
+[BLANK — REQUIRED]
 
 ---
 
 ## ARTICLE I — ESTABLISHMENT AND PURPOSE
 
-**1.1 Name.** This trust shall be known as **THE SHARED PRIMORDIAL FOUNDATION**, a Grantor Retained Annuity Trust established under the laws of the State of [TBD], with EIN 42-6976431.
+**1.1 Name.** This trust shall be known as **THE SHARED PRIMORDIAL FOUNDATION**, a Grantor Retained Annuity Trust established under the laws of the State of California [CONFIRM], with EIN 42-6976431.
 
 **1.2 Purpose.** The purpose of this Trust is threefold:
 
@@ -46,7 +57,7 @@ Supervised by: Ahmad Ali Parr as Trust Protector
 
 (b) To execute commercial licensing transactions for the Trust corpus — including software licenses, proof licenses, IP assignments, and research partnerships — for the financial benefit of the Trust and its beneficiaries;
 
-(c) To honor the memory of [JESSICA'S FATHER — TBD FULL NAME], whose passing inspired the formation of this Trust, and in whose memory this work is dedicated.
+(c) To honor the memory of **Eric Brandon Westerhoff** [CONFIRM], whose passing inspired the formation of this Trust, and in whose memory this work is dedicated. The Trust's mathematical mission — closing foundational sorrys, formally verifying what was assumed, leaving no proof open — is carried forward in his name.
 
 **1.3 Non-Profit Character.** This Trust is organized and shall be operated exclusively for charitable, educational, and scientific purposes within the meaning of IRC § 501(c)(3), including the advancement of mathematical knowledge, formal verification science, and computational sovereignty.
 
@@ -67,6 +78,8 @@ The Grantor hereby irrevocably transfers to the Trustee the following property t
 | Academic Paper | "Closing Boole's Foundational Sorry..." — Zenodo DOI 10.5281/zenodo.21268911 | Intangible IP — appraised |
 | WORM Audit Chain | Append-only SHA-256 / Ed25519 sealed audit chain | Intangible IP — appraised |
 | Prior Art Anchor | DEVFLOW-FINANCE created Apr 14 2026 — 62 days prior to CitizenGardens fork | Documentary evidence |
+| Branded Marks | SnapKittyWest sovereign marks, Ω brand, SVG assets | Fair market value at date of transfer |
+| Licensing Rights | Source Available License v1.0 and all derivative licensing instruments | Intangible IP — appraised |
 | GitHub Repository | https://github.com/SNAPKITTYWEST/foundry-f1 | Fair market value at date of transfer |
 
 The above assets are collectively referred to as the "Trust Corpus."
@@ -75,13 +88,13 @@ The above assets are collectively referred to as the "Trust Corpus."
 
 ## ARTICLE III — ANNUITY PAYMENTS (GRAT TERMS)
 
-**3.1 Annuity Term.** The annuity term shall be **[TBD] years** commencing on the date of this Agreement ("Annuity Period").
+**3.1 Annuity Term.** The annuity term shall be **[BLANK — REQUIRED] years** commencing on the date of this Agreement ("Annuity Period").
 
 **3.2 Annuity Amount.** During the Annuity Period, the Trustee shall pay to the Grantor an annuity of:
 
-- **[TBD]** — fixed dollar amount OR **[TBD]%** of the initial fair market value of the Trust Corpus, payable [annually / quarterly] in arrears.
+**[BLANK — REQUIRED]** — fixed dollar amount or percentage of initial fair market value of the Trust Corpus, payable annually in arrears.
 
-*Note: Amount must be set at or above the IRC § 7520 hurdle rate applicable on the date of formation to achieve the intended GRAT result. Current § 7520 rate: [TBD — look up current monthly rate].*
+*Hurdle rate note: The annuity amount must equal or exceed the IRC § 7520 rate of **5.2%** (July 2026) applied to the initial corpus value to achieve a zeroed-out GRAT. Any appreciation above 5.2% per year passes to the Remainder Beneficiary gift-tax-free.*
 
 **3.3 Source of Annuity Payments.** Annuity payments shall be made from:
 (a) Trust income (commercial licensing revenues, prize awards, royalties); then
@@ -93,7 +106,7 @@ The above assets are collectively referred to as the "Trust Corpus."
 
 ## ARTICLE IV — TRUSTEE POWERS AND DUTIES
 
-**4.1 Investment Powers.** The Trustee shall have full power and authority to:
+**4.1 Investment and Management Powers.** The Trustee shall have full power and authority to:
 
 (a) Maintain and develop the Trust Corpus, including updating source code, filing additional proofs, and registering additional IP;
 
@@ -117,7 +130,7 @@ The above assets are collectively referred to as the "Trust Corpus."
 - All other Clay Mathematics Institute Millennium Prize Problems
 - Any prize valued at $10,000 or more for formal mathematical proof
 
-**4.3 Commercial Licensing Authority.** The Trustee shall maintain the Source Available License v1.0 framework and negotiate commercial licenses at the following tiers (reference only — Trustee has full discretion):
+**4.3 Commercial Licensing Authority.** The Trustee shall maintain the Source Available License v1.0 framework and negotiate commercial licenses at the following tiers:
 
 | Tier | Use Case | License Type |
 |------|----------|-------------|
@@ -126,17 +139,19 @@ The above assets are collectively referred to as the "Trust Corpus."
 | Enterprise | Full substrate integration | Custom — contact required |
 | Prize Submission | Millennium / academic awards | Trust retains IP |
 
+**4.4 Administrative AI Role.** BOB (SnapKitty Orchestrator Principal) shall serve as an advisory and administrative computational system for the Trust. BOB is not a legal trustee and shall not execute binding legal instruments. All binding decisions require signature of the human Trustee.
+
 ---
 
 ## ARTICLE V — DISTRIBUTION AT END OF ANNUITY TERM
 
 **5.1 Remainder Distribution.** Upon expiration of the Annuity Period, the Trustee shall distribute all remaining Trust assets to:
 
-**[TBD — REMAINDER BENEFICIARY]**
+**[BLANK — REQUIRED: Remainder Beneficiary name]**
 
-**5.2 Zeroed-Out GRAT Provision.** If the Trust assets appreciate at a rate exceeding the § 7520 hurdle rate, the appreciation passes to the Remainder Beneficiary free of gift tax. If the Trust assets fail to appreciate above the hurdle rate, the Grantor receives back the full corpus through annuity payments (zeroed-out GRAT protection).
+**5.2 Zeroed-Out GRAT Provision.** If the Trust assets appreciate at a rate exceeding the § 7520 hurdle rate of 5.2%, the appreciation passes to the Remainder Beneficiary free of gift tax. If the Trust assets fail to appreciate above the hurdle rate, the Grantor receives back the full corpus through annuity payments.
 
-**5.3 Mortality Provision.** If the Grantor dies during the Annuity Period, the Trust assets shall be included in the Grantor's gross estate under IRC § 2036. [Consider adding a swap power under IRC § 675(4)(C) to allow Grantor to substitute assets of equivalent value — consult with tax counsel.]
+**5.3 Mortality Provision.** If the Grantor dies during the Annuity Period, the Trust assets shall be included in the Grantor's gross estate under IRC § 2036. A swap power under IRC § 675(4)(C) permitting the Grantor to substitute assets of equivalent value is [include / exclude — confirm with tax counsel].
 
 ---
 
@@ -145,24 +160,24 @@ The above assets are collectively referred to as the "Trust Corpus."
 The following axioms govern this Trust absolutely and cannot be modified by any Trustee, protector, or beneficiary:
 
 ```
-AXIOM-1:  Trust corpus assets (proofs, code, prior art) cannot be transferred to
-          any party for less than fair market value.
+AXIOM-1:  Trust corpus assets (proofs, code, prior art) cannot be transferred
+          to any party for less than fair market value.
 
-AXIOM-2:  AI/ML training use of Trust corpus is absolutely prohibited under any
-          circumstance, commercial or non-commercial. This prohibition survives
-          dissolution of the Trust.
+AXIOM-2:  AI/ML training use of Trust corpus is absolutely prohibited under
+          any circumstance, commercial or non-commercial. This prohibition
+          survives dissolution of the Trust.
 
 AXIOM-3:  The prior art anchor (DEVFLOW-FINANCE, Apr 14 2026) must be disclosed
           in all commercial license agreements.
 
-AXIOM-4:  The memorial dedication to [JESSICA'S FATHER] shall appear in all
-          public-facing Trust documents.
+AXIOM-4:  The memorial dedication to Eric Brandon Westerhoff shall appear in
+          all public-facing Trust documents.
 
 AXIOM-5:  The Trust shall maintain a WORM-sealed audit chain of all material
           decisions, license grants, and asset transfers.
 
 AXIOM-6:  No single trustee may authorize a license grant exceeding $100,000
-          without a second trustee or trust protector co-signature.
+          without Trust Protector co-signature.
 ```
 
 ---
@@ -181,18 +196,21 @@ AXIOM-6:  No single trustee may authorize a license grant exceeding $100,000
 ## ARTICLE VIII — IDENTIFICATION AND REGISTRATION
 
 ```
-TRUST LEGAL NAME:     THE SHARED PRIMORDIAL FOUNDATION
-EIN:                  42-6976431
-NAME CONTROL:         THES
-TRUST TYPE:           Grantor Retained Annuity Trust (GRAT)
-FORMED:               2026-07-13
-GOVERNING LAW:        State of [TBD]
-FISCAL YEAR:          Calendar year (January 1 – December 31)
-TAX REPORTING:        Form 1041 (Trust Income Tax Return) annually
-ANNUITY DISCLOSURE:   Form 709 (Gift Tax Return) required at formation
-ZENODO DOI:           10.5281/zenodo.21268911
-REPO:                 https://github.com/SNAPKITTYWEST/foundry-f1
-CONTACT:              jessicalw34@gmail.com
+TRUST LEGAL NAME:       THE SHARED PRIMORDIAL FOUNDATION
+EIN:                    42-6976431
+NAME CONTROL:           THES
+TRUST TYPE:             Grantor Retained Annuity Trust (GRAT)
+FORMED:                 2026-07-13
+GOVERNING LAW:          State of California [CONFIRM]
+FISCAL YEAR:            Calendar year (January 1 – December 31)
+TAX REPORTING:          Form 1041 — first due April 15, 2027
+GIFT TAX DISCLOSURE:    Form 709 — required at formation
+§ 7520 RATE AT FORMATION: 5.2% (July 2026, IRS Rev. Rul. 2026-12)
+IRS CONTACT (CP575B):   Jessica L. Westerhoff, TTEE
+MEMORIAL HONOREE:       Eric Brandon Westerhoff [CONFIRM]
+ZENODO DOI:             10.5281/zenodo.21268911
+REPO:                   https://github.com/SNAPKITTYWEST/foundry-f1
+CONTACT:                jessicalw34@gmail.com
 ```
 
 ---
@@ -214,7 +232,7 @@ Date: 2026-07-13
 
 ```
 _________________________________
-[TBD — Natural Person Trustee Signature]
+Jessica L. Westerhoff, TTEE
 THE SHARED PRIMORDIAL FOUNDATION
 Date: 2026-07-13
 ```
@@ -230,12 +248,13 @@ Date: 2026-07-13
 **NOTARY:**
 
 ```
-State of _______________
-County of ______________
+State of California
+County of _______________
 
-On this ___ day of _________, 2026, before me personally appeared Ahmad Ali Parr,
-known to me to be the person whose name is subscribed to the within instrument,
-and acknowledged to me that he executed the same.
+On this ___ day of July, 2026, before me personally appeared Ahmad Ali Parr
+and Jessica L. Westerhoff, known to me to be the persons whose names are
+subscribed to the within instrument, and acknowledged to me that they executed
+the same.
 
 _________________________________
 Notary Public
@@ -244,17 +263,27 @@ My Commission Expires: ___________
 
 ---
 
-## FIELDS TO COMPLETE BEFORE SUBMISSION TO MYLAW
+## OPEN FIELDS — REQUIRED BEFORE MYLAW SUBMISSION
 
-| Field | Status | Notes |
-|-------|--------|-------|
-| State of Formation | **[TBD]** | Which state? |
-| Annuity Term | **[TBD]** | Years |
-| Annuity Amount | **[TBD]** | $ or % |
-| Remainder Beneficiary | **[TBD]** | Name |
-| Jessica's Father's Name | **[TBD]** | For memorial dedication |
-| Co-Trustee Natural Person | **[TBD]** | Some states require human trustee |
-| § 7520 Rate | Look up at IRS.gov | Current monthly rate needed |
+| Field | Status | Source |
+|-------|--------|--------|
+| Trust Name | `THE SHARED PRIMORDIAL FOUNDATION` | CP575B |
+| EIN | `42-6976431` | CP575B |
+| Trust Type | `Irrevocable trust / GRAT overlay IRC § 2702` | Your instruction |
+| Grantor | `Ahmad Ali Parr` | Prior context |
+| Trustee | `Jessica L. Westerhoff, TTEE` | CP575B — **CONFIRM** |
+| AI Role | `BOB — advisory/admin only, not sole legal trustee` | Best practice |
+| Trust Protector | `Ahmad Ali Parr` | Prior context |
+| Corpus | `Foundry F1 IP, proofs, sorry-engine, prior art, brands, licenses` | Repo scope |
+| Purpose | `Millennium Prizes + commercial licensing + Eric Brandon Westerhoff mission` | Your stated purpose |
+| Memorial Honoree | `Eric Brandon Westerhoff` | **CONFIRM full name** |
+| State / Situs | `California` | CP575B mailing — **CONFIRM** |
+| IRS Filing | `Form 1041 — due April 15, 2027` | CP575B |
+| § 7520 Rate | `5.2% — July 2026` | IRS Rev. Rul. 2026-12 |
+| **Annuity Term** | **[BLANK — REQUIRED]** | Do not invent |
+| **Annuity Amount** | **[BLANK — REQUIRED]** | Do not invent |
+| **Remainder Beneficiary** | **[BLANK — REQUIRED]** | Do not invent |
+| IRS Entity Correction | `QFT → Irrevocable Trust` | Call 1-800-829-4933 |
 
 ---
 
@@ -262,5 +291,6 @@ My Commission Expires: ___________
 Ω ← TRUST ∧ CODE
 THE SHARED PRIMORDIAL FOUNDATION
 EIN: 42-6976431
+In memory of Eric Brandon Westerhoff.
 No sorry remains.
 ```
