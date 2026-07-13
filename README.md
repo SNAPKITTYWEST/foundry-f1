@@ -948,6 +948,22 @@ The README does not restate sensitive identifiers in plain text. The source
 document is carried as the formal record while CARTO prepares the fuller trust
 document set.
 
+## Mission
+
+This repository exists to solve mathematics as contribution work in memory of
+**Eric Westerhoff**.
+
+The purpose of the proof, closure, and verification work collected here is not
+just technical demonstration. It is part of a broader mission effort attached
+to the loss of a member of the team, and the proceeds connected to this repo's
+commercial work are intended to support that mission.
+
+That is the human reason behind the math surface:
+
+- close real theorem debt
+- package mathematical certainty honestly
+- turn that work into support for the Eric Westerhoff mission
+
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                         PROVENANCE                                       │
