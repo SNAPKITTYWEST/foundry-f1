@@ -11,8 +11,19 @@
 ![Language](https://img.shields.io/badge/language-C%2B%2B%20%7C%20C99%20%7C%20C11-blue?style=for-the-badge)
 ![Trust Model](https://img.shields.io/badge/trust-Banach%20%2B%20WORM%20%2B%203--Witness-purple?style=for-the-badge)
 ![ALP Sorrys Closed](https://img.shields.io/badge/ALP%20sorrys%20closed-13%2F13-brightgreen?style=for-the-badge)
-![License](https://img.shields.io/badge/license-Sovereign%20Source%20v2.0-orange?style=for-the-badge)
+[![License](https://img.shields.io/badge/license-Source%20Available%20%E2%80%94%20No%20Use%20Without%20License-red?style=for-the-badge)](./LICENSE.md)
 ![Prior Art](https://img.shields.io/badge/prior%20art-Apr%2014%202026-red?style=for-the-badge)
+
+---
+
+> [!CAUTION]
+> **SOURCE AVAILABLE — NO USE WITHOUT LICENSE**
+>
+> You may read this code. You may not run it, copy it, modify it, distribute it, embed it, or build on it — including any component, proof, APL module, or sorry-engine tooling — without a written commercial license from the copyright holder.
+>
+> Cloning does not grant any right of use. AI/ML training on any part of this repository is absolutely prohibited.
+>
+> **To license:** `jessicalw34@gmail.com` · See [LICENSE.md](./LICENSE.md) · See [Commercial Licensing](#commercial-licensing)
 
 ---
 
