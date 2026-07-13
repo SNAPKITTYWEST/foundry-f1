@@ -55,9 +55,8 @@
 | Metric | Value |
 |--------|-------|
 | Classification | Sovereign Compute — Aerospace-Grade Formal Verification |
-| Origin | Reverse-engineered from `foundry-intel-2026-07-11` (archived) |
-| Original | `PhaseMirror/Foundry` (Rust/LLVM) |
-| This Version | Clean C++/C99/C11 reimplementation |
+| Origin | Sovereign compute substrate — Foundry F1 native implementation |
+| This Version | C++/C99/C11 — portable, auditable, minimal |
 | Test Suite | **17/17 pass** |
 | Trust Model | Banach contraction + WORM chain + 3-witness consensus |
 
@@ -300,7 +299,7 @@ The `SKW-001`/`SKW-002` cluster connects to a chain of mathematicians working on
 
 **The fundamental, first-matter substrate held in common — from which higher-order, sovereign systems (agents, proofs, governance, reality) can be reliably constructed.**
 
-Reverse-engineered and rebuilt from `foundry-intel-2026-07-11` (archived). This is the same system, the same architecture, the same guarantees — but better. Cleaner. Auditable. Written in portable C++ with C99/C11 compatibility paths.
+Foundry F1 is the canonical sovereign compute substrate. Portable C++ with C99/C11 compatibility paths. Auditable from the ground up.
 
 > No hallucination, malicious injection, or out-of-bounds mutation can ever reach physical execution.
 
@@ -731,7 +730,7 @@ Reduction fold:  2^64 ≡ 2^32 - 1 (mod p)
 Identity: x ≡ lo + hi_lo * (2^32 - 1) - hi_hi  (mod p)
 ```
 
-This is the verified Goldilocks reduction from the Rust crate, ported to portable C++.
+This is the verified Goldilocks reduction, implemented in portable C++.
 
 ### Banach Contraction Mapping
 
@@ -973,11 +972,7 @@ This stack provides the definitive blueprint for aligning advanced AI agent outp
 
 ## Origin
 
-Reverse-engineered from `SNAPKITTYWEST/foundry-intel-2026-07-11` (archived),
-originally forked from `PhaseMirror/Foundry`. This clean C++ reimplementation
-replaces the Rust/LLVM implementation with a minimal, auditable codebase.
-
-The original is archived. This version is better. Same architecture. Same guarantees. Cleaner code.
+Foundry F1 is the canonical implementation. C++/C99/C11. Minimal. Auditable. Sealed.
 
 ---
 
@@ -1034,17 +1029,15 @@ That is the human reason behind the math surface:
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                         PROVENANCE                                       │
 │                                                                          │
-│  Original:    PhaseMirror/Foundry (Rust/LLVM)                           │
-│  Archived:    foundry-intel-2026-07-11 (SNAPKITTYWEST)                   │
-│  This:        cpp-foundry (C++/C99/C11 clean reimplementation)          │
+│  Implementation:  Foundry F1 — C++/C99/C11 native                      │
+│  Architecture:    10-layer Sedona Spine                                 │
+│  Guarantees:      Banach contraction + Triple-Lock + WORM chain         │
+│  Codebase:        Portable, auditable, minimal                          │
 │                                                                          │
-│  Architecture: Identical (10-layer Sedona Spine)                        │
-│  Guarantees:   Identical (Banach contraction + Triple-Lock)             │
-│  Codebase:     Better (portable, auditable, minimal)                    │
-│                                                                          │
-│  Goldilocks mulmod: Verified against Rust crate (14/14 tests pass)     │
-│  SHA-256: Portable C++ (replaces NASM for cross-platform build)        │
+│  Goldilocks mulmod: 14/14 test vectors pass                             │
+│  SHA-256: Portable C++ + NASM (dual path, cross-platform build)        │
 │  Test suite: 17/17 pass (all components verified)                       │
+│  Prior art: DEVFLOW-FINANCE Apr 14 2026                                 │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 

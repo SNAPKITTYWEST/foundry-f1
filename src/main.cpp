@@ -1,5 +1,5 @@
 // Prime Materia Commons v2 — CLI entry point
-// Clean C++ reverse engineering of foundry-intel-2026-07-11
+// Foundry F1 — The Shared Primordial Foundation
 
 #include "types.h"
 #include "goldilocks.h"

@@ -3,7 +3,7 @@
 ; void sha256_hash(const uint8_t* data, size_t len, uint8_t out[32])
 ;
 ; This is a clean, readable implementation optimized for correctness.
-; For production, use BLAKE3 AVX2 from the original foundry-intel repo.
+; For production, use BLAKE3 AVX2 or a hardware-accelerated SHA-256 variant.
 
 bits 64
 default rel

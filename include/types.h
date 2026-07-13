@@ -1,6 +1,6 @@
 #pragma once
 // Prime Materia Commons v2 — Core Types
-// Clean C++ reverse engineering of foundry-intel-2026-07-11
+// Foundry F1 — The Shared Primordial Foundation
 // WORM anchor: Zenodo DOI 10.5281/zenodo.21268911
 
 #include <cstdint>

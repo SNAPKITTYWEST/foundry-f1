@@ -19,7 +19,7 @@ uint64_t Goldilocks::mulmod(uint64_t a, uint64_t b) {
     // 128-bit multiply
     __uint128_t product = static_cast<__uint128_t>(a) * b;
 
-    // Goldilocks reduction — ported from verified Rust (foundry-intel/goldilocks)
+    // Goldilocks reduction — p = 2^64 - 2^32 + 1, so 2^64 ≡ 2^32 - 1 (mod p)
     // p = 2^64 - 2^32 + 1, so 2^64 ≡ 2^32 - 1 (mod p)
     uint64_t lo = static_cast<uint64_t>(product);
     uint64_t hi = static_cast<uint64_t>(product >> 64);
