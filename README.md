@@ -29,6 +29,10 @@
 >
 > **To license:** `jessicalw34@gmail.com` · See [LICENSE.md](./LICENSE.md) · See [Commercial Licensing](#commercial-licensing)
 
+> [!TIP]
+> **Open Mission Control**
+> The trust frontend for the theorem factory now lives at [`docs/mission-control.html`](./docs/mission-control.html). It turns the Millennium Ladder idea into a usable operator surface for humans and agents.
+
 ---
 
 ## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundry F1 Mission Control</title>
+  <style>
+    :root {
+      --bg: #07101b;
+      --bg-2: #0d1726;
+      --bg-3: #111f31;
+      --line: #223752;
+      --line-2: #30517a;
+      --text: #ecf3ff;
+      --muted: #9bb0cc;
+      --gold: #f6cf67;
+      --cyan: #68e8ff;
+      --pink: #ff64d5;
+      --green: #7cf29b;
+      --red: #ff7979;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255,100,213,0.12), transparent 28%),
+        radial-gradient(circle at right top, rgba(104,232,255,0.10), transparent 22%),
+        linear-gradient(180deg, #050b14 0%, var(--bg) 45%, #08111d 100%);
+      color: var(--text);
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1360px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(9, 18, 31, 0.78);
+      padding: 14px 18px;
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      border: 1px solid var(--line-2);
+      background: #091322;
+      padding: 6px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 28px;
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+
+    .sub {
+      margin-top: 6px;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .button {
+      border: 1px solid var(--line-2);
+      background: linear-gradient(180deg, rgba(25, 40, 63, 0.92), rgba(12, 22, 37, 0.92));
+      color: var(--text);
+      text-decoration: none;
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .hero {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side,
+    .band,
+    .table-panel,
+    .timeline,
+    .workspace,
+    .worm {
+      border: 1px solid var(--line);
+      background: rgba(10, 18, 31, 0.86);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .hero-main {
+      min-height: 360px;
+      position: relative;
+      background:
+        linear-gradient(140deg, rgba(12, 23, 39, 0.94), rgba(15, 14, 35, 0.92)),
+        url("./brand/snapkitty-sovereign-mark.svg") center/cover no-repeat;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(246,207,103,0.16), transparent 26%),
+        radial-gradient(circle at 78% 24%, rgba(104,232,255,0.14), transparent 26%),
+        linear-gradient(180deg, rgba(7, 16, 27, 0.32), rgba(7, 16, 27, 0.92));
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      padding: 34px 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 360px;
+    }
+
+    .hero-copy h2 {
+      font-size: 38px;
+      line-height: 1.08;
+      max-width: 720px;
+    }
+
+    .hero-copy p {
+      max-width: 720px;
+      margin-top: 14px;
+      color: #d4e2f6;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .metric {
+      min-height: 92px;
+      background: rgba(8, 15, 28, 0.72);
+      border: 1px solid rgba(48, 81, 122, 0.7);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .metric .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 1.1px;
+    }
+
+    .metric .value {
+      margin-top: 10px;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-head {
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(12, 21, 35, 0.92);
+    }
+
+    .panel-head p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .mission-list {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mission-item {
+      padding: 14px;
+      background: rgba(14, 25, 40, 0.84);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .mission-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .mission-item span {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .bands {
+      margin-top: 18px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .band {
+      padding: 18px;
+    }
+
+    .band-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      background: rgba(13, 24, 40, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 112px;
+    }
+
+    .chip h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .chip p {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .middle {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 18px;
+    }
+
+    .table-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(34, 55, 82, 0.72);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .status-open { color: var(--red); }
+    .status-closed { color: var(--green); }
+    .status-queue { color: var(--gold); }
+
+    .timeline {
+      padding-bottom: 10px;
+    }
+
+    .timeline-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 2px solid var(--line-2);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .step-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(13, 24, 40, 0.85);
+    }
+
+    .step-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .bottom {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 18px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 470px;
+    }
+
+    .workspace-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.56fr);
+      min-height: 0;
+    }
+
+    .editor,
+    .sidecar {
+      padding: 18px;
+    }
+
+    .editor {
+      border-right: 1px solid var(--line);
+    }
+
+    .editor pre,
+    .worm pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #dbe8fb;
+    }
+
+    .editor pre {
+      min-height: 100%;
+      padding: 16px;
+      background: #07111d;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .sidecard {
+      padding: 14px;
+      background: rgba(13, 24, 40, 0.84);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+
+    .sidecard:last-child { margin-bottom: 0; }
+    .sidecard h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .sidecard p,
+    .sidecard li {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .sidecard ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .worm {
+      display: flex;
+      flex-direction: column;
+      min-height: 470px;
+    }
+
+    .worm-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .worm pre {
+      padding: 16px;
+      background: #07111d;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      min-height: 278px;
+      overflow: auto;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(9, 18, 31, 0.78);
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1180px) {
+      .hero,
+      .middle,
+      .bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .band-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .workspace-body {
+        grid-template-columns: 1fr;
+      }
+
+      .editor {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100vw - 18px, 1360px);
+        padding-top: 10px;
+      }
+
+      .topbar,
+      .hero-copy,
+      .mission-list,
+      .band,
+      .timeline-body,
+      .editor,
+      .sidecar,
+      .worm-body {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .topbar {
+        display: block;
+      }
+
+      .actions {
+        justify-content: flex-start;
+        margin-top: 14px;
+      }
+
+      .hero-copy h2 {
+        font-size: 30px;
+      }
+
+      .hero-metrics,
+      .band-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .metric .value {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-metrics,
+      .band-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .hero-copy h2 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="./brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 mark">
+        <div>
+          <div class="eyebrow">The Shared Primordial Foundation</div>
+          <h1>Millennium Ladder Mission Control</h1>
+          <p class="sub">Trust-owned theorem factory for decomposing major open problems into formal proof debt, counterexample search, solver queues, and sealed mathematical receipts.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="button" href="../README.md">Readme</a>
+        <a class="button" href="./legal/irs-cp575b-trust-ein-notice.pdf">Trust Record</a>
+        <a class="button" href="../sorry-engine/sweep_output/sweep_results.json">Sweep Results</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow">Mission Surface</div>
+            <h2>Build the theorem factory first. Let the prize problem be the last layer, not the first claim.</h2>
+            <p>The trust mission is to turn formal proof infrastructure, theorem closure, and counterexample work into a durable mathematical production line. Every closed lemma becomes corpus. Every unresolved step stays visible. Every attempt gets sealed.</p>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="label">Tracked Closures</div>
+              <div class="value">2</div>
+            </div>
+            <div class="metric">
+              <div class="label">Active Hunts</div>
+              <div class="value">17</div>
+            </div>
+            <div class="metric">
+              <div class="label">Indexed Targets</div>
+              <div class="value">1,388</div>
+            </div>
+            <div class="metric">
+              <div class="label">Trust EIN</div>
+              <div class="value">42-6976431</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="panel-head">
+          <h2>Trust Structure</h2>
+          <p>Front-end framing for the mission, corpus, and legal surface currently carried by Foundry F1.</p>
+        </div>
+        <div class="mission-list">
+          <div class="mission-item">
+            <strong>Legal shell</strong>
+            <span>The Shared Primordial Foundation, GRAT overlay / irrevocable trust structure in formation, California situs, Form 1041 and Form 709 reporting surfaces.</span>
+          </div>
+          <div class="mission-item">
+            <strong>Human purpose</strong>
+            <span>Mathematical work carried in memory of Eric Brandon Westerhoff. Commercial proceeds are directed toward the trust mission.</span>
+          </div>
+          <div class="mission-item">
+            <strong>Corpus</strong>
+            <span>Foundry F1 IP, proof closures, sorry-engine, prior art, marks, licensing rights, and derivative mathematical work product.</span>
+          </div>
+          <div class="mission-item">
+            <strong>Operating rule</strong>
+            <span>Do not jump straight at a Millennium Prize headline. Build formal infrastructure, closure queues, and counterexample discipline first.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="bands">
+      <div class="band">
+        <div class="eyebrow">Five-Layer Program</div>
+        <h2>Core System</h2>
+        <div class="band-grid">
+          <article class="chip">
+            <h3>Claim Graph</h3>
+            <p>Turn each major conjecture into a machine-readable dependency graph of theorems, lemmas, assumptions, and attack paths.</p>
+          </article>
+          <article class="chip">
+            <h3>Proof Debt Engine</h3>
+            <p>Rank open steps by closability, dependency weight, novelty value, and formalization readiness.</p>
+          </article>
+          <article class="chip">
+            <h3>Multi-Agent Prover Loop</h3>
+            <p>One agent proposes, one formalizes, one attacks, one cites prior art, one packages receipts.</p>
+          </article>
+          <article class="chip">
+            <h3>Counterexample Lab</h3>
+            <p>Try to break the statement first with symbolic, numeric, and finite-structure search before sinking proof time into it.</p>
+          </article>
+          <article class="chip">
+            <h3>Trust Asset Layer</h3>
+            <p>Every closed lemma, benchmark, pipeline, and audit artifact becomes trust-owned mathematical certainty.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="middle">
+      <div class="table-panel">
+        <div class="panel-head">
+          <h2>Problem Queue</h2>
+          <p>Start with adjacent infrastructure. Use the big conjectures to prioritize the graph, not to force premature final claims.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Immediate Surface</th>
+              <th>Status</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Riemann Adelic Infrastructure</td>
+              <td>Friedrichs extension, self-adjointness, spectral operators</td>
+              <td class="status-queue">Build first</td>
+              <td>Credible analytic number theory wedge with reusable proof infrastructure.</td>
+            </tr>
+            <tr>
+              <td>P vs NP Boundary</td>
+              <td>Complexity formalisms, verifier models, reduction libraries</td>
+              <td class="status-open">Long horizon</td>
+              <td>Needs cleaner formal complexity substrate before top-line claims.</td>
+            </tr>
+            <tr>
+              <td>Yang-Mills Scaffold</td>
+              <td>Functional analysis, PDE estimates, measure-theoretic lemmas</td>
+              <td class="status-queue">Prep layer</td>
+              <td>Most value comes from formal PDE infrastructure before physics headlines.</td>
+            </tr>
+            <tr>
+              <td>Navier-Stokes Scaffold</td>
+              <td>Regularity lemmas, energy estimates, Sobolev toolchain</td>
+              <td class="status-queue">Prep layer</td>
+              <td>Formal proof debt in analysis is the real first asset.</td>
+            </tr>
+            <tr>
+              <td>Existing Trust Wins</td>
+              <td>OM-001, SKW-001, ALP closures</td>
+              <td class="status-closed">Closed</td>
+              <td>Use as proof the system can already close named debts and seal receipts.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="timeline">
+        <div class="panel-head">
+          <h2>Agent Loop</h2>
+          <p>The frontend gives both humans and agents a shared operational map.</p>
+        </div>
+        <div class="timeline-body">
+          <div class="step">
+            <div class="dot">1</div>
+            <div class="step-card">
+              <strong>Cartographer</strong>
+              <p>Expands the conjecture into a lemma DAG with explicit proof debt and branch points.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">2</div>
+            <div class="step-card">
+              <strong>Skeptic</strong>
+              <p>Runs finite counterexample search, numeric stress tests, and contradiction probes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">3</div>
+            <div class="step-card">
+              <strong>Forger</strong>
+              <p>Proposes candidate lemmas, proof sketches, and tactic strategies for the next frontier edge.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">4</div>
+            <div class="step-card">
+              <strong>Formalist</strong>
+              <p>Translates surviving claims into Lean / Isabelle / Coq and rejects unverifiable rhetoric.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot">5</div>
+            <div class="step-card">
+              <strong>Steward</strong>
+              <p>Seals outcomes to WORM, updates corpus, and classifies assets for trust ownership and licensing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <div class="workspace">
+        <div class="panel-head">
+          <h2>Proof Workspace</h2>
+          <p>Single-screen operating surface: problem, formal target, tactic path, and side-band mission context.</p>
+        </div>
+        <div class="workspace-body">
+          <div class="editor">
+<pre>program: Riemann Adelic Infrastructure
+target: Friedrichs extension of adelic Laplacian
+priority: HIGH
+reason: reusable infrastructure for analytic number theory
+
+lemma_queue:
+  - densely_defined_operator
+  - symmetric_form_closable
+  - lower_semibounded_form
+  - existence_of_self_adjoint_extension
+  - spectral_measure_packaging
+
+counterexample_policy:
+  - reject false branches early
+  - search finite truncations first
+  - numeric stress before formal proof labor
+
+formal_target:
+  theorem friedrichs_extension_exists :
+    closable(q) -> semibounded(q) -> ∃ A, selfAdjoint A
+
+receipt_policy:
+  - every attempt sealed
+  - no silent theorem drift
+  - no "close enough" proof language</pre>
+          </div>
+          <div class="sidecar">
+            <div class="sidecard">
+              <h3>Active corpus strategy</h3>
+              <ul>
+                <li>close theorem debt</li>
+                <li>package proof infra</li>
+                <li>license formal certainty</li>
+                <li>fund trust mission</li>
+              </ul>
+            </div>
+            <div class="sidecard">
+              <h3>Current receipts</h3>
+              <p><span class="status-closed">OM-001</span> closed by witness construction.</p>
+              <p><span class="status-closed">SKW-001</span> closed by commutative-ring quartic homogeneity proof.</p>
+              <p><span class="status-open">SKW-002</span> remains open and visible.</p>
+            </div>
+            <div class="sidecard">
+              <h3>Trust boundary</h3>
+              <p>Public interface is visible. Certified operational lanes, receipts, and capability-gated assets remain governed by the trust and its licensing structure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="worm">
+        <div class="panel-head">
+          <h2>WORM Surface</h2>
+          <p>Illustrative operator view of sealed mathematical receipts and mission-state evidence.</p>
+        </div>
+        <div class="worm-body">
+<pre>{"ts":"2026-07-13T11:18:45Z","id":"OM-001","event":"proof_closed","tactic":"constructor/rintro","status":"CLOSED","receipt":"a812fd02"}
+{"ts":"2026-07-13T11:18:45Z","id":"SKW-001","event":"proof_closed","tactic":"ring","status":"CLOSED","receipt":"28832252"}
+{"ts":"2026-07-13T11:19:12Z","id":"SKW-002","event":"frontier_open","status":"UNSOLVED","note":"I4 E7 invariance remains open"}
+{"ts":"2026-07-13T15:51:00Z","id":"TRUST-IRS-001","event":"trust_record_added","status":"SEALED","note":"CP575B carried into legal docs"}
+{"ts":"2026-07-13T16:03:00Z","id":"MISSION-ERIC-001","event":"mission_statement_bound","status":"SEALED","note":"proceeds directed toward Eric Westerhoff mission"}</pre>
+          <div class="sidecard">
+            <h3>What this page is for</h3>
+            <p>Shared operating picture for humans and agents. One page to see the mission, the queues, the formal target, and the evidence chain without flattening the math into marketing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Open directly from GitHub Pages or as a local file. This page is intentionally static and source-visible. It is meant to be the first operational frontend for the trust-owned theorem factory, not the final solver.
+    </div>
+  </div>
+</body>
+</html>
