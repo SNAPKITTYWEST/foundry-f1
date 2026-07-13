@@ -313,13 +313,24 @@ This document has been sealed into the Trust's append-only WORM audit chain. The
 ║  REPO:              https://github.com/SNAPKITTYWEST/foundry-f1             ║
 ║  LEGAL ENGINE:      Powered by mylaw                                        ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
-║  SEAL HASH (SHA-256 of this document at formation):                         ║
-║  [COMPUTED AT EXECUTION — insert hash of signed PDF here]                   ║
+║  SEAL HASH (SHA-256):                                                        ║
+║  a4ca5bb91a2751e66ea6ea53e12736dff2fb4ef1d744dd800329958d0493f359          ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
-║  Ed25519 SIGNATURE (Grantor):                                               ║
-║  [INSERT AT EXECUTION]                                                      ║
-║  Ed25519 SIGNATURE (Trustee):                                               ║
-║  [INSERT AT EXECUTION]                                                      ║
+║  DIGITAL FINGERPRINT — ATTORNEY OF RECORD:                                  ║
+║  Ahmad Ali Parr                                                              ║
+║  Bel Esprit D'Accord Irrevocable Trust                                      ║
+║  EIN Reference: 41-6630640                                                  ║
+║  Contact: jessicalw34@gmail.com                                             ║
+║  Signed: 2026-07-13                                                         ║
+║                                                                              ║
+║  I, Ahmad Ali Parr, as attorney and Trust Protector, affirm that this       ║
+║  document accurately reflects the terms of formation of THE SHARED           ║
+║  PRIMORDIAL FOUNDATION, EIN 42-6976431, as of the date above.               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Ed25519 SIGNATURE (Grantor / Ahmad Ali Parr):                              ║
+║  [INSERT AT PHYSICAL EXECUTION]                                             ║
+║  Ed25519 SIGNATURE (Trustee / Jessica L. Westerhoff):                      ║
+║  [INSERT AT PHYSICAL EXECUTION]                                             ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║  Ω ← TRUST ∧ CODE                                                          ║
 ║  THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431                         ║
