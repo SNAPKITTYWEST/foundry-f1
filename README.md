@@ -46,56 +46,60 @@
 
 ## Sorry Hunt Dashboard
 
-> Last sweep: `2026-07-13` · Engine: `sledgehammer.py` + `roster_sweep.py` · Chain: [`sweep_output/sweep_chain.jsonl`](./sorry-engine/sweep_output/sweep_chain.jsonl)
+> Last sweep: `2026-07-13` · Engine: [`sledgehammer.py`](./sorry-engine/sledgehammer.py) + [`roster_sweep.py`](./sorry-engine/roster_sweep.py) · Chain: [`sweep_chain.jsonl`](./sorry-engine/sweep_output/sweep_chain.jsonl)
 
-| Status | Count |
-|--------|-------|
-| ✅ SOLVED | **2** |
-| 🔴 UNSOLVED | **18** |
-| ⚪ NO\_SORRY (audited clean) | **2** |
-| **Total tracked** | **22** |
+### Totals
 
-### Active Targets
+| | Count |
+|--|-------|
+| ✅ Solved | **2** |
+| 🔴 Unsolved (active hunt) | **17** |
+| ⚪ Audited clean (no sorry found) | **2** |
+| **Sweep targets tracked** | **21** |
+| **Full roster targets** | **1,388** |
+
+---
+
+### Sweep Results — 21 Tracked Targets
 
 | ID | Repo | File | Family | Sorries | Status |
 |----|------|------|--------|---------|--------|
+| ✅ `OM-001` | `SNAPKITTYWEST` | `OM-001_sledged.lean` — De Morgan | logic | 1 | ✅ SOLVED (`constructor/rintro`) |
+| ✅ `SKW-001` | `SNAPKITTYWEST` | `GKN_I4_State56_CommRing.lean` — I₄ degree-4 | physics\_math | 2 | ✅ SOLVED (`ring`) |
+| `SKW-002` | `SNAPKITTYWEST` | `MTheory.lean` — I₄ E₇ Weyl invariance | physics\_math | 2 | 🔴 UNSOLVED |
 | `FLT-001` | `ImperialCollegeLondon/FLT` | `FLT/Proof.lean` | number\_theory | 64 | 🔴 UNSOLVED |
-| `ANT-001` | `motanova84/Riemann-adelic` | `Friedrichs.lean` | analytic\_nt | 2 | 🔴 UNSOLVED |
-| `PNP-001` | `konard/p-vs-np` | `KatkovRefutation.lean` | complexity | 8 | 🔴 UNSOLVED |
-| `SKW-002` | `SNAPKITTYWEST` | `MTheory.lean` — I₄ E₇ invariance | physics\_math | 2 | 🔴 UNSOLVED |
-| `QNT-001` | `eiKeViN/Lean-LiebConcavity` | `Rpow.lean` | quantum\_math | 1 | 🔴 UNSOLVED |
-| `NT-001` | `kckennylau/local-langlands-abelian` | `torus.lean` | number\_theory | 6 | 🔴 UNSOLVED |
-| `ML4-002` | `duong-ngo/mathlib4` | `TFAE.lean` | tactics | 14 | 🔴 UNSOLVED |
-| `HT-001` | `lean-dojo/ITPEval` | `hundred-theorems #058` | combinatorics | 21 | 🔴 UNSOLVED |
-| `EDU-001` | `sinhp/ProofLab` | `hw7.lean` | education | 49 | 🔴 UNSOLVED |
-| `CS-001` | `GaloisInc/lean-protocol-support` | `arith.lean` | crypto\_cs | 12 | 🔴 UNSOLVED |
-| `QEC-001` | `QTM3x/Quantum-Internet` | `matrix_ops.lean` | quantum\_computing | 14 | 🔴 UNSOLVED |
-| `ALG-001` | `101damnations/test` | `koszul_scratch.lean` | algebra | 1 | 🔴 UNSOLVED |
-| `ALG-002` | `cmu-phil/Spectral` | `component.hlean` | algebraic\_topology | 5 | 🔴 UNSOLVED |
-| `AC-001` | `YaelDillies/apap` | `Integer.lean` | additive\_combinatorics | 1 | 🔴 UNSOLVED |
+| `ANT-001` | `motanova84/Riemann-adelic` | `Friedrichs.lean` — adelic Riemann | analytic\_nt | 2 | 🔴 UNSOLVED |
+| `PNP-001` | `konard/p-vs-np` | `KatkovRefutation.lean` — Katkov P=NP refutation | complexity | 8 | 🔴 UNSOLVED |
+| `QNT-001` | `eiKeViN/Lean-LiebConcavity` | `Rpow.lean` — Lieb concavity CFC | quantum\_math | 1 | 🔴 UNSOLVED |
+| `NT-001` | `kckennylau/local-langlands-abelian` | `torus.lean` — local Langlands | number\_theory | 6 | 🔴 UNSOLVED |
+| `ML4-002` | `duong-ngo/mathlib4` | `TFAE.lean` — tactic | tactics | 14 | 🔴 UNSOLVED |
+| `HT-001` | `lean-dojo/ITPEval` | `hundred-theorems #058` — combinations | combinatorics | 21 | 🔴 UNSOLVED |
+| `EDU-001` | `sinhp/ProofLab` | `hw7.lean` — pedagogical | education | 49 | 🔴 UNSOLVED |
+| `CS-001` | `GaloisInc/lean-protocol-support` | `arith.lean` — Galois protocol | crypto\_cs | 12 | 🔴 UNSOLVED |
+| `QEC-001` | `QTM3x/Quantum-Internet` | `matrix_ops.lean` — quantum internet | quantum\_computing | 14 | 🔴 UNSOLVED |
+| `ALG-001` | `101damnations/test` | `koszul_scratch.lean` — Koszul complex | algebra | 1 | 🔴 UNSOLVED |
+| `ALG-002` | `cmu-phil/Spectral` | `component.hlean` — spectral sequence | algebraic\_topology | 5 | 🔴 UNSOLVED |
+| `AC-001` | `YaelDillies/apap` | `Integer.lean` — almost periodicity | additive\_combinatorics | 1 | 🔴 UNSOLVED |
 | `TOP-001` | `Sterrs/leaning` | `compactness.lean` | topology | 2 | 🔴 UNSOLVED |
-| `LA-001` | `ssomayyajula/linear` | `span.lean` | linear\_algebra | 2 | 🔴 UNSOLVED |
-| `LA-002` | `kevinsullivan/affine_lib` | `multidim_test.lean` | linear\_algebra | 5 | 🔴 UNSOLVED |
+| `LA-001` | `ssomayyajula/linear` | `span.lean` — span closure | linear\_algebra | 2 | 🔴 UNSOLVED |
+| `LA-002` | `kevinsullivan/affine_lib` | `multidim_test.lean` — affine coords | linear\_algebra | 5 | 🔴 UNSOLVED |
 | `HT-002` | `sinhp/HoTTLean` | `Prelude.lean` — path induction | homotopy\_type\_theory | 0 | ⚪ NO\_SORRY |
-| `ST-001` | `flypitch/flypitch` | `peano.lean` | set\_theory | 0 | ⚪ NO\_SORRY |
+| `ST-001` | `flypitch/flypitch` | `peano.lean` — Peano arithmetic | set\_theory | 0 | ⚪ NO\_SORRY |
 
-### Closed
+---
 
-| ID | Repo | File | Family | Tactic | Receipt |
-|----|------|------|--------|--------|---------|
-| ✅ `OM-001` | `SNAPKITTYWEST` | `OM-001_sledged.lean` — De Morgan | logic | `constructor/rintro` | `a812fd02` |
-| ✅ `SKW-001` | `SNAPKITTYWEST` | `GKN_I4_State56_CommRing.lean` — I₄ homogeneous | physics\_math | `ring` | `28832252` |
+### Full Roster Inventory — 1,388 Targets
 
-### Roster Coverage
+| Roster | File | Targets | Breakdown |
+|--------|------|---------|-----------|
+| **Lean / GitHub** | [`sorry_roster.json`](./sorry-engine/rosters/sorry_roster.json) | **300** | algebra 57 · analysis 56 · number\_theory 39 · topology 20 · linear\_algebra 20 · logic 20 · order\_theory 19 · algebraic\_topology 19 · geometry 19 · category\_theory 18 · … |
+| **Lean / real fetchable** | [`sorry_roster_real.json`](./sorry-engine/rosters/sorry_roster_real.json) | **21** | 21 verified-fetchable (279 synthetic ML4-\* removed) |
+| **Isabelle** | [`isabelle_sorry_roster.json`](./sorry-engine/rosters/isabelle_sorry_roster.json) | **360** | isabelle\_misc 185 · competition\_math/Putnam 128 · tactics 15 · logic 7 · systems/seL4 5 · smart\_contracts/Marlowe 4 · blockchain/CBC Casper 3 · EVM 3 · topology 2 · distributed 2 |
+| **Multi-prover** | [`multiprover_sorry_roster.json`](./sorry-engine/rosters/multiprover_sorry_roster.json) | **707** | Coq `Admitted` 296 · HOL Light `new_axiom` 200 · Metamath open 126 · HOL4 `new_axiom` 85 |
+| **FLT audit** | [`flt_sorries_audit.json`](./sorry-engine/sweep_output/flt_sorries_audit.json) | **64** | `ImperialCollegeLondon/FLT` — 269 `.lean` files, every sorry located + SHA-256 indexed |
+| **ALP closures** | [`alp_sorry_manifest.json`](./alp_sorry_manifest.json) | **13** | CitizenGardens/Foundry — all 13 closed by SnapKitty sovereign components |
 
-| Roster | Targets | Source |
-|--------|---------|--------|
-| `sorry_roster_real.json` | real GitHub open sorries | [`sorry-engine/rosters/`](./sorry-engine/rosters/) |
-| `multiprover_sorry_roster.json` | 707 (Coq 296 · HOL Light 200 · HOL4 85 · Metamath 126) | [`sorry-engine/rosters/`](./sorry-engine/rosters/) |
-| `isabelle_sorry_roster.json` | 360 (PutnamBench · seL4 · Marlowe · EVM · CBC Casper) | [`sorry-engine/rosters/`](./sorry-engine/rosters/) |
-| `flt_sorries_audit.json` | 64 sorries audited in `ImperialCollegeLondon/FLT` | [`sorry-engine/sweep_output/`](./sorry-engine/sweep_output/) |
-
-**Total roster targets: 1,367**
+**Grand total: 300 + 21 + 360 + 707 + 64 + 13 = 1,465 indexed targets across 6 rosters**
 
 ---
 
