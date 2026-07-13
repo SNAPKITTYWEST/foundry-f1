@@ -1015,6 +1015,8 @@ And it says the important quiet part explicitly:
 
 <div align="center">
 
+<img src="./docs/brand/air-jordan-math-logo.png" alt="Air Jordan mathematics brand logo" width="560" />
+
 **The cage holds.**
 
 ```
