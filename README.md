@@ -2,7 +2,7 @@
 <div align="center">
 
 <a href="https://www.youtube.com/watch?v=xRz00jloRpU">
-  <img src="./docs/brand/snapkitty-official-logo.png" alt="Foundry F1 mathematical certainty video" width="760" />
+  <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 mathematical certainty video" width="920" />
 </a>
 
 **Watch the Foundry F1 demo:** [Mathematical Certainty in Motion](https://www.youtube.com/watch?v=xRz00jloRpU)
@@ -43,10 +43,6 @@
   <img src="./docs/brand/snapkitty-official-logo.png" alt="SnapKitty official logo" width="520" />
 </div>
 
-<div align="center">
-  <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 sovereign brand mark" width="920" />
-</div>
-
 **The world's first trustless, formally verified orchestration substrate over 𝔽₁.**
 
 Reverse-engineered and rebuilt from `foundry-intel-2026-07-11` (archived). This is the same system, the same architecture, the same guarantees — but better. Cleaner. Auditable. Written in portable C++ with C99/C11 compatibility paths.
@@ -68,12 +64,6 @@ The video is not a style piece. It is the commercial proof story in one surface:
 If you are evaluating Foundry F1 commercially, the video is the fastest
 entry point into the architecture, the certainty model, and the value of
 the licensed proof package.
-
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=xRz00jloRpU">
-    <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Watch Foundry F1 YouTube demo" width="920" />
-  </a>
-</div>
 
 ---
 
