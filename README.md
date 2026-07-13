@@ -7,6 +7,13 @@
 
 **Watch the Foundry F1 demo:** [Mathematical Certainty in Motion](https://www.youtube.com/watch?v=xRz00jloRpU)
 
+![Tests](https://img.shields.io/badge/tests-17%2F17%20pass-brightgreen?style=for-the-badge)
+![Language](https://img.shields.io/badge/language-C%2B%2B%20%7C%20C99%20%7C%20C11-blue?style=for-the-badge)
+![Trust Model](https://img.shields.io/badge/trust-Banach%20%2B%20WORM%20%2B%203--Witness-purple?style=for-the-badge)
+![ALP Sorrys Closed](https://img.shields.io/badge/ALP%20sorrys%20closed-13%2F13-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/license-Sovereign%20Source%20v2.0-orange?style=for-the-badge)
+![Prior Art](https://img.shields.io/badge/prior%20art-Apr%2014%202026-red?style=for-the-badge)
+
 ---
 
 ## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1
