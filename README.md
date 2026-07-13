@@ -89,6 +89,109 @@ This is Foundry F1. The archived original is immutable. This version is better.
 
 ---
 
+## Verification Surfaces
+
+Foundry F1 is not just a codebase. It is a stack of verification surfaces,
+each one exposing a different kind of mathematical or operational certainty.
+
+| Surface | Artifact | Role |
+|---|---|---|
+| **Goldilocks Core** | `src/goldilocks.cpp` | exact finite-field arithmetic over `F_p` |
+| **Spectral Governor** | `src/spectral.cpp` | contraction screening, drift bounds, radius checks |
+| **Recurrence Engine** | `src/recurrence.cpp` | fixed-point iteration under explicit Lipschitz control |
+| **Triple-Lock Gateway** | `src/gate.cpp` | admission constraint: guardian ∩ examiner ∩ publisher |
+| **Certifier** | `src/certify.cpp` | certificate emission and verification receipts |
+| **Audit / WORM** | `src/audit.cpp` | append-only provenance chain and evidence packaging |
+| **Linker** | `src/linker.cpp` | governed composition and admissible execution ordering |
+| **Executable Proof Surface** | `src/test.cpp` | regression suite: 17/17 passing witness set |
+| **Brand / Capability Cards** | `docs/brand/*.svg` | mathematical claims presented as auditable product surfaces |
+
+The new SVGs added to this repo are not decoration. They correspond to the
+core proof-carrying layers:
+
+- `goldilocks-core.svg`
+- `triple-lock-gateway.svg`
+- `worm-ledger.svg`
+
+---
+
+## Mathematical Vocabulary
+
+Foundry F1 is easier to understand when its terms are treated as mathematics
+instead of marketing.
+
+| Term | Meaning |
+|---|---|
+| **Goldilocks field** | prime field `F_p` with `p = 2^64 - 2^32 + 1` |
+| **Reduction fold** | the identity `2^64 ≡ 2^32 - 1 (mod p)` used to reduce 128-bit products |
+| **PMat** | prime monomial matrix representation with grading and conservation structure |
+| **Banach contraction** | strict contraction map guaranteeing convergence to a unique fixed point |
+| **Spectral radius** | the radius `ρ(Ξ)` governing stability of the linear part of the recurrence |
+| **Lipschitz bound** | constant controlling nonlinear growth in the map `T` |
+| **Drift bound** | explicit upper bound on admissible state deviation before suppression |
+| **Triple-Lock** | three-gate admissibility rule: guardian, examiner, publisher |
+| **WORM ledger** | append-only witness chain with tamper-evident hash ancestry |
+| **3-witness consensus** | acceptance rule requiring independent agreement across multiple proof surfaces |
+| **Null-state / `⊥`** | blocked or collapsed state in the governance algebra |
+| **Morphism composition** | admissible function composition where ordering itself is verified |
+| **Fixed-point closure** | convergence to a unique lawful state under repeated transition |
+| **Operational certainty** | implementation certainty backed by tests, proofs, and provenance rather than policy claims alone |
+
+Core formulas:
+
+```text
+p = 2^64 - 2^32 + 1
+2^64 ≡ 2^32 - 1 (mod p)
+x mod p ≡ lo + hi_lo(2^32 - 1) - hi_hi
+
+x_{t+1} = Ξ_t x_t + Λ_t T(x_t) + g_t
+q_t = ||Ξ_t|| + ||Λ_t|| · ||T|| < 1 - ε
+
+accepted(C) ↔ NT(C) ∧ ALG(C) ∧ IT(C)
+verified(T) ↔ Guardian(T) ∧ Examiner(T) ∧ Publisher(T)
+```
+
+---
+
+## ALP Closure Program
+
+The ALP layer is where "sorry" placeholders become product risk. Foundry F1
+pulls those obligations into an explicit closure program instead of leaving
+them as invisible debt.
+
+This repo currently packages **13/13 ALP obligations** from
+[`alp_sorry_manifest.json`](./alp_sorry_manifest.json) as closed or mapped
+commercial certainty assets.
+
+Closure themes:
+
+- **admissibility**
+- **non-bypassability**
+- **trust arbitration**
+- **governed MCP admission**
+- **external mutation blocking**
+- **end-to-end witness delivery**
+
+Representative targets:
+
+1. `ALP.Archivum.WitnessContract.witness_after_veto_implies_disallowed`
+2. `ALP.Candle.PirtmBridge.candle_ignition_sound`
+3. `ALP.Contracts.NonBypassability.no_unaligned_execution`
+4. `ALP.MCP.GovernanceBinding.sat_requires_alp_admission`
+5. `ALP.PolicyEngine.Admissibility.validate_action_sound`
+6. `ALP.PolicyEngine.Proofs.external_mutating_action_blocked`
+7. `ALP.Tests.Integration.e2e_internal_workflow_receives_witness`
+8. `ALP.Tests.Integration.e2e_external_workflow_blocked_from_governed_mcp`
+
+The full list and commercial framing live in:
+
+- [Exclusive Proof Portfolio](./docs/EXCLUSIVE_PROOF_PORTFOLIO.md)
+
+This is the practical meaning of "mathematical certainty" in this repo:
+open obligations are enumerated, mapped, closed, and packaged with evidence.
+
+---
+
 ## Commercial Licensing
 
 Foundry F1 is available as a commercial sovereign infrastructure package
