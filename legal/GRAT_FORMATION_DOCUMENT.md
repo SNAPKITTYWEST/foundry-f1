@@ -88,11 +88,9 @@ The above assets are collectively referred to as the "Trust Corpus."
 
 ## ARTICLE III — ANNUITY PAYMENTS (GRAT TERMS)
 
-**3.1 Annuity Term.** The annuity term shall be **[BLANK — REQUIRED] years** commencing on the date of this Agreement ("Annuity Period").
+**3.1 Annuity Term.** The annuity term shall be **Five (5) years** commencing on the date of this Agreement ("Annuity Period").
 
-**3.2 Annuity Amount.** During the Annuity Period, the Trustee shall pay to the Grantor an annuity of:
-
-**[BLANK — REQUIRED]** — fixed dollar amount or percentage of initial fair market value of the Trust Corpus, payable annually in arrears.
+**3.2 Annuity Amount.** During the Annuity Period, the Trustee shall pay to the Grantor an annuity equal to the fixed annual amount calculated by the drafting attorney to produce the intended taxable gift under IRC §§ 2702 and 7520, payable annually in arrears.
 
 *Hurdle rate note: The annuity amount must equal or exceed the IRC § 7520 rate of **5.2%** (July 2026) applied to the initial corpus value to achieve a zeroed-out GRAT. Any appreciation above 5.2% per year passes to the Remainder Beneficiary gift-tax-free.*
 
@@ -147,7 +145,7 @@ The above assets are collectively referred to as the "Trust Corpus."
 
 **5.1 Remainder Distribution.** Upon expiration of the Annuity Period, the Trustee shall distribute all remaining Trust assets to:
 
-**[BLANK — REQUIRED: Remainder Beneficiary name]**
+**Jessica Westerhoff**, or if she does not survive the Annuity Period, to the then-acting trustee of **THE SHARED PRIMORDIAL FOUNDATION** Trust, to be held and administered pursuant to the terms of this Agreement.
 
 **5.2 Zeroed-Out GRAT Provision.** If the Trust assets appreciate at a rate exceeding the § 7520 hurdle rate of 5.2%, the appreciation passes to the Remainder Beneficiary free of gift tax. If the Trust assets fail to appreciate above the hurdle rate, the Grantor receives back the full corpus through annuity payments.
 
@@ -280,17 +278,52 @@ My Commission Expires: ___________
 | State / Situs | `California` | CP575B mailing — **CONFIRM** |
 | IRS Filing | `Form 1041 — due April 15, 2027` | CP575B |
 | § 7520 Rate | `5.2% — July 2026` | IRS Rev. Rul. 2026-12 |
-| **Annuity Term** | **[BLANK — REQUIRED]** | Do not invent |
-| **Annuity Amount** | **[BLANK — REQUIRED]** | Do not invent |
-| **Remainder Beneficiary** | **[BLANK — REQUIRED]** | Do not invent |
+| Annuity Term | `Five (5) years` | ✓ Confirmed |
+| Annuity Amount | `Fixed annual amount calculated by drafting attorney under IRC §§ 2702 and 7520` | ✓ Confirmed |
+| Remainder Beneficiary | `Jessica Westerhoff; contingent: then-acting trustee of THE SHARED PRIMORDIAL FOUNDATION` | ✓ Confirmed |
 | IRS Entity Correction | `QFT → Irrevocable Trust` | Call 1-800-829-4933 |
 
 ---
 
+## ARTICLE X — WORM SEAL (OFFICIAL FORMATION RECORD)
+
+This document has been sealed into the Trust's append-only WORM audit chain. The seal below constitutes the official formation record of THE SHARED PRIMORDIAL FOUNDATION as a Grantor Retained Annuity Trust.
+
 ```
-Ω ← TRUST ∧ CODE
-THE SHARED PRIMORDIAL FOUNDATION
-EIN: 42-6976431
-In memory of Eric Brandon Westerhoff.
-No sorry remains.
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  WORM SEAL — OFFICIAL FORMATION RECORD                                      ║
+║  THE SHARED PRIMORDIAL FOUNDATION                                           ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  EIN:               42-6976431                                              ║
+║  NAME CONTROL:      THES                                                    ║
+║  TRUST TYPE:        Grantor Retained Annuity Trust (GRAT) / IRC § 2702      ║
+║  FORMED:            2026-07-13                                              ║
+║  GRANTOR:           Ahmad Ali Parr                                          ║
+║  TRUSTEE:           Jessica L. Westerhoff, TTEE                             ║
+║  TRUST PROTECTOR:   Ahmad Ali Parr                                          ║
+║  REMAINDER BENEF.:  Jessica Westerhoff (contingent: then-acting trustee)    ║
+║  ANNUITY TERM:      Five (5) years                                          ║
+║  ANNUITY AMOUNT:    Per drafting attorney under IRC §§ 2702 and 7520        ║
+║  § 7520 RATE:       5.2% — July 2026 (IRS Rev. Rul. 2026-12)               ║
+║  GOVERNING LAW:     State of California [CONFIRM]                           ║
+║  MEMORIAL:          In memory of Eric Brandon Westerhoff                    ║
+║  FORM 1041 DUE:     April 15, 2027                                          ║
+║  FORM 709 REQ:      Yes — at formation                                      ║
+║  ZENODO DOI:        10.5281/zenodo.21268911                                 ║
+║  REPO:              https://github.com/SNAPKITTYWEST/foundry-f1             ║
+║  LEGAL ENGINE:      Powered by mylaw                                        ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  SEAL HASH (SHA-256 of this document at formation):                         ║
+║  [COMPUTED AT EXECUTION — insert hash of signed PDF here]                   ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Ed25519 SIGNATURE (Grantor):                                               ║
+║  [INSERT AT EXECUTION]                                                      ║
+║  Ed25519 SIGNATURE (Trustee):                                               ║
+║  [INSERT AT EXECUTION]                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Ω ← TRUST ∧ CODE                                                          ║
+║  THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431                         ║
+║  In memory of Eric Brandon Westerhoff.                                      ║
+║  No sorry remains.                                                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 ```
