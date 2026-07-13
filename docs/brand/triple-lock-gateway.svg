@@ -1,0 +1,21 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="640" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081220"/>
+      <stop offset="1" stop-color="#0E1020"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="24" fill="url(#bg2)"/>
+  <rect x="108" y="122" width="124" height="112" rx="18" fill="#111A30" stroke="#27DDF7"/>
+  <rect x="258" y="88" width="124" height="146" rx="18" fill="#15132C" stroke="#FF49CF"/>
+  <rect x="408" y="122" width="124" height="112" rx="18" fill="#111A30" stroke="#F3B225"/>
+  <path d="M232 178H258" stroke="#5B7098" stroke-width="4"/>
+  <path d="M382 178H408" stroke="#5B7098" stroke-width="4"/>
+  <path d="M320 234V286" stroke="#5B7098" stroke-width="4"/>
+  <rect x="254" y="286" width="132" height="54" rx="16" fill="#0E1E25" stroke="#4ADE80"/>
+  <text x="170" y="164" fill="#27DDF7" font-family="Arial, Helvetica, sans-serif" font-size="22" text-anchor="middle">GUARDIAN</text>
+  <text x="320" y="146" fill="#FF49CF" font-family="Arial, Helvetica, sans-serif" font-size="22" text-anchor="middle">EXAMINER</text>
+  <text x="470" y="164" fill="#F3B225" font-family="Arial, Helvetica, sans-serif" font-size="22" text-anchor="middle">PUBLISHER</text>
+  <text x="320" y="320" fill="#4ADE80" font-family="Arial, Helvetica, sans-serif" font-size="22" text-anchor="middle">VERIFIED MANIFEST</text>
+  <text x="320" y="374" fill="#D7E7FF" font-family="Arial, Helvetica, sans-serif" font-size="18" text-anchor="middle">triple-lock execution gating · no bypass path</text>
+</svg>

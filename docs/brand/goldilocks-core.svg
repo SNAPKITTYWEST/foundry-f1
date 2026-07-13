@@ -1,0 +1,22 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="640" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09111E"/>
+      <stop offset="1" stop-color="#13091B"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="116" y1="64" x2="524" y2="356" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2AE6FF"/>
+      <stop offset="1" stop-color="#FF44D0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="250" y1="118" x2="390" y2="302" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE47A"/>
+      <stop offset="1" stop-color="#F3A400"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="24" fill="url(#bg)"/>
+  <circle cx="320" cy="190" r="112" stroke="url(#ring)" stroke-width="8"/>
+  <circle cx="320" cy="190" r="156" stroke="#243B5B" stroke-width="2"/>
+  <path d="M271 122H305L320 151L335 122H369L339 191L374 258H340L320 223L300 258H266L301 191L271 122Z" fill="url(#gold)"/>
+  <text x="320" y="320" fill="#F6D15D" font-family="Arial, Helvetica, sans-serif" font-size="28" text-anchor="middle" letter-spacing="4">GOLDILOCKS CORE</text>
+  <text x="320" y="356" fill="#CFE7FF" font-family="Arial, Helvetica, sans-serif" font-size="18" text-anchor="middle">128-bit fold identity · deterministic field arithmetic</text>
+</svg>

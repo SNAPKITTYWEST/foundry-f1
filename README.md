@@ -45,6 +45,12 @@ Reverse-engineered and rebuilt from `foundry-intel-2026-07-11` (archived). This 
 
 > No hallucination, malicious injection, or out-of-bounds mutation can ever reach physical execution.
 
+<div align="center">
+  <img src="./docs/brand/goldilocks-core.svg" alt="Goldilocks core" width="31%" />
+  <img src="./docs/brand/triple-lock-gateway.svg" alt="Triple-lock gateway" width="31%" />
+  <img src="./docs/brand/worm-ledger.svg" alt="WORM ledger" width="31%" />
+</div>
+
 ---
 
 ## Mathematical Certainty Demo
