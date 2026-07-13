@@ -1,0 +1,28 @@
+[
+  {
+    "id": "LA-001",
+    "repo": "ssomayyajula/linear",
+    "file": "span.lean",
+    "family": "linear_algebra",
+    "note": "Span closure sorry",
+    "status": "UNSOLVED",
+    "tactic": null,
+    "sorries_found": 2,
+    "sorries_solved": 0,
+    "timestamp": "2026-07-13T10:18:07.140347+00:00",
+    "receipt_hash": "6261c012c214340510d3a318fb71ca30a4123caadebe79d69b50f076309f86c6"
+  },
+  {
+    "id": "LA-002",
+    "repo": "kevinsullivan/affine_lib",
+    "file": "src/old/lin2Kcoord/multidim_test.lean",
+    "family": "linear_algebra",
+    "note": "Multidim coordinate affine lib sorry",
+    "status": "UNSOLVED",
+    "tactic": null,
+    "sorries_found": 5,
+    "sorries_solved": 0,
+    "timestamp": "2026-07-13T10:23:22.267940+00:00",
+    "receipt_hash": "ae3dfcee4b16625907f7da888607e0c27a76ab5e52fd1028faec759c37763314"
+  }
+]
