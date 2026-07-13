@@ -118,6 +118,71 @@
 
 ---
 
+### Mathematician Reference — Theorems We're Hunting & Closing
+
+Every sorry in this repo connects to a named mathematician, a named theorem, or a named open problem. This is who we are working with.
+
+#### Closed by Foundry F1
+
+| Mathematician | Dates | Theorem | Our Proof | Tactic |
+|---|---|---|---|---|
+| **Augustus De Morgan** | 1806–1871 | De Morgan's Law: `¬(P ∨ Q) ↔ ¬P ∧ ¬Q` — negation distributes over disjunction | `OM-001` · [`solved/OM-001_sledged.lean`](./sorry-engine/solved/OM-001_sledged.lean) | `constructor` / `rintro` — 0 sorry, Lean 4.19.0 |
+| **Kenji Ueno / Günaydin–Koepsell–Nicolai** | GKN 2000 | I₄ quartic invariant — degree-4 homogeneity on the 56-dim E₇ fundamental representation `State56 = (α, β, P, Q)` | `SKW-001` · `GKN_I4_State56_CommRing.lean` | `ring` — 0 sorry, CommRing R |
+
+#### Active Hunt — Named Open Problems
+
+| Mathematician / Author | Theorem / Problem | ID | Why It Matters |
+|---|---|---|---|
+| **Pierre de Fermat** (1637) + **Andrew Wiles** (1995) | **Fermat's Last Theorem** — `xⁿ + yⁿ = zⁿ` has no integer solutions for `n > 2` | `FLT-001` | 64 open sorries in `ImperialCollegeLondon/FLT` — the most ambitious Lean 4 formalization of Wiles' proof |
+| **Bernhard Riemann** (1859) | **Riemann Hypothesis** (adelic formulation) — Friedrichs extension of the adelic Laplacian | `ANT-001` | `motanova84/Riemann-adelic` — Friedrichs extension theorem sorry |
+| **Elliot Lieb** + **Mary Beth Ruskai** (1973) | **Lieb Concavity Theorem** — `f(A,B) = Tr[Aˢ K† B^(1-s) K]` is jointly concave | `QNT-001` | `Lean-LiebConcavity` — continuous functional calculus `Rpow` lemma |
+| **Frank Ramsey** (1930) + **Robert Langlands** (1967) | **Local Langlands Correspondence** (abelian case) — torus construction sorry | `NT-001` | `local-langlands-abelian` — deep number theory formalization |
+| **Kurt Gödel** / **Alan Turing** | **P vs NP** — Katkov 2010 refutation attempt | `PNP-001` | `konard/p-vs-np` — 8 sorries in the Lean 4 refutation |
+| **George Boole** (1847–1854) | Boolean algebra foundations — ring axiom completeness, decidability instances | `ML4-023`, `ML4-030` | Mathlib4 — Boole's algebra is the root of everything in this repo |
+| **Henri Poincaré** / **Vladimir Voevodsky** | **Homotopy Type Theory** — path induction prelude, spectral sequence components | `HT-001`, `HT-002`, `ALG-002` | HoTTLean + CMU Spectral library |
+| **Giuseppe Peano** (1889) | **Peano Arithmetic** — formalization in flypitch | `ST-001` | Foundational — audited clean (0 sorry found) |
+| **Jean-Louis Koszul** (1950) | **Koszul Complex** — chain complex construction | `ALG-001` | `101damnations/test` — algebraic topology construction |
+| **Alexander Grothendieck** | Fourier inversion, group cohomology long exact sequence, cyclotomic irreducibility | `ML4-029`, `ML4-028`, `ML4-027` | Mathlib4 roster — Grothendieck's fingerprints across algebra and analysis |
+| **Carl Friedrich Gauss** | Cyclotomic polynomial irreducibility — `Φₙ(x)` irreducible over ℚ | `ML4-027` | Number theory cornerstone |
+| **Évariste Galois** | Arithmetic lemma — Galois protocol verification (`galois/arith.lean`) | `CS-001` | Galois Institute — cryptographic protocol formal verification |
+| **William Rowan Hamilton** | Quaternion / matrix ops — quantum internet formalization | `QEC-001` | `QTM3x/Quantum-Internet` — Hamilton's quaternions in quantum computing |
+| **David Hilbert** | Smooth manifold chart sorry, convex hull extremal point | `ML4-025`, `ML4-026` | Mathlib4 — Hilbert's program, geometry foundations |
+| **John von Neumann** | Measure theory completeness sorry | `ML4-024` | Measure theory is the foundation of quantum mechanics formalization |
+
+#### Isabelle Roster — Putnam Competition Mathematics
+
+128 Putnam competition problems are in our Isabelle roster (`ISA-001` through `ISA-128+`). These span every major area of competition mathematics and are named for the **William Lowell Putnam Mathematical Competition** (est. 1938).
+
+| Years Covered | Count | Source |
+|---|---|---|
+| 1971–2022 | 128 problems | `isabelle_sorry_roster.json` — Putnam targets |
+
+Notable Putnam targets in roster: `putnam_1978_b6`, `putnam_1989_b6`, `putnam_2007_a5`, `putnam_2016_b6`, `putnam_2022_b4`.
+
+#### seL4, Marlowe, CBC Casper, EVM — Systems Mathematicians
+
+| System | Mathematician / Author | Sorry Source |
+|---|---|---|
+| **seL4** | Gerwin Klein et al. (NICTA/CSIRO) — world's first formally verified OS kernel | `ISA-022` — `Kernel_C.thy` |
+| **Marlowe** | Philip Wadler et al. — smart contract financial language formal semantics | Isabelle roster |
+| **CBC Casper** | Vlad Zamfir (Ethereum) — consensus protocol correctness proofs | Isabelle roster |
+| **EVM** | Ethereum Foundation — Ethereum Virtual Machine bytecode semantics | Isabelle roster |
+
+#### GKN / E₇ — The Physics Mathematicians
+
+The `SKW-001`/`SKW-002` cluster connects to a chain of mathematicians working on exceptional Lie groups and supergravity:
+
+| Mathematician | Contribution | Connection |
+|---|---|---|
+| **Murat Günaydin** | Exceptional Jordan algebras in supergravity | GKN paper — I₄ quartic invariant definition |
+| **Koepsell** | E₇ covariant formulation | GKN paper co-author |
+| **Hermann Nicolai** | 𝒩=8 supergravity, E₇ symmetry | GKN paper co-author |
+| **Hans Freudenthal** (1954) | Freudenthal triple system — J₃(𝕆) exceptional Jordan algebra | Foundation of the 56-dim representation |
+| **Wilhelm Killing** / **Élie Cartan** | E₇ classification — exceptional Lie algebra | The symmetry group of `SKW-002` |
+| **Jordan / von Neumann / Wigner** (1934) | Exceptional Jordan algebra J₃(𝕆) | The 27-dim object in the GKN invariant |
+
+---
+
 # The Shared Primordial Foundation — Foundry F1
 
 **The fundamental, first-matter substrate held in common — from which higher-order, sovereign systems (agents, proofs, governance, reality) can be reliably constructed.**
