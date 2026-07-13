@@ -30,6 +30,10 @@ import subprocess
 import sys
 import hashlib
 from datetime import datetime, timezone
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from snapkitty_gate import require_capability
 
 LADDER = [
     "rfl",
@@ -205,4 +209,5 @@ def main():
 
 
 if __name__ == "__main__":
+    require_capability("trainer/sledgehammer")
     main()

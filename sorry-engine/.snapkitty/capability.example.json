@@ -1,0 +1,6 @@
+{
+  "authority": "replace-with-your-authority-name",
+  "attestor": "replace-with-your-attestor-id",
+  "receipt_namespace": "replace-with-your-receipt-namespace",
+  "capability_hash": "replace-with-your-capability-fingerprint"
+}

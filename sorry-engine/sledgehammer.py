@@ -17,6 +17,8 @@ WORM receipt appended to: sledgehammer_chain.jsonl (same dir as file)
 """
 import argparse, hashlib, json, os, re, subprocess, sys, tempfile, datetime
 
+from snapkitty_gate import require_capability
+
 TACTICS = [
     "rfl",
     "decide",
@@ -177,6 +179,7 @@ def run(file_path: str, project_root: str, dry_run: bool):
         print(f"  [{status}] line {r['line']}: {r['tactic']}")
 
 if __name__ == "__main__":
+    require_capability("sledgehammer")
     ap = argparse.ArgumentParser(description="Sovereign Lean 4 sledgehammer")
     ap.add_argument("file", help="Path to .lean file")
     ap.add_argument("--project", default=None, help="Lake project root (default: file dir)")

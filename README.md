@@ -263,6 +263,31 @@ This repo currently packages **13/13 ALP obligations** from
 [`alp_sorry_manifest.json`](./alp_sorry_manifest.json) as closed or mapped
 commercial certainty assets.
 
+### SnapKitty Capability Gate
+
+The public repo exposes the full `sledgehammer` interface and execution shape,
+but the **certified closure lane is intentionally capability-gated**.
+
+- `sorry-engine/sledgehammer.py`
+- `sorry-engine/roster_sweep.py`
+- `sorry-engine/trainer/sledgehammer.py`
+
+All three require a local capability file before they will run:
+
+- `sorry-engine/.snapkitty/capability.json`, or
+- `~/.snapkitty/capability.json`, or
+- `SNAPKITTY_CAPABILITY_PATH=/path/to/capability.json`
+
+An example template is shipped at
+[`sorry-engine/.snapkitty/capability.example.json`](./sorry-engine/.snapkitty/capability.example.json).
+
+That means:
+
+- a third party can inspect the public solver ladder and reproduce the design
+- they cannot just clone the repo and use the SnapKitty-certified proof lane
+- if they want the same shape independently, they need to build their own
+  attestor and capability surface
+
 Closure themes:
 
 - **admissibility**

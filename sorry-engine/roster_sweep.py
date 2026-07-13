@@ -26,6 +26,8 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
+from snapkitty_gate import require_capability
+
 # ── config ────────────────────────────────────────────────────────────────────
 MATHLIB5_ROOT = Path(__file__).parent
 LEAN_BIN = str(Path.home() / ".elan/bin/lean")
@@ -296,6 +298,7 @@ def sweep(roster_path: str, limit: int, family: str | None,
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
+    require_capability("roster_sweep")
     ap = argparse.ArgumentParser(description="Sovereign sorry-roster sweep")
     ap.add_argument("--roster", required=True)
     ap.add_argument("--limit",  type=int, default=0, help="max targets (0=all)")
