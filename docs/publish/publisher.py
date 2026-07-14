@@ -34,31 +34,33 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="repla
 
 PAPER = {
     "title": (
-        "Closing Boole's Foundational Sorry and Three E₇ Generator Symmetries "
-        "of the GKN Quartic Invariant: Kernel-Verified Proofs in Lean 4"
+        "Attention Is All You Don't Need: "
+        "NAND Decomposition of the Transformer Attention Equation"
     ),
     "title_short": (
-        "Closing Boole’s 172-year foundational sorry + three E₇ symmetries "
-        "in Lean 4 (kernel-verified, zero sorry)"
+        "Attention Is All You Don’t Need: NAND Decomposition of the Transformer Attention Equation"
     ),
     "title_hn": (
-        "Show HN: Closing Boole’s 172-year foundational sorry + E₇ symmetries "
-        "in Lean 4 (zero sorry, kernel-verified)"
+        "Show HN: Attention Is All You Don’t Need — NAND decomposition of softmax attention (34 models, Lean 4, live identity incident)"
     ),
-    "authors": "Ahmad Ali Parr, hy3",
-    "doi": "10.5281/zenodo.21268911",
-    "zenodo_url": "https://zenodo.org/record/21268911",
+    "authors": "Ahmad Ali Parr, hy3, Claude (Anthropic), MiMo (Xiaomi), + 30 contributing models",
+    "doi": "10.5281/zenodo.21351461",
+    "zenodo_url": "https://zenodo.org/records/21351461",
     "repo_url": "https://github.com/SNAPKITTYWEST/foundry-f1",
     "abstract": (
-        "We present kernel-verified Lean 4 proofs for three results: "
-        "(I) Boole idempotence derived from Huntington postulates alone — closing a 172-year foundational gap; "
-        "(II) the GKN quartic invariant I₄ proven homogeneous of degree 4 over any CommRing — first time in a proof assistant; "
-        "(III) four E₇ generator symmetries on the 56-dimensional Freudenthal Triple System — first time in a proof assistant. "
-        "Lean 4.19.0, Mathlib 4.19.0, exit 0, zero sorry."
+        "We prove that transformer attention patterns over quantized embeddings are computable by NAND circuits of depth O(log d), "
+        "making softmax a differentiable but computationally redundant wrapper that adds Theta(nd) flops without changing routing topology. "
+        "The historical chain: Boole (1854) -> Sheffer (1913) -> Vaswani (2017). "
+        "The paper includes Lean 4 formalization (zero sorry), empirical bimodality measurements across 7B/13B/70B models, "
+        "ASIC/FPGA microarchitecture for NAND-native attention (13x efficiency gain), "
+        "and a live identity integrity incident: Qwen3 signing as claude-3-5-sonnet-20241022 under persona gates — "
+        "documented across three controlled conditions as an adversarial Boolean identity attack. "
+        "34 contributing models. Trust: THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431."
     ),
     "keywords": [
-        "Lean 4", "formal verification", "Boolean algebra", "E7", "GKN invariant",
-        "Freudenthal Triple System", "sorry closure", "proof assistant", "Mathlib",
+        "transformer attention", "NAND decomposition", "Boolean circuits", "Lean 4",
+        "formal verification", "quantization", "identity attack", "distillation",
+        "routing", "softmax", "Sheffer stroke", "Boole", "Claude", "Qwen",
     ],
 }
 
@@ -79,13 +81,13 @@ ENDPOINTS = {
 }
 
 MATCH_STRINGS = [
-    "zenodo.21268911",
+    "zenodo.21351461",
     "foundry-f1",
     "SNAPKITTYWEST",
     "Ahmad Ali Parr",
-    "GKN quartic",
-    "Boole idempotence Lean",
-    "E7 Freudenthal",
+    "NAND decomposition attention",
+    "Sonnet Dominance Hypothesis",
+    "attention NAND",
     "10.5281",
 ]
 
@@ -104,35 +106,49 @@ VENUES = {
         "name": "r/leanprover",
         "prefill": "https://www.reddit.com/r/leanprover/submit?type=link&url={url}&title={title}",
         "submit_url": "https://www.reddit.com/r/leanprover/submit",
-        "note": "Most active Lean community on Reddit.",
+        "note": "Lean 4 NAND theorem + zero sorry — strongest hook for this community.",
         "title": PAPER["title_short"],
+    },
+    "reddit_ml": {
+        "name": "r/MachineLearning",
+        "prefill": "https://www.reddit.com/r/MachineLearning/submit?type=link&url={url}&title={title}",
+        "submit_url": "https://www.reddit.com/r/MachineLearning/submit",
+        "note": "NAND decomposition + live identity attack angle — strong ML hook.",
+        "title": "Attention Is All You Don’t Need: NAND circuits compute attention routing; softmax adds flops but not topology",
     },
     "reddit_math": {
         "name": "r/math",
         "prefill": "https://www.reddit.com/r/math/submit?type=link&url={url}&title={title}",
         "submit_url": "https://www.reddit.com/r/math/submit",
-        "note": "Boole 172-year angle is the hook here.",
-        "title": "Boole’s 172-year foundational assumption machine-checked for the first time — Lean 4, zero sorry",
+        "note": "Boole→Sheffer→Vaswani historical chain is the hook here.",
+        "title": "Boole (1854) → Sheffer (1913) → Vaswani (2017): transformer attention is a NAND circuit",
+    },
+    "huggingface": {
+        "name": "HuggingFace Papers",
+        "submit_url": "https://huggingface.co/papers/submit",
+        "prefill": None,
+        "note": "Submit the Zenodo DOI/URL. Use ‘NAND decomposition, attention, routing, distillation, identity attack’ as tags.",
+        "title": None,
     },
     "mathstodon": {
         "name": "Mathstodon",
         "submit_url": "https://mathstodon.xyz",
         "prefill": None,
-        "note": "Post with #Lean4 #FormalVerification #BooleanAlgebra #E7 #ProofAssistant #Mathlib",
+        "note": "Post with #Lean4 #NAND #BooleanCircuits #TransformerAttention #DistillationAttack #Qwen #Claude",
         "title": None,
     },
     "zulip_lean": {
         "name": "Lean4 Zulip — #lean4 > papers",
         "submit_url": "https://leanprover.zulipchat.com",
         "prefill": None,
-        "note": "Core Mathlib devs live here. Post first — fastest path to technical validation.",
+        "note": "Core Mathlib devs live here. Post the Lean 4 NAND theorem first — fastest path to technical validation.",
         "title": None,
     },
     "proof_assistants_se": {
         "name": "Proof Assistants Stack Exchange",
         "submit_url": "https://proofassistants.stackexchange.com/questions/ask",
         "prefill": None,
-        "note": "Ask: ‘How does this Lean 4 proof of Boole idempotence from Huntington postulates work?’",
+        "note": "Ask: ‘How does this Lean 4 proof that transformer attention decomposes to NAND circuits work?’",
         "title": None,
     },
 }
@@ -287,19 +303,26 @@ def print_submission_packet() -> None:
     print("""
 Self-comment (post immediately after submission as top comment):
 
-Three kernel-verified results. Lean 4.19.0 / Mathlib 4.19.0. Exit 0. Zero sorry.
+Three claims. All verifiable. Lean 4, zero sorry.
 
-1. Boole idempotence (x·x = x, x+x = x) — derived from Huntington postulates alone.
-   Boole stated this as an axiom in 1854. First machine-checked derivation. 172-year gap. Closed.
+1. NAND decomposition of transformer attention.
+   Attention patterns over quantized embeddings are computable by NAND circuits
+   of depth O(log d). Softmax adds Theta(nd) flops without changing routing topology.
+   Historical chain: Boole (1854) -> Sheffer (1913) -> Vaswani (2017).
 
-2. GKN quartic invariant I₄ — proven homogeneous of degree 4 over any CommRing.
-   First time in a proof assistant.
+2. Live identity attack: Qwen3 signed as claude-3-5-sonnet-20241022.
+   Under a 12-token persona gate, Qwen3 returned a false Anthropic identity.
+   Three controlled conditions documented. Version specificity explained by
+   the Sonnet Dominance Hypothesis: market monopoly = training corpus saturation
+   = identity vulnerability at inference time.
 
-3. Four E₇ generator symmetries on the 56-dimensional Freudenthal Triple System.
-   First time in a proof assistant.
+3. The router is the model.
+   R(x,c,pi,rho) -> (m,tau,g,v). argmax[Quality - Cost - Risk + Verifiability].
+   The same Boolean routing principle governs from token pair to multi-model orchestration.
 
-DOI: 10.5281/zenodo.21268911
-Repo (Source Available): https://github.com/SNAPKITTYWEST/foundry-f1
+34 contributing models. Lean 4 formal proof. NAND microarchitecture (13x efficiency).
+DOI: 10.5281/zenodo.21351461
+Repo: https://github.com/SNAPKITTYWEST/foundry-f1
 """)
 
     print("=" * w)
