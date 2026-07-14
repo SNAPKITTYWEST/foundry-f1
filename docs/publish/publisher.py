@@ -17,6 +17,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import sys
 import time
@@ -25,6 +26,9 @@ import urllib.parse
 import webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
+
+# Force UTF-8 stdout on Windows
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 # ── Paper metadata ─────────────────────────────────────────────────────────────
 
