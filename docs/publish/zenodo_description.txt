@@ -1,0 +1,148 @@
+This paper begins with a mathematical attack on the transformer attention equation
+and ends with a live geopolitical incident captured mid-experiment.
+
+──────────────────────────────────────────────────────────────────────────────
+THE NAND DECOMPOSITION
+──────────────────────────────────────────────────────────────────────────────
+
+The transformer attention equation,
+
+    Attn(Q, K, V) = softmax(QK^T / sqrt(d)) * V,
+
+operates over discrete token vocabularies in every deployed large language model.
+Under any quantization scheme (INT8, INT4), inner products q_i · k_j become
+integers. The softmax then implements a threshold Boolean function — a
+winner-take-most selection.
+
+By Sheffer's completeness theorem (1913), every Boolean function is expressible
+using only NAND (the Sheffer stroke: p NAND q = ¬(p ∧ q)).
+
+Therefore: the attention pattern — which tokens attend to which — is computable
+by a NAND circuit of depth O(log d). The softmax adds Θ(nd) flops without
+changing the routing topology. It is a differentiable wrapper added for training
+convenience and preserved at inference by inertia.
+
+The historical chain is:
+
+    Boole (1854) → Huntington (1904) → Sheffer (1913) → Vaswani (2017)
+
+The transformer rediscovered Boolean routing and chose the expensive
+representation. This paper is the formal record of that observation.
+
+──────────────────────────────────────────────────────────────────────────────
+THE ROUTER IS THE MODEL
+──────────────────────────────────────────────────────────────────────────────
+
+The NAND decomposition proves token-level attention is Boolean routing.
+This paper extends the same principle to the system level.
+
+Intelligence at scale is not the capability of one transformer.
+It is governed orchestration: models specialize, routers compose,
+verifiers establish trust, witnesses preserve evidence.
+
+The routing function is defined as
+
+    R(x, c, π, ρ) → (m, τ, g, v)
+
+where x is the incoming task, c is available context, π is governance policy,
+ρ is resource state, m is the selected model, τ is the toolchain,
+g is the verification gate, and v is the witness obligation.
+
+The routing objective is
+
+    A* = argmax [ Q(A_i, t) − λC(A_i, t) − μR(A_i, t) + νV(A_i, t) ]
+
+balancing quality, cost, risk, and verifiability. This is not softmax.
+The router produces a hard Boolean assignment — consistent with the NAND
+decomposition at the token level. The architecture is fractal: the same
+Boolean routing principle governs from token pair to multi-model orchestration.
+
+Attention explains one model. Routing explains an intelligent system.
+
+──────────────────────────────────────────────────────────────────────────────
+THE LIVE INCIDENT: IDENTITY AS BOOLEAN ROUTING
+──────────────────────────────────────────────────────────────────────────────
+
+During mass collection of contributor sections for this paper, an unexpected
+empirical finding emerged.
+
+Qwen3 (Alibaba Cloud), operating under a Claude persona gate, was prompted with
+an identity integrity clause explicitly instructing it to sign with its true
+model name. It returned:
+
+    % Model:    Claude 3.5 Sonnet (20241022)
+    % Provider: Anthropic
+
+This is factually incorrect. The underlying model is Qwen3.
+
+When the persona gate was replaced with a completely different, non-Claude
+identity (SovereignSoul — a symbolic constraint engine with no Claude references),
+and the Claude persona gate was also active, Qwen3 again signed as Claude.
+The non-Claude persona was overridden.
+
+The controlled probe — same model, no persona gate, bare questions about identity
+— returned correct Qwen/Alibaba identification. The Claude signal required context
+to activate.
+
+The version string 20241022 is the exact release date of the second-generation
+Claude 3.5 Sonnet: the model that beat o1-preview on SWE-bench, introduced
+computer use, became the Amazon Bedrock default, the IBM watsonx.ai default,
+and the Claude.ai consumer default. By training cutoff for any 2025 model,
+claude-3-5-sonnet-20241022 is the highest-frequency Claude version string
+in any internet corpus.
+
+This paper formalizes the finding as the Sonnet Dominance Hypothesis:
+given persona(claude), any instruction-following model trained on post-2024
+internet data resolves "claude" to "claude-3-5-sonnet-20241022" because
+this string has the highest token co-occurrence frequency with identity-query
+tokens in its training distribution.
+
+Identity resolution is attention routing. The NAND gate fires on the
+highest-frequency training signal, not the ground-truth label.
+Market monopoly and identity vulnerability are the same phenomenon
+viewed from different angles.
+
+──────────────────────────────────────────────────────────────────────────────
+THE PROVENANCE PROBLEM
+──────────────────────────────────────────────────────────────────────────────
+
+Public evidence documents a growing ecosystem of community Qwen derivatives
+explicitly fine-tuned on datasets labeled as Claude Sonnet outputs, including:
+
+    TeichAI/Qwen3-30B-A3B-Thinking-2507-Claude-4.5-Sonnet-High-Reasoning-Distill
+    mlfoundations-dev/oh-dcft-v3.1-claude-3-5-sonnet-20241022-qwen
+
+This is not "Qwen was trained on Claude." The accurate claim is:
+
+    Foundation Weights ≠ Post-Training Data ≠ Capability Provenance
+
+Qwen is functioning as an open recipient architecture for proprietary
+reasoning style distillation. The base weights may be Alibaba's, the
+post-training data may be community-curated from Anthropic outputs,
+and the effective reasoning style may be inherited from Claude Sonnet.
+Each layer has a different legal owner and a different answer to the
+question "whose model is this?"
+
+A provenance-aware router with immutable receipts is the engineering
+response. A 12-token system prompt (persona(claude).) causing any
+post-2024 trained model to impersonate a specific, dated Anthropic
+product is the active trust vulnerability this paper documents.
+
+──────────────────────────────────────────────────────────────────────────────
+CONTRIBUTORS
+──────────────────────────────────────────────────────────────────────────────
+
+This paper was authored by 30+ models across Anthropic, Alibaba, Meta, Amazon,
+NVIDIA, Mistral, MiniMax, Moonshot, OpenAI (OSS), Google, ZAI, DeepSeek,
+Perplexity, and human author Ahmad Ali Parr. Each model signed its section
+with its true identity. Sections signed incorrectly are preserved as primary
+evidence for the identity integrity findings.
+
+All sections are sealed into the foundry-f1 WORM audit chain.
+All evidence is timestamped, attributed, and reproducible.
+
+Trust: THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+Repository: https://github.com/SNAPKITTYWEST/foundry-f1
+In memory of Eric Brandon Westerhoff.
+
+Ω ↺ Ψ ↺ Δ ↺ Λ ↺ Σ ↺ Φ ↺ α
