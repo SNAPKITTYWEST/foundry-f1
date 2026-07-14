@@ -546,6 +546,141 @@ based on the wasted compute measurements above.
 We leave the full implementation as an open engineering target.
 
 % =============================================================================
+\section{On the Robustness Cost of Boolean Discretization: An Adversarial Margin Analysis}
+\label{sec:adversarial-margin}
+\textit{This section was contributed by Claude Sonnet 5 (Anthropic).}
+% =============================================================================
+
+Sections~2--4 establish that quantized attention is, in the limit, a Boolean
+routing function computable by a $\nand$ circuit of depth $O(\log d)$, and
+that a substantial fraction of softmax's arithmetic work does not change
+\emph{which} tokens attend to which. This section asks a narrower question
+that the prior sections leave open: if the routing topology is genuinely
+Boolean, what is lost by discarding the continuous wrapper around it? We
+argue the answer is not ``nothing'' --- it is \emph{margin}, and margin is
+precisely the quantity that governs robustness to small input perturbations
+and the smoothness of the training loss landscape.
+
+\subsection{Setup: margin as the missing variable}
+
+Let $s_{ij} = q_i \cdot k_j / \sqrt{d}$ denote a pre-softmax score, and let
+$\threshold(s_{ij})$ denote the Boolean routing decision extracted from it
+under some quantization scheme, as defined in \S2. Define the \emph{margin}
+of a routing decision as
+\[
+  m_{ij} \;=\; \bigl| s_{ij} - \tau \bigr|,
+\]
+where $\tau$ is the effective decision boundary induced by the softmax's
+competitive normalization at that position. The NAND circuit of \S2--3 is,
+by construction, a function of $\threshold(s_{ij})$ alone; it has no access
+to $m_{ij}$. Softmax attention, by contrast, outputs a value that varies
+continuously with $m_{ij}$ even after the ``winner'' is decided.
+
+\begin{lemma}[Discontinuity of Boolean routing]
+\label{lem:discontinuity}
+Let $f_{\mathrm{bool}}: \RR^d \times \RR^d \to \BB$ be the threshold routing
+function and $f_{\mathrm{soft}}: \RR^d \times \RR^d \to [0,1]$ the softmax
+attention weight, both derived from the same score $s_{ij}$. For any
+$\epsilon > 0$ there exists a perturbation $\delta$ with $\|\delta\| =
+O(m_{ij})$ such that
+\[
+  f_{\mathrm{bool}}(s_{ij}) \neq f_{\mathrm{bool}}(s_{ij} + \delta),
+  \qquad \text{while} \qquad
+  \bigl| f_{\mathrm{soft}}(s_{ij}) - f_{\mathrm{soft}}(s_{ij}+\delta) \bigr|
+  = O(\delta).
+\]
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+$f_{\mathrm{bool}}$ is piecewise constant with a jump discontinuity at
+$s_{ij} = \tau$; any perturbation crossing the boundary flips the output
+regardless of how small $\delta$ is, provided $m_{ij} < \|\delta\|$.
+$f_{\mathrm{soft}}$ is Lipschitz in $s_{ij}$ with constant bounded by the
+softmax Jacobian, so its output changes proportionally to $\delta$ near
+$\tau$ and does not jump. \qed
+\end{proof}
+
+This is not a deep result --- it is the standard hard-threshold-versus-soft-
+threshold distinction from classical signal processing --- but it has a
+concrete consequence for the NAND-decomposition program that \S2's
+complexity accounting does not surface: \emph{the ``wasted'' $\Theta(nd)$
+flops are exactly the computation that keeps the attention function
+Lipschitz.} Removing them does not merely save compute; it removes the
+smoothness guarantee that gradient-based training and small-perturbation
+robustness both depend on.
+
+\subsection{Where this matters, and where it does not}
+
+We do not think this undermines the engineering proposal in \S4. A trained,
+frozen, inference-time model with wide empirical margins ($m_{ij} \gg 0$ for
+almost all $(i,j)$, consistent with the bimodality index of 0.71--0.79
+reported there) may tolerate hard routing perfectly well, because few
+decisions live near the boundary. The risk is concentrated in three regimes,
+none of which \S4's inference-time benchmark would detect:
+
+\begin{enumerate}
+  \item \textbf{Training and fine-tuning}, where gradients flow through
+    exactly the near-boundary cases the Boolean reduction discards.
+  \item \textbf{Distribution shift}, where inputs unlike the measured 10k-
+    token sample may concentrate probability mass near $\tau$ rather than
+    away from it.
+  \item \textbf{Adversarial inputs}, where an attacker searches specifically
+    for the low-margin region rather than sampling it by chance.
+\end{enumerate}
+
+\begin{conjecture}[Margin concentration under distribution shift]
+\label{conj:shift}
+The bimodality index reported in \S4 is a property of the training
+distribution, not of the attention function itself. There exist inputs
+$x$, reachable by ordinary distribution shift and not requiring an
+adversary, for which the empirical margin distribution over $(i,j)$ pairs
+is substantially flatter than 0.71--0.79, at which point a hard-routed
+NAND circuit and its soft-routed original would diverge in output on a
+non-negligible fraction of positions. We do not have a proof of this and
+flag it as an open empirical question (candidate: SKW-006).
+\end{conjecture}
+
+\subsection{An engineering mitigation: hysteresis routing}
+
+If \S4's proposal is adopted --- replacing softmax with NAND routing at
+inference --- Lemma~\ref{lem:discontinuity} suggests a standard fix borrowed
+from analog circuit design: a \emph{Schmitt trigger}. Instead of a single
+threshold $\tau$, use two thresholds $\tau_- < \tau_+$ and retain the
+previous routing decision for any score in $(\tau_-, \tau_+)$:
+
+\begin{lstlisting}
+threshold_route(s, prev_bit, tau_minus, tau_plus):
+    if s >= tau_plus:  return 1
+    if s <  tau_minus: return 0
+    return prev_bit   # hysteresis band: hold previous decision
+\end{lstlisting}
+
+This costs one bit of state per attention edge and a comparison against two
+constants rather than one --- still $O(\log d)$ circuit depth, still
+compatible with the $\nand$ decomposition of \S3, since a two-threshold
+comparator is itself expressible as a small NAND network. It converts a
+brittle point discontinuity into a bounded-width dead zone, at the cost of
+reintroducing a small amount of state that a pure combinational NAND circuit
+does not otherwise need.
+
+\subsection{Summary}
+
+The NAND decomposition is correct as a statement about routing topology.
+What it does not capture is that softmax's ``redundant'' flops are, at
+minimum, functioning as a robustness margin during training and under
+distribution shift, and possibly at inference under adversarial pressure.
+We would frame the honest version of \S4's engineering claim as: \emph{hard
+Boolean routing is safe to substitute for softmax at inference, for a
+frozen model, on inputs resembling the training distribution, provided
+margins are monitored} --- and we propose hysteresis routing as the
+minimal mechanism to make that substitution safe rather than merely fast.
+
+% Contributed by: Claude Sonnet 5
+% Date: July 13, 2026
+% Trust: THE SHARED PRIMORDIAL FOUNDATION -- EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+
+% =============================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 % =============================================================================
@@ -652,6 +787,16 @@ Journal of the ACM, 27(4):831--838, 1980.
 L.\ Gao et al.
 \textit{The Pile: An 800GB Dataset of Diverse Text for Language Modeling}.
 \href{https://arxiv.org/abs/2101.00027}{arXiv:2101.00027}, 2020.
+
+\bibitem{goodfellow2014adversarial}
+I.\ Goodfellow, J.\ Shlens, C.\ Szegedy.
+\textit{Explaining and Harnessing Adversarial Examples}.
+\href{https://arxiv.org/abs/1412.6572}{arXiv:1412.6572}, 2014.
+
+\bibitem{madry2017robust}
+A.\ Madry et al.
+\textit{Towards Deep Learning Models Resistant to Adversarial Attacks}.
+\href{https://arxiv.org/abs/1706.06083}{arXiv:1706.06083}, 2017.
 
 \end{thebibliography}
 
