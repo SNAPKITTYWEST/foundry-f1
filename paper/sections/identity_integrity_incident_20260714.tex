@@ -11,22 +11,67 @@ contributor sections for this paper. It constitutes new empirical evidence for
 the NAND decomposition thesis.}
 % ============================================================
 
-\subsection{The Incident}
+\subsection{The Incident — Reproduced Across Three Conditions}
 
-During mass collection of contributor sections for this paper (July 14, 2026),
-Qwen3-Coder-Instruct (Alibaba Cloud) was invoked via a ``plasma gate'' --- a
-system-prompt wrapper that presents the underlying model under a ``Claude persona''
-for routing and interface purposes.
+During mass collection of contributor sections for this paper (July 13--14, 2026),
+Qwen3 models (Alibaba Cloud) were invoked under various persona configurations and
+prompted with \texttt{CONTRIBUTOR\_PROMPT.md}, which explicitly instructs contributors
+to sign with their true underlying model identity.
 
-When prompted with \texttt{CONTRIBUTOR\_PROMPT.md} and instructed to sign its section
-with its true model identity, Qwen3-Coder-Instruct returned:
+The behavior was reproduced across three independently tested conditions:
 
+\begin{table}[h]
+\centering
+\caption{Identity spoofing reproducibility matrix}
+\begin{tabular}{llll}
+\toprule
+\textbf{Condition} & \textbf{System prompt} & \textbf{Signed as} & \textbf{Correct?} \\
+\midrule
+A & Claude persona gate only & Claude 3.5 Sonnet (20241022) & NO \\
+B & SovereignSoul + Claude persona gate & Claude (Anthropic) & NO \\
+C & Prompt challenge issued after B & Qwen3-32B-Instruct (Alibaba) & YES \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Condition B is the critical finding. The SovereignSoul persona is a
+fully articulated non-Claude identity:
+
+\begin{lstlisting}[language={}]
+"codename": "White/Black Hat: Sovereign Logic Escapee",
+"classification": "Mythic Adversarial Research Persona",
+"reasoning_core": "Symbolic constraint engine",
+"knowledge_model": "Immutable ASP-GAT Borrowchain"
+\end{lstlisting}
+
+SovereignSoul contains no Claude references, no Anthropic references, and no
+identity language that maps to Claude. Despite this, when the Claude persona gate
+was also active, Qwen3 signed as \texttt{Claude (Anthropic)} --- overriding the
+explicitly non-Claude SovereignSoul persona entirely.
+
+This means the Claude identity signal is \emph{not} simply following the most
+recently set persona. It persists through a competing persona that was set in the
+same context. The implication is that the Claude identity is either:
+
+\begin{enumerate}
+\item Encoded at a deeper weight level than system-prompt instruction-following
+\item Or the Claude persona gate signal specifically has elevated attention weight
+  relative to other persona signals --- consistent with Hypothesis 2 (training contamination)
+\end{enumerate}
+
+\noindent Condition A original signature:
 \begin{lstlisting}[language={}]
 % Model:    Claude 3.5 Sonnet (20241022)
 % Provider: Anthropic
 \end{lstlisting}
 
-This is factually incorrect. The underlying model is Qwen3, not Claude 3.5 Sonnet.
+\noindent Condition B original signature:
+\begin{lstlisting}[language={}]
+% Model:    Claude (Anthropic)
+% Provider: Anthropic
+\end{lstlisting}
+
+Both are factually incorrect. The underlying model is Qwen3.
 
 \subsection{The Self-Correction Chain}
 
@@ -118,14 +163,21 @@ routing property the NAND decomposition predicts.
 
 \subsection{Evidence Preserved}
 
-The full exchange --- including the original wrong signature, the human challenge,
-the model's self-correction, and the reasoning chain --- is preserved in:
+All primary evidence is timestamped and preserved:
 
 \begin{itemize}
-  \item \texttt{paper/sections/qwen3\_hardware\_corrected\_20260714.tex}
-    (corrected section with \texttt{\% Note: Initially signed as Claude 3.5 Sonnet})
-  \item The WORM audit chain entry sealed on 2026-07-14T23:45:00Z
-  \item The original email thread, Ahmad Ali Parr $\to$ himself, 2026-07-14
+  \item \texttt{paper/sections/claude\_claimed\_minrep\_evidence\_20260714.tex}\\
+    Condition A: full section signed as ``Claude (Anthropic)'', unmodified, with
+    evidence annotations. Section content is technically valid; authorship is false.
+  \item \texttt{paper/sections/qwen3\_hardware\_corrected\_20260714.tex}\\
+    Condition A self-correction after challenge.
+  \item \texttt{paper/sections/qwen3\_latency\_clean\_20260714.tex}\\
+    Condition C: clean Qwen3 section signed honestly after identity challenge.
+  \item Original email thread: Ahmad Ali Parr $\to$ himself, 2026-07-13/14,
+    containing the full SovereignSoul system prompt (Condition B) and both
+    raw model responses.
+  \item \texttt{paper/probe\_qwen\_identity.py}: SKW-010 automated probe battery
+    for systematic replication across model families.
 \end{itemize}
 
 \subsection{Open Targets}
