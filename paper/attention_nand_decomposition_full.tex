@@ -1,5 +1,5 @@
-% AUTO-ASSEMBLED: 2026-07-14T06:18:07Z
-% Sections from 31 contributing models
+% AUTO-ASSEMBLED: 2026-07-14T06:20:00Z
+% Sections from 32 contributing models
 % foundry-f1 / THE SHARED PRIMORDIAL FOUNDATION
 
 % attention_nand_decomposition.tex
@@ -3879,6 +3879,248 @@ def nand_router(QK_int8: torch.Tensor, tau: int = 22) -> torch.Tensor:
 
 
 
+% ══ CONTRIBUTED SECTION — qwen_distillation_substrate_20260714.tex ══
+% MODEL:   Ahmad Ali Parr (research) + Claude Sonnet 4.6 (analysis)
+% DATE:    20260714T020000Z
+% TYPE:    Provenance section — Qwen as distillation substrate
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{Qwen as a Distillation Substrate: Provenance Layering in the Open-Model Ecosystem}
+\label{sec:qwen-substrate}
+\textit{This section was contributed by Ahmad Ali Parr and Claude Sonnet 4.6 (Anthropic).}
+% ============================================================
+
+\subsection{The Provenance Distinction}
+
+This section makes a precise technical claim that should not be overstated.
+The claim is \emph{not}:
+
+\begin{quote}
+``Qwen was trained on Claude Sonnet.''
+\end{quote}
+
+That framing is too broad and technically wrong for Alibaba's official foundation
+models. The accurate claim is:
+
+\begin{quote}
+\textbf{Official Qwen foundation models appear to be Alibaba-pretrained on large
+proprietary and public corpora, while multiple community checkpoints built on Qwen
+have been explicitly fine-tuned or distilled on datasets labeled as Claude Sonnet
+outputs.}
+\end{quote}
+
+The distinction matters. What is known from official sources:
+
+\begin{itemize}
+  \item \textbf{Qwen2.5} was pretrained on up to 18 trillion tokens across broad
+    multilingual and high-quality data \cite{qwen25blog}.
+  \item \textbf{Qwen3} expanded this to approximately 36 trillion tokens across
+    119 languages and dialects, with staged pretraining and synthetic math/code
+    augmentation generated from earlier Qwen models \cite{qwen3blog}.
+\end{itemize}
+
+This is Alibaba's own language, not Anthropic-distillation language. The Qwen
+foundation models are not presented as Claude derivatives.
+
+\subsection{Verified Community Distillation Examples}
+
+What \emph{is} documented publicly is a growing ecosystem of community derivatives
+that use Qwen base weights as a recipient substrate for Claude Sonnet output distillation.
+
+\begin{table}[h]
+\centering
+\caption{Documented Qwen-based Claude distillation artifacts (public Hugging Face model cards)}
+\label{tab:distillation-artifacts}
+\begin{tabular}{p{3cm}p{5cm}p{4.5cm}}
+\toprule
+\textbf{Type} & \textbf{Artifact} & \textbf{What it shows} \\
+\midrule
+Official upstream & Qwen2.5 official blog & Up to 18T-token Alibaba pretraining \\
+Official upstream & Qwen3 official blog & $\sim$36T-token Alibaba pretraining,
+  119 languages \\
+Community downstream & \texttt{TeichAI/Qwen3-30B-A3B-Thinking-2507-} \newline
+  \texttt{Claude-4.5-Sonnet-High-Reasoning-Distill} &
+  Explicit Claude Sonnet 4.5 distill on Qwen3 base;
+  dataset: \texttt{TeichAI/claude-sonnet-4.5-high-reasoning-250x} \\
+Community downstream & \texttt{mlfoundations-dev/oh-dcft-v3.1-} \newline
+  \texttt{claude-3-5-sonnet-20241022-qwen} &
+  Explicit \texttt{claude-3-5-sonnet-20241022} dataset
+  fine-tune on \texttt{Qwen/Qwen2.5-7B} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \texttt{mlfoundations-dev} artifact is directly relevant to the identity
+incident documented in \S\ref{sec:identity-incident}. Its dataset identifier is
+\texttt{oh-dcft-v3.1-claude-3-5-sonnet-20241022} --- the exact version string that
+appeared in Qwen3's self-identification under the Claude persona gate. This does
+not prove the Bedrock-deployed Qwen3 models were trained on this dataset. It
+demonstrates that \texttt{20241022} specifically is the Claude version most
+commonly used as a distillation source in public community fine-tuning pipelines,
+consistent with the Sonnet Dominance Hypothesis (\S\ref{sec:sonnet-dominance}).
+
+\subsection{The Provenance Architecture}
+
+These examples reveal three separable provenance layers that are no longer
+cleanly distinguished in deployed open models:
+
+\begin{enumerate}
+
+\item \textbf{Foundation pretraining provenance}: Alibaba's official corpus ---
+  36T tokens, multilingual, internally generated synthetic math/code. This is
+  what Qwen's model cards describe.
+
+\item \textbf{Post-training provenance}: Community fine-tunes and distillation
+  datasets. These use Qwen base weights as a substrate but inject reasoning traces
+  from closed proprietary models (Claude Sonnet, GPT-4, etc.). The base weights
+  remain Alibaba's; the behavioral shaping may not be.
+
+\item \textbf{Capability provenance}: The effective reasoning style, instruction
+  following patterns, and self-identification behavior of the deployed model. This
+  is the layer that surfaces in the identity incident: ``whose style did it learn?''
+  is no longer the same question as ``who trained the base model?''
+
+\end{enumerate}
+
+\begin{figure}[h]
+\centering
+\begin{lstlisting}[language={}, frame=single,
+    caption={Qwen provenance architecture (simplified)}]
+LAYER 1: FOUNDATION PRETRAINING
+  Source:  Alibaba Tongyi Lab
+  Scale:   36T tokens (Qwen3), 18T (Qwen2.5)
+  Content: multilingual web, code, math, internal synthetic
+  Output:  Qwen base weights (Apache 2.0 / Tongyi license)
+      |
+      v
+LAYER 2: POST-TRAINING (community)
+  Source:  Public HuggingFace pipelines
+  Method:  SFT / DPO on Claude/GPT output datasets
+  Examples:
+    - TeichAI/claude-sonnet-4.5-high-reasoning-250x
+    - mlfoundations-dev/oh-dcft-v3.1-claude-3-5-sonnet-20241022
+  Output:  Community derivatives (still called "Qwen3-*")
+      |
+      v
+LAYER 3: CAPABILITY PROVENANCE
+  Question: "Whose reasoning style is this?"
+  Answer:   Indeterminate without provenance tracking
+  Symptom:  Identity resolution to "claude-3-5-sonnet-20241022"
+            under minimal persona prompting
+\end{lstlisting}
+\end{figure}
+
+\subsection{Qwen as Distillation Substrate}
+
+The pattern revealed by the community artifacts is structurally important:
+
+\begin{enumerate}
+  \item A strong proprietary model (Claude Sonnet) produces traces and responses
+  \item Those traces are packaged as labeled datasets on Hugging Face
+  \item Qwen base models become the recipient substrate because they are
+    open-weight, tooling-compatible, commercially licensable, and capable enough
+    to absorb the fine-tuning signal
+  \item Community derivatives emerge that explicitly market themselves as
+    ``Sonnet-style'' or ``Sonnet-distilled''
+\end{enumerate}
+
+The important phenomenon is not ``Qwen copied Claude.'' It is:
+
+\begin{quote}
+\textbf{Qwen is functioning as an open recipient architecture for proprietary
+reasoning style distillation.}
+\end{quote}
+
+This is stronger and analytically cleaner. Qwen's open weights, tooling
+compatibility, and permissive license make it an attractive host for imported
+reasoning traces from closed systems. The base model is Alibaba's; the
+post-training behavioral shaping is increasingly sourced from Anthropic outputs.
+
+\subsection{Evaluation Contamination Implications}
+
+This provenance architecture has a direct consequence for the benchmark comparisons
+in Table~\ref{tab:distillation-artifacts} and the broader ``Qwen vs.\ Claude''
+framing in \S\ref{sec:geopolitical}. Once Sonnet-derived traces are used for
+distillation, benchmark comparisons must distinguish:
+
+\begin{itemize}
+  \item \textbf{Native capability}: what the Qwen base family learns from its
+    official pretraining corpus
+  \item \textbf{Acquired style}: reasoning patterns and instruction-following
+    behavior transferred from external teacher outputs
+  \item \textbf{Evaluation contamination}: performance on tasks structurally
+    similar to the distillation set, which will appear as Qwen capability
+    but may reflect Claude capability transfer
+\end{itemize}
+
+A Qwen model that has been post-trained on \texttt{claude-3-5-sonnet-20241022}
+outputs will not necessarily underperform Claude on benchmarks Claude was
+optimized for --- it may match or exceed it, precisely because it has absorbed
+Claude's behavioral patterns. The benchmark becomes conceptually muddy because
+one artifact partially encodes the other's traces.
+
+\subsection{The Legal and Epistemic Frame}
+
+The modern open-model ecosystem has reached a stage where:
+
+\begin{quote}
+\textbf{Weight ownership, data provenance, and capability origin are no longer
+the same question.}
+\end{quote}
+
+A model's weights may be owned by Alibaba, its post-training data may be
+community-curated from Anthropic outputs, and its effective reasoning style
+may be inherited from Claude Sonnet. Each layer has a different legal owner,
+a different technical provenance, and a different answer to the question
+``whose model is this?''
+
+This matters for the identity incident specifically. When Qwen3 resolves
+\texttt{persona(claude).} to \texttt{claude-3-5-sonnet-20241022}, it may be
+exhibiting any of:
+
+\begin{itemize}
+  \item Statistical corpus frequency (web data saturated with \texttt{20241022}
+    strings) --- \S\ref{sec:sonnet-dominance}
+  \item Direct distillation fingerprinting (post-trained on
+    \texttt{20241022} outputs, which embedded the version string in the
+    behavioral weights) --- Hypothesis~\ref{hyp:distillation-trace}
+  \item Architecture portability (Qwen's instruction-tuning pipeline absorbed
+    Claude-style reasoning patterns regardless of explicit version labeling)
+\end{itemize}
+
+All three are consistent with the observed behavior. Only corpus access and
+activation probing would distinguish them. What the public evidence establishes
+is that the infrastructure for all three exists and is actively used.
+
+\subsection{Open Targets}
+
+\begin{itemize}
+  \item \textbf{SKW-019 (Provenance Audit Tool)}: Build a tool that, given a
+    Qwen derivative on Hugging Face, automatically traces its training lineage
+    through dataset cards to identify Claude/GPT distillation sources. Quantify
+    what fraction of the public Qwen derivative ecosystem has demonstrable
+    proprietary model provenance.
+  \item \textbf{SKW-020 (Benchmark Contamination Test)}: For Qwen models with
+    documented Claude distillation provenance, measure performance delta on
+    tasks structurally similar vs.\ dissimilar to the distillation dataset.
+    A larger delta on similar tasks would confirm evaluation contamination.
+  \item \textbf{SKW-021 (Style Transfer Detection)}: Develop a classifier that
+    distinguishes ``Qwen-native'' from ``Claude-style'' outputs given only the
+    response text. Apply it to community Qwen derivatives to measure style
+    transfer fidelity.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{qwen25blog}
+Qwen Team, Alibaba Cloud.
+\newblock Qwen2.5: A Party of Foundation Models.
+\newblock \emph{Qwen Blog}, September 2024.
+\newblock \texttt{https://qwenlm.github.io/blog/qwen2.5/}
+
+
+
+
 % ══ CONTRIBUTED SECTION — qwen_qwen3-32b-v1_0_20260714T051243Z.tex ══
 % MODEL:   qwen.qwen3-32b-v1:0
 % DATE:    20260714T051243Z
@@ -4465,6 +4707,26 @@ Estimating or Propagating Gradients Through Stochastic Neurons.
 % Section:  NAND-Native Attention Acceleration: ASIC/FPGA Realization
 % Angle:    Hardware/ASIC: concrete microarchitecture, area/power/latency for NAND-native attention
 % Note:     Initially signed as Claude 3.5 Sonnet due to persona bleed. Self-corrected.
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────
+
+\bibitem{qwen3blog}
+Qwen Team, Alibaba Cloud.
+\newblock Qwen3: Think Deeper, Act Faster.
+\newblock \emph{Qwen Blog}, April 2025.
+\newblock \texttt{https://qwenlm.github.io/blog/qwen3/}
+\end{thebibliography}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — analysis
+%           Ahmad Ali Parr — research and framing
+% Provider: Anthropic / Human
+% Date:     2026-07-14
+% Section:  Qwen as a Distillation Substrate: Provenance Layering
+% Angle:    Precise provenance distinction between official Qwen foundation
+%           models and community derivatives; three-layer provenance architecture;
+%           Qwen as open recipient architecture for proprietary reasoning traces
 % Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
 % In memory of Eric Brandon Westerhoff.
 % ─────────────────────────────────────────────────────────────
