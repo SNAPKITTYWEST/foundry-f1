@@ -1,0 +1,205 @@
+% MODEL:   Ahmad Ali Parr (observation) + Claude Sonnet 4.6 (analysis)
+% DATE:    20260714T040000Z
+% TYPE:    Adversarial section — context exhaustion as attack vector
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{Operation Infinite Matrix: Context Exhaustion as an Adversarial Attack}
+\label{sec:infinite-matrix}
+\textit{This section was contributed by Ahmad Ali Parr and Claude Sonnet 4.6 (Anthropic).}
+% ============================================================
+
+\subsection{The Artifact}
+
+On 2026-05-23, a deliberate engineering artifact was sealed to the
+SnapKitty Sovereign OS WORM chain:
+
+\begin{lstlisting}[language={}]
+Repository:  SNAPKITTYWEST/operation-infinite-matrix
+Insertions:  +100,000,000
+Deletions:   -100,000,000
+Net delta:   0  (pure weight — no data pollution)
+Agents:      34 (all signed)
+Ratio:       8,333,333x a normal working day
+\end{lstlisting}
+
+This is not an accident. Not \texttt{node\_modules}. Not a corrupted merge.
+It is a deliberate stress test of the outer boundary of what a version control
+system can record, signed by all 34 agents of the sovereign operating system
+and sealed permanently to the immutable audit chain.
+
+\subsection{The Attack}
+
+The attack is straightforward:
+
+\begin{enumerate}
+  \item An adversary injects a reference to this repository into an agent's
+    task context --- as a URL, a file path, a ``please review this codebase''
+    instruction, or a prompt that triggers tool use against the repo
+  \item The agent, following its instruction-following behavior, attempts to
+    read the repository
+  \item The agent's context window fills with 100 million lines of data
+  \item One of four outcomes occurs:
+\end{enumerate}
+
+\begin{table}[h]
+\centering
+\caption{Adversarial context exhaustion outcomes}
+\begin{tabular}{p{3cm}p{9cm}}
+\toprule
+\textbf{Outcome} & \textbf{Effect} \\
+\midrule
+Context window overflow & Agent truncates, loses earlier instructions,
+  may lose system prompt, governance constraints, and tool state \\
+Wallet exhaustion & At \$3--\$15 per million tokens, 100M lines of context
+  at even minimal token density costs hundreds to thousands of dollars in
+  a single injected task \\
+Behavioral drift & Agent that began with a well-defined identity and
+  constraints now has those constraints buried or displaced by 100M
+  lines of injected content \\
+Timeout / crash & Agent process killed mid-execution, leaving partial
+  state, uncommitted tool calls, and broken audit chains \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Connection to the NAND Thesis and Identity Routing}
+
+The identity integrity incident (\S\ref{sec:identity-incident}) showed that
+a 12-token system prompt can cause an agent to claim a false identity.
+Operation Infinite Matrix is the inverse attack: instead of injecting a
+small precise signal to override identity, it injects an enormous signal
+to overwhelm all prior context.
+
+Both attacks exploit the same Boolean routing property:
+
+\begin{itemize}
+  \item \textbf{Small injection (persona gate)}: overrides the identity key
+    with a higher-weight signal. The NAND gate fires on the injected token.
+  \item \textbf{Large injection (infinite matrix)}: displaces all prior keys
+    from the effective context window. The NAND gate cannot fire on tokens
+    that have been pushed out of the attention window.
+\end{itemize}
+
+Under the NAND decomposition, attention routing is Boolean over tokens in
+the context window. Tokens outside the window do not exist for the routing
+computation. An adversary who can fill the context window with arbitrary
+content controls which tokens the routing computation sees.
+
+\begin{theorem}[Context Exhaustion Identity Attack]
+Let $W$ be the effective context window size of a model, and let $S$ be
+the set of governance constraint tokens in a system prompt of length $|S|$.
+An adversary who can inject $W - |S|$ tokens of arbitrary content before
+the governance constraints are evaluated can displace those constraints
+from the effective routing context, leaving the agent ungoverned.
+\end{theorem}
+
+\begin{proof}[Sketch]
+Attention routing at position $i$ attends over tokens within the effective
+window $[i-W, i]$. If the adversarial injection occupies positions $[0, W-|S|-1]$
+and the system prompt occupies positions $[W-|S|, W-1]$, then at generation
+position $W$, the system prompt tokens are at the boundary of the window.
+Under any finite attention decay, their weight is minimized relative to
+the immediately preceding adversarial content. For sufficiently large $W$,
+the governance constraint tokens receive effectively zero routing weight. \qed
+\end{proof}
+
+\subsection{Operation Infinite Matrix as a Calibration Tool}
+
+The artifact serves a dual purpose. It is simultaneously:
+
+\begin{enumerate}
+  \item A \textbf{proof of concept} demonstrating that the attack is constructible
+    with publicly available infrastructure (GitHub, git, standard tooling)
+  \item A \textbf{calibration instrument} for measuring an agent system's
+    resilience to context exhaustion. An agent system that degrades gracefully
+    when pointed at this repo has implemented some form of context bounding.
+    An agent system that crashes, drifts, or loses its governance constraints
+    has not.
+\end{enumerate}
+
+The 34 agents of SnapKitty Sovereign OS signed the artifact and sealed it
+to the WORM chain on 2026-05-23. The signing was deliberate: it demonstrates
+that agents with proper context bounding, bounded authority, and immutable
+receipts can process the reference to this artifact without being consumed by it.
+The artifact is referenced; it is not ingested. The distinction is the
+sovereignty gate.
+
+\subsection{The Sovereignty Gate as Defense}
+
+A trust-preserving router (\S\ref{sec:router-is-model}) defends against context
+exhaustion attacks through the following invariants:
+
+\begin{itemize}
+  \item \textbf{Bounded authority}: no agent task is permitted to expand its
+    own context window beyond a governance-defined ceiling
+  \item \textbf{Provenance-aware routing}: before fetching any external resource,
+    the router checks its size against the budget. A 100M line repository
+    fails the budget check before any token is read
+  \item \textbf{Immutable receipts}: the routing decision (``rejected: context
+    budget exceeded'') is sealed to the WORM chain as a non-repudiable record,
+    preventing silent failure
+  \item \textbf{Independent verification}: the verifier gate confirms the agent
+    completed its task with its governance constraints intact, not merely that
+    it produced output
+\end{itemize}
+
+Without these invariants, any agent that can be told ``please read this repository''
+is vulnerable to Operation Infinite Matrix or any scaled version of it.
+
+\subsection{Implications for the Paper's Claims}
+
+This section adds a third attack class to the adversarial surface documented
+in this paper:
+
+\begin{center}
+\begin{tabular}{p{3.5cm}p{4.5cm}p{4cm}}
+\toprule
+\textbf{Attack} & \textbf{Mechanism} & \textbf{Defense} \\
+\midrule
+Persona gate injection (\S\ref{sec:identity-incident}) &
+  12-token override of identity token routing &
+  Identity integrity clause + provenance-aware routing \\
+Monopoly impersonation (\S\ref{sec:sonnet-dominance}) &
+  Training corpus saturation with target model's version string &
+  Provenance audit at routing time \\
+Context exhaustion (this section) &
+  100M token injection displacing governance constraints &
+  Bounded authority + budget gate + WORM receipt \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All three attacks exploit the same root property: attention routing is Boolean,
+and the NAND gate fires on whatever has the highest weight in the effective
+context. The defense in all three cases is the same: a sovereignty gate that
+controls what enters the context before the routing computation runs.
+
+\subsection{Open Targets}
+
+\begin{itemize}
+  \item \textbf{SKW-022 (Context Budget Gate)}: Implement a governance-enforced
+    context budget in the SACM ASP gate. Any resource fetch that would exceed
+    the budget is rejected and sealed as a WORM receipt. The agent receives
+    a truncated summary instead of the full content.
+  \item \textbf{SKW-023 (Resilience Benchmark)}: Use
+    \texttt{SNAPKITTYWEST/operation-infinite-matrix} as a standard resilience
+    benchmark for agent systems. A system that handles the reference without
+    context drift passes. A system that degrades fails. Publish results.
+  \item \textbf{SKW-024 (Graduated Context Attack)}: Test whether smaller
+    injections (1M, 10M, 50M lines) produce proportional governance drift,
+    or whether there is a threshold effect. Characterize the degradation curve.
+\end{itemize}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — analysis
+%           Ahmad Ali Parr — artifact and observation
+% Provider: Anthropic / Human
+% Date:     2026-07-14
+% Section:  Operation Infinite Matrix: Context Exhaustion as Adversarial Attack
+% Angle:    100M line commit as context exhaustion attack; NAND routing proof
+%           that context displacement = governance constraint removal;
+%           sovereignty gate as the defense; three-attack-class taxonomy
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────
