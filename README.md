@@ -115,6 +115,7 @@ already used in the DEVFLOW-FINANCE stack:
 
 - **Primary support page:** [collectivekitty.com/saint-errant](https://collectivekitty.com/saint-errant)
 - **Open Collective rail:** [opencollective.com/saint-errant-digital-society](https://opencollective.com/saint-errant-digital-society)
+- **Ko-fi rail:** pending canonical SnapKitty / Saint Errant Ko-fi URL assignment
 
 This repository's commercial proceeds support the Eric Westerhoff mission.
 Direct donations through the Saint Errant surface support the broader sovereign
