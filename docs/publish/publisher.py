@@ -47,7 +47,7 @@ PAPER = {
         "Attention Is All You Don’t Need: NAND Decomposition of the Transformer Attention Equation"
     ),
     "title_hn": (
-        "Show HN: Attention Is All You Don’t Need — NAND decomposition of softmax attention (34 models, Lean 4, live identity incident)"
+        "Show HN: Transformer attention is a NAND circuit — Lean 4, live identity attack"
     ),
     "authors": "Ahmad Ali Parr, hy3, Claude (Anthropic), MiMo (Xiaomi), + 30 contributing models",
     "doi": "10.5281/zenodo.21351461",
