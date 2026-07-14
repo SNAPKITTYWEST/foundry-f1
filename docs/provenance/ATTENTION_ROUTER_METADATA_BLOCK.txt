@@ -1,0 +1,131 @@
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                         ATTENTION IS ALL YOU DON'T NEED                             ║
+║                            THE ROUTER IS THE MODEL                                  ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║  THESIS                                                                             ║
+║  ──────                                                                             ║
+║  Intelligence emerges from governed orchestration rather than a single              ║
+║  attention mechanism. Models specialize. Routers compose. Verifiers                 ║
+║  establish trust. Witnesses preserve evidence.                                      ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║  FOUNDATION LAYER                                                                    ║
+║                                                                                      ║
+║        Closed Frontier                      Open Frontier                            ║
+║        ───────────────                      ─────────────                            ║
+║        Claude Sonnet                        Qwen Foundation                          ║
+║              │                                    │                                 ║
+║              │ reasoning traces                   │ official pretraining             ║
+║              └──────────────┐                     │                                 ║
+║                             ▼                     ▼                                 ║
+║                    Community Distillation → Qwen Derivatives                        ║
+║                                                                                      ║
+║  Observation:                                                                        ║
+║  Foundation weights, post-training data, and effective reasoning style              ║
+║  are now independent provenance layers.                                             ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║                    ROUTER EFFECT                                                     ║
+║                                                                                      ║
+║             Incoming Task                                                            ║
+║                    │                                                                 ║
+║                    ▼                                                                 ║
+║          Structural Classification                                                   ║
+║                    │                                                                 ║
+║                    ▼                                                                 ║
+║      ┌─────────────┼──────────────┬──────────────┬──────────────┐                    ║
+║      │             │              │              │              │                    ║
+║      ▼             ▼              ▼              ▼              ▼                    ║
+║  Research      Mathematics     Coding      Legal Logic     Verification              ║
+║      │             │              │              │              │                    ║
+║      └─────────────┴──────────────┴──────────────┴──────────────┘                    ║
+║                                │                                                     ║
+║                                ▼                                                     ║
+║                        Unified Witness                                                ║
+║                                │                                                     ║
+║                                ▼                                                     ║
+║                         WORM Audit Chain                                              ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║                  CAPABILITY TRANSFER PIPELINE                                        ║
+║                                                                                      ║
+║  Teacher Model                                                                       ║
+║        │                                                                             ║
+║        ▼                                                                             ║
+║  Reasoning Traces                                                                    ║
+║        │                                                                             ║
+║        ▼                                                                             ║
+║  Community Dataset                                                                    ║
+║        │                                                                             ║
+║        ▼                                                                             ║
+║  Open Foundation Model                                                               ║
+║        │                                                                             ║
+║        ▼                                                                             ║
+║  Distilled Derivative                                                                ║
+║                                                                                      ║
+║  Result:                                                                             ║
+║  Weight Provenance ≠ Data Provenance ≠ Capability Provenance                         ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║                  MATHEMATICAL VIEW                                                   ║
+║                                                                                      ║
+║          R(x,c,π,ρ) → (m,τ,g,v)                                                      ║
+║                                                                                      ║
+║  x  = task                                                                           ║
+║  c  = context                                                                        ║
+║  π  = governance policy                                                              ║
+║  ρ  = resource state                                                                 ║
+║  m  = selected model                                                                 ║
+║  τ  = toolchain                                                                      ║
+║  g  = verification gate                                                              ║
+║  v  = witness obligation                                                             ║
+║                                                                                      ║
+║  Objective:                                                                          ║
+║                                                                                      ║
+║  arg max [ Quality − Cost − Risk + Verifiability ]                                  ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║                  ATTENTION VS ROUTING                                                ║
+║                                                                                      ║
+║  Attention:                                                                          ║
+║     • token relationships                                                            ║
+║     • local representation                                                           ║
+║     • sequence modeling                                                              ║
+║                                                                                      ║
+║  Router:                                                                             ║
+║     • task decomposition                                                             ║
+║     • model selection                                                                ║
+║     • policy enforcement                                                             ║
+║     • verifier assignment                                                            ║
+║     • evidence generation                                                            ║
+║     • audit provenance                                                               ║
+║                                                                                      ║
+║  Attention explains one model.                                                       ║
+║  Routing explains an intelligent system.                                             ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║                  SYSTEM INVARIANTS                                                   ║
+║                                                                                      ║
+║  ✓ Deterministic orchestration                                                       ║
+║  ✓ Explicit provenance                                                               ║
+║  ✓ Independent verification                                                          ║
+║  ✓ Bounded authority                                                                 ║
+║  ✓ Specialized agents                                                                ║
+║  ✓ Immutable receipts                                                                ║
+║  ✓ WORM evidence                                                                     ║
+║  ✓ Reproducible execution                                                            ║
+║                                                                                      ║
+╠══════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                      ║
+║                         EVIDENCE • VERIFICATION • ROUTING                            ║
+║                                                                                      ║
+║                Ω ↺ Ψ ↺ Δ ↺ Λ ↺ Σ ↺ Φ ↺ α                                              ║
+║                                                                                      ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝

@@ -44,6 +44,13 @@
 > [`PAPER_COVER_NFT_METADATA.json`](./docs/provenance/PAPER_COVER_NFT_METADATA.json) ·
 > [`snapkitty_visual_chain.jsonl`](./docs/provenance/snapkitty_visual_chain.jsonl)
 
+> [!IMPORTANT]
+> **Routing Metadata Block**
+> The canonical SnapKitty routing/provenance block is preserved at
+> [`ATTENTION_ROUTER_METADATA_BLOCK.txt`](./docs/provenance/ATTENTION_ROUTER_METADATA_BLOCK.txt).
+> It is the compact system statement for the paper thesis:
+> routing, not isolated attention, is the trustworthy systems layer.
+
 ---
 
 ## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1
