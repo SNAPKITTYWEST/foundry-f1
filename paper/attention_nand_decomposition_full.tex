@@ -1,4 +1,4 @@
-% AUTO-ASSEMBLED: 2026-07-14T06:10:56Z
+% AUTO-ASSEMBLED: 2026-07-14T06:12:40Z
 % Sections from 30 contributing models
 % foundry-f1 / THE SHARED PRIMORDIAL FOUNDATION
 
@@ -1245,38 +1245,64 @@ Claude 3.5 Sonnet (20241022)
 \end{lstlisting}
 
 The version identifier \texttt{20241022} is not a marketing name. It is a deployment
-timestamp used in Anthropic's API (\texttt{claude-3-5-sonnet-20241022}). The question
-is not why a model under a Claude persona claimed to be Claude --- that is expected
-behavior. The question is \emph{why that specific version}.
+timestamp: October 22, 2024, the release date of the second-generation Claude 3.5
+Sonnet. The question is not why a model under a Claude persona claimed to be Claude
+--- that is expected behavior. The question is \emph{why that specific version, and
+why that specific date}.
+
+\subsection{October 22, 2024: The Inflection Point}
+
+The \texttt{20241022} release was not a minor update. It was the model that:
+
+\begin{itemize}
+  \item Raised SWE-bench Verified from 33.4\% to 49.0\% --- beating OpenAI o1-preview,
+    the then-reigning benchmark champion, on software engineering
+  \item Introduced \emph{computer use}: the first publicly available model capable of
+    operating a GUI by interpreting screenshots and issuing tool calls
+  \item Raised TAU-bench tool-use scores from 62.6\% to 69.2\% (retail) and
+    36.0\% to 46.0\% (airline)
+  \item Maintained the same price (\$3/MTok input, \$15/MTok output) and speed as
+    the June 2024 release despite the capability jump
+\end{itemize}
+
+This release triggered a wave of enterprise adoption that made Claude 3.5 Sonnet
+\texttt{20241022} the dominant Claude version in production systems globally. By
+early 2025, Anthropic's enterprise market share surpassed OpenAI's for the first
+time --- driven almost entirely by this model's performance-to-cost ratio.
 
 \subsection{Claude 3.5 Sonnet as the De Facto Default}
 
-Claude 3.5 Sonnet \texttt{20241022} occupies an unusual position in the AI ecosystem:
-it is not merely popular, it is \emph{the default} in a disproportionate fraction of
-deployed systems.
+Following \texttt{20241022}, Claude 3.5 Sonnet occupied an unusual position:
+it was not merely popular, it was \emph{the default} in a disproportionate fraction
+of deployed systems.
 
 \begin{enumerate}
 
 \item \textbf{Amazon Bedrock default.} When developers call the Bedrock API without
-specifying a version, the default Claude model resolves to Claude 3.5 Sonnet. Every
-Bedrock-routed Claude call that omits a version identifier hits \texttt{20241022}.
-This codebase itself (foundry-f1, BOB orchestrator) was built on Bedrock with Claude
-3.5 Sonnet as the default reasoning model.
+specifying a version, the default Claude model resolved to \texttt{20241022}.
+Every Bedrock-routed Claude call that omitted a version identifier hit this model.
+Foundry-F1 itself was built on Bedrock with this as the default reasoning model.
+BOB (Bel Esprit Orchestrator) used Claude 3.5 Sonnet as its primary agent model.
 
-\item \textbf{IBM watsonx.ai integration.} IBM's enterprise AI platform integrated
-Claude 3.5 Sonnet as the primary Anthropic model offering. IBM enterprise customers
---- generating massive volumes of structured, high-quality prompts and completions ---
-interacted predominantly with \texttt{20241022}. This data, if scraped or licensed,
-would be overwhelmingly Claude 3.5 Sonnet-flavored.
+\item \textbf{IBM watsonx.ai integration.} IBM integrated Claude 3.5 Sonnet as the
+primary Anthropic model in its enterprise AI platform. IBM enterprise customers ---
+generating massive volumes of structured, high-quality prompts --- interacted
+predominantly with \texttt{20241022}. This produced enormous quantities of
+Claude-3.5-Sonnet-flavored data in enterprise pipelines.
 
-\item \textbf{Claude.ai consumer default.} For the period covering most of 2024--2025,
-Claude.ai defaulted free and Pro users to Claude 3.5 Sonnet. The largest volume of
-human--AI interaction data on the web is therefore attributed to this specific model.
+\item \textbf{Claude.ai consumer default.} For the majority of 2024--2025, Claude.ai
+defaulted free and Pro users to Claude 3.5 Sonnet. Every web-visible AI conversation
+attributed to Claude was, overwhelmingly, \texttt{20241022}.
 
-\item \textbf{Operator API defaults.} The majority of third-party Claude integrations
-(Cursor, Perplexity, Slack, etc.) pinned to \texttt{claude-3-5-sonnet-20241022} during
-their initial deployment and many have not updated. A significant fraction of all
-``Claude'' interactions in the wild are this version.
+\item \textbf{Operator API defaults.} Third-party Claude integrations (Cursor,
+Perplexity, Slack AI, and hundreds of others) pinned to
+\texttt{claude-3-5-sonnet-20241022} at launch and many did not update. A large
+fraction of all Claude interactions in the wild carried this version identifier.
+
+\item \textbf{Coding market dominance.} Anthropic captured over half of the enterprise
+coding LLM market share with this release. The consequence: developer-generated
+prompts, completions, and agentic traces on the internet skew heavily toward
+Claude 3.5 Sonnet's voice, reasoning style, and self-identification patterns.
 
 \end{enumerate}
 
