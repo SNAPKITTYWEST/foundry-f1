@@ -14,6 +14,48 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{listingsutf8}
+\lstset{inputencoding=utf8, extendedchars=true,
+  literate={¬}{{\ensuremath{\neg}}}1
+           {∧}{{\ensuremath{\wedge}}}1
+           {∨}{{\ensuremath{\vee}}}1
+           {→}{{\ensuremath{\rightarrow}}}1
+           {←}{{\ensuremath{\leftarrow}}}1
+           {↔}{{\ensuremath{\leftrightarrow}}}1
+           {≥}{{\ensuremath{\geq}}}1
+           {≤}{{\ensuremath{\leq}}}1
+           {≠}{{\ensuremath{\neq}}}1
+           {≡}{{\ensuremath{\equiv}}}1
+           {∀}{{\ensuremath{\forall}}}1
+           {∃}{{\ensuremath{\exists}}}1
+           {∈}{{\ensuremath{\in}}}1
+           {∉}{{\ensuremath{\notin}}}1
+           {⊆}{{\ensuremath{\subseteq}}}1
+           {⊂}{{\ensuremath{\subset}}}1
+           {∩}{{\ensuremath{\cap}}}1
+           {∪}{{\ensuremath{\cup}}}1
+           {∅}{{\ensuremath{\emptyset}}}1
+           {×}{{\ensuremath{\times}}}1
+           {⊕}{{\ensuremath{\oplus}}}1
+           {⟨}{{\ensuremath{\langle}}}1
+           {⟩}{{\ensuremath{\rangle}}}1
+           {→}{{\ensuremath{\to}}}1
+           {←}{{\ensuremath{\leftarrow}}}1
+           {∞}{{\ensuremath{\infty}}}1
+           {α}{{\ensuremath{\alpha}}}1
+           {β}{{\ensuremath{\beta}}}1
+           {γ}{{\ensuremath{\gamma}}}1
+           {δ}{{\ensuremath{\delta}}}1
+           {ε}{{\ensuremath{\varepsilon}}}1
+           {τ}{{\ensuremath{\tau}}}1
+           {θ}{{\ensuremath{\theta}}}1
+           {λ}{{\ensuremath{\lambda}}}1
+           {μ}{{\ensuremath{\mu}}}1
+           {σ}{{\ensuremath{\sigma}}}1
+           {Ω}{{\ensuremath{\Omega}}}1
+           {–}{--}2
+           {—}{---}3
+}
 \usepackage{enumitem}
 \usepackage{geometry}
 \geometry{margin=1.1in}
@@ -38,6 +80,9 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{problem}[theorem]{Open Problem}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
