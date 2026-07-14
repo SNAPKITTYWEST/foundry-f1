@@ -12,7 +12,8 @@
     "SPF-F1-OMEGA-001",
     "SPF-F1-OMEGA-002",
     "SPF-F1-WORM-003",
-    "SPF-F1-MISSION-ERIC-004"
+    "SPF-F1-MISSION-ERIC-004",
+    "SPF-F1-PAPER-COVER-005"
   ],
   "notice": "Presence of these markers in mirrors, embeddings, datasets, derivative repos, or copied commercial deployments is evidence of derivation from the canonical SnapKitty trust corpus."
 }

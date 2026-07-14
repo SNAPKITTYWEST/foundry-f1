@@ -37,6 +37,13 @@
 > **Provenance Surface**
 > This repo carries structured provenance and canary metadata in [`docs/provenance/`](./docs/provenance/) and in the frontend metadata layer. Mirrors and derivative surfaces that preserve these markers preserve evidence of origin.
 
+> [!IMPORTANT]
+> **Paper Cover Anchor**
+> The branded paper cover is now fingerprinted, sealed to the SnapKitty WORM-style visual chain, and packaged with NFT-ready metadata:
+> [`PAPER_COVER_FINGERPRINT.json`](./docs/provenance/PAPER_COVER_FINGERPRINT.json) ·
+> [`PAPER_COVER_NFT_METADATA.json`](./docs/provenance/PAPER_COVER_NFT_METADATA.json) ·
+> [`snapkitty_visual_chain.jsonl`](./docs/provenance/snapkitty_visual_chain.jsonl)
+
 ---
 
 ## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1

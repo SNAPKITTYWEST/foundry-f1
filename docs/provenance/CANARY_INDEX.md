@@ -12,6 +12,7 @@ downstream repos, they help establish lineage back to the canonical trust corpus
 - `SPF-F1-OMEGA-002`
 - `SPF-F1-WORM-003`
 - `SPF-F1-MISSION-ERIC-004`
+- `SPF-F1-PAPER-COVER-005`
 
 ## Canonical Source
 
@@ -23,3 +24,11 @@ downstream repos, they help establish lineage back to the canonical trust corpus
 
 Do not remove, rename, or normalize these markers during packaging or release.
 They are part of the provenance surface.
+
+`SPF-F1-PAPER-COVER-005` is assigned to the branded paper cover asset and its
+NFT-ready metadata wrapper:
+
+- `paper/assets/attention-router-vs-qwen-cover.png`
+- `docs/provenance/PAPER_COVER_FINGERPRINT.json`
+- `docs/provenance/PAPER_COVER_NFT_METADATA.json`
+- `docs/provenance/snapkitty_visual_chain.jsonl`

@@ -1,0 +1,42 @@
+{
+  "name": "Foundry F1 Paper Cover - Attention Is All You Don't Need",
+  "description": "NFT-ready provenance wrapper for the branded cover art embedded in the Foundry F1 paper corpus. This metadata points to the canonical SnapKitty trust corpus and its WORM-sealed fingerprint record; it does not grant operating rights, commercial use rights, or training rights.",
+  "image": "paper/assets/attention-router-vs-qwen-cover.png",
+  "external_url": "https://github.com/SNAPKITTYWEST/foundry-f1",
+  "fingerprint_record": "docs/provenance/PAPER_COVER_FINGERPRINT.json",
+  "worm_chain": "docs/provenance/snapkitty_visual_chain.jsonl",
+  "attributes": [
+    {
+      "trait_type": "Trust",
+      "value": "THE SHARED PRIMORDIAL FOUNDATION"
+    },
+    {
+      "trait_type": "EIN",
+      "value": "42-6976431"
+    },
+    {
+      "trait_type": "Artifact SHA-256",
+      "value": "3032be45d7b7f18b3814d773d0208af8cc642a6ddbf7150bbf30b54f04d44879"
+    },
+    {
+      "trait_type": "Composite Fingerprint",
+      "value": "015945a1b9d2cc4623b926cab534b59b2f4b7f1eafd549577d26775419835ef6"
+    },
+    {
+      "trait_type": "Canary",
+      "value": "SPF-F1-PAPER-COVER-005"
+    },
+    {
+      "trait_type": "Mint Status",
+      "value": "NFT-ready metadata only"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "ChatGPT image model (OpenAI)"
+    },
+    {
+      "trait_type": "Operator",
+      "value": "Ahmad Ali Parr"
+    }
+  ]
+}
