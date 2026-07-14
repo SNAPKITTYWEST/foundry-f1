@@ -36,11 +36,11 @@ H_INIT:
 MASK_32:
     dd 0xFFFFFFFF
 
-section .bss
+section .data
 align 16
-W: resd 64
-H: resd 8
-block: resb 64
+W:     times 64 dd 0
+H:     times  8 dd 0
+block: times 64 db 0
 
 section .text
 
@@ -156,13 +156,16 @@ sha256_transform:
     mov [rbp - 32 + 7*4], eax   ; h
 
     ; Prepare message schedule W[0..63]
+    ; r15 holds W base address throughout transform
+    lea r15, [rel W]
+
     xor eax, eax
 .W_PREP:
     cmp eax, 16
     jge .W_DONE
     mov edx, [rsi + rax*4]
     bswap edx
-    mov [rel W + rax*4], edx
+    mov [r15 + rax*4], edx
     inc eax
     jmp .W_PREP
 
@@ -172,25 +175,25 @@ sha256_transform:
     ; W[i] = SSIG1(W[i-2]) + W[i-7] + SSIG0(W[i-15]) + W[i-16]
     mov ecx, eax
     sub ecx, 2
-    mov edx, [rel W + rcx*4]
+    mov edx, [r15 + rcx*4]
     SSIG1 edx, ecx
     mov ebx, edx
 
     mov ecx, eax
     sub ecx, 7
-    add ebx, [rel W + rcx*4]
+    add ebx, [r15 + rcx*4]
 
     mov ecx, eax
     sub ecx, 15
-    mov edx, [rel W + rcx*4]
+    mov edx, [r15 + rcx*4]
     SSIG0 edx, ecx
     add ebx, edx
 
     mov ecx, eax
     sub ecx, 16
-    add ebx, [rel W + rcx*4]
+    add ebx, [r15 + rcx*4]
 
-    mov [rel W + rax*4], ebx
+    mov [r15 + rax*4], ebx
     inc eax
     jmp .W_LOOP
 

@@ -1,10 +1,14 @@
 #pragma once
-// Portable SHA-256 implementation
-// Based on FIPS 180-4
+// SHA-256 — NASM x86-64 fast path (PMC_SHA256_NASM=1) with C++ fallback
 
 #include <cstdint>
 #include <cstddef>
 #include <array>
+
+// NASM entry: void sha256_hash(const uint8_t* data, size_t len, uint8_t out[32])
+#ifdef PMC_SHA256_NASM
+extern "C" void sha256_hash(const uint8_t* data, size_t len, uint8_t out[32]);
+#endif
 
 namespace pmc {
 

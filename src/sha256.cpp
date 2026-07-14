@@ -123,9 +123,15 @@ SHA256::Digest SHA256::finalize() {
 }
 
 SHA256::Digest SHA256::hash(const uint8_t* data, size_t len) {
+#ifdef PMC_SHA256_NASM
+    Digest out;
+    sha256_hash(data, len, out.data());
+    return out;
+#else
     SHA256 ctx;
     ctx.update(data, len);
     return ctx.finalize();
+#endif
 }
 
 } // namespace pmc
