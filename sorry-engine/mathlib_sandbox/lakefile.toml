@@ -1,0 +1,15 @@
+name = "mathlib_sandbox"
+version = "0.1.0"
+defaultTargets = ["mathlib_sandbox"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "master"
+
+[[lean_lib]]
+name = "MathlibSandbox"
+
+[[lean_exe]]
+name = "mathlib_sandbox"
+root = "Main"
