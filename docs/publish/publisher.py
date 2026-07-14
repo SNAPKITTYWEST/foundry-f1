@@ -27,6 +27,12 @@ import webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 
+# ── Zulip config (loaded from ~/.zuliprc or passed via CLI) ────────────────────
+
+ZULIP_SITE  = "https://leanprover.zulipchat.com"
+ZULIP_EMAIL = "jessicalw34@gmail.com"
+ZULIP_KEY   = ""   # set via --zulip-key or populate here
+
 # Force UTF-8 stdout on Windows
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
@@ -233,10 +239,13 @@ def check_feeds(feeds: list[str] = None, max_per_feed: int = 200) -> list[dict]:
 
 # ── Live stream new items ──────────────────────────────────────────────────────
 
-def stream_new(interval: int = 30) -> None:
+def stream_new(interval: int = 30, zulip_key: str = "") -> None:
     print(f"Streaming new HN items (checking every {interval}s)... Ctrl+C to stop.")
+    if zulip_key:
+        print(f"  Zulip alerts: ON → #lean4 > papers")
     last_max = hn_maxitem()
     print(f"  Starting from item ID: {last_max}")
+    alerted: set[int] = set()
 
     while True:
         time.sleep(interval)
@@ -260,6 +269,9 @@ def stream_new(interval: int = 30) -> None:
                 if item and is_relevant(item):
                     print(f"\n  \U0001f4e2 PAPER FOUND ON HN!")
                     print(fmt_item(item))
+                    if zulip_key and item["id"] not in alerted:
+                        zulip_alert(item, key=zulip_key)
+                        alerted.add(item["id"])
 
 
 # ── Submission packet ──────────────────────────────────────────────────────────
@@ -332,6 +344,56 @@ Repo: https://github.com/SNAPKITTYWEST/foundry-f1
         print(f"  {name:<14} {url}")
 
 
+def zulip_alert(item: dict, key: str = "") -> bool:
+    """Post an HN-found alert to Zulip #lean4 > papers."""
+    api_key = key or ZULIP_KEY
+    if not api_key:
+        print("  [Zulip] No API key — skipping alert. Pass --zulip-key KEY.")
+        return False
+
+    hn_url = f"https://news.ycombinator.com/item?id={item['id']}"
+    score  = item.get("score", 0)
+    by     = item.get("by", "?")
+
+    msg = (
+        f":newspaper: **Paper spotted on Hacker News!**\n\n"
+        f"**[{item.get('title', '(no title)')}]({hn_url})**\n"
+        f"Score: {score} | by {by}\n\n"
+        f"DOI: {PAPER['zenodo_url']}\n"
+        f"Repo: {PAPER['repo_url']}"
+    )
+
+    data = urllib.parse.urlencode({
+        "type":    "stream",
+        "to":      "lean4",
+        "topic":   "papers",
+        "content": msg,
+    }).encode()
+
+    req = urllib.request.Request(
+        f"{ZULIP_SITE}/api/v1/messages",
+        data=data,
+        method="POST",
+    )
+    import base64
+    creds = base64.b64encode(f"{ZULIP_EMAIL}:{api_key}".encode()).decode()
+    req.add_header("Authorization", f"Basic {creds}")
+    req.add_header("Content-Type", "application/x-www-form-urlencoded")
+
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            resp = json.loads(r.read().decode())
+            if resp.get("result") == "success":
+                print(f"  [Zulip] Alert posted — message ID {resp.get('id')}")
+                return True
+            else:
+                print(f"  [Zulip] Error: {resp.get('msg')}")
+                return False
+    except Exception as e:
+        print(f"  [Zulip] Request failed: {e}")
+        return False
+
+
 def open_urls() -> None:
     print("\nOpening submission URLs...")
     for key, v in VENUES.items():
@@ -351,10 +413,12 @@ def open_urls() -> None:
 
 # ── Monitor ────────────────────────────────────────────────────────────────────
 
-def monitor(once: bool = False, interval: int = 300) -> None:
+def monitor(once: bool = False, interval: int = 300, zulip_key: str = "") -> None:
     feeds = ["newstories", "topstories", "beststories", "showstories"]
     print(f"Monitoring HN via Firebase API (interval: {interval}s)... Ctrl+C to stop.")
-    print(f"Feeds: {feeds}")
+    if zulip_key:
+        print(f"  Zulip alerts: ON → #lean4 > papers")
+    alerted: set[int] = set()
 
     while True:
         ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -364,6 +428,9 @@ def monitor(once: bool = False, interval: int = 300) -> None:
             print(f"  \U0001f4e2 PAPER FOUND ({len(results)} result(s)):")
             for item in results:
                 print(fmt_item(item))
+                if zulip_key and item["id"] not in alerted:
+                    zulip_alert(item, key=zulip_key)
+                    alerted.add(item["id"])
                 print()
         else:
             print("  Not found on HN yet.")
@@ -387,6 +454,8 @@ def main() -> None:
     ap.add_argument("--live",       action="store_true", help="Stream new HN items in real time")
     ap.add_argument("--item",       type=int,            help="Fetch a specific HN item by ID")
     ap.add_argument("--interval",   type=int, default=300, help="Monitor poll interval in seconds")
+    ap.add_argument("--zulip-key",  type=str, default="", help="Zulip API key — auto-alerts #lean4>papers on HN hit")
+    ap.add_argument("--zulip-now",  action="store_true",  help="Post paper announcement to Zulip immediately")
     args = ap.parse_args()
 
     if args.item:
@@ -397,9 +466,23 @@ def main() -> None:
             print(f"Item {args.item} not found.")
         return
 
-    if not any([args.submit, args.monitor, args.live]):
+    zulip_key = args.zulip_key
+
+    if not any([args.submit, args.monitor, args.live, args.zulip_now]):
         ap.print_help()
         sys.exit(0)
+
+    if args.zulip_now:
+        # Post announcement directly — no HN detection needed
+        fake_item = {
+            "id": 0,
+            "title": PAPER["title_hn"],
+            "url": PAPER["zenodo_url"],
+            "by": "snapkittywest",
+            "score": 0,
+            "time": 0,
+        }
+        zulip_alert(fake_item, key=zulip_key)
 
     if args.submit:
         print_submission_packet()
@@ -407,10 +490,10 @@ def main() -> None:
             open_urls()
 
     if args.live:
-        stream_new(interval=30)
+        stream_new(interval=30, zulip_key=zulip_key)
 
     if args.monitor:
-        monitor(once=args.once, interval=args.interval)
+        monitor(once=args.once, interval=args.interval, zulip_key=zulip_key)
 
 
 if __name__ == "__main__":
