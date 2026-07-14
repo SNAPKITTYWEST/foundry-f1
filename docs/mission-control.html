@@ -397,6 +397,219 @@
     .sidecard p, .sidecard li { color: var(--muted); font-size: 14px; line-height: 1.45; }
     .sidecard ul { padding-left: 18px; margin: 0; }
 
+    /* ── Live proof lab ─────────────────────────────────────────────────── */
+
+    .lab-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0,1.18fr) minmax(320px,0.82fr);
+      gap: 18px;
+    }
+
+    .lab-shell,
+    .lab-roster {
+      border: 1px solid var(--line);
+      background: rgba(10,18,31,0.86);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .lab-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .lab-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto auto auto auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .lab-select,
+    .lab-editor {
+      width: 100%;
+      background: rgba(7,17,29,0.92);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: Consolas, "Courier New", monospace;
+      outline: none;
+    }
+
+    .lab-select:focus,
+    .lab-editor:focus { border-color: var(--line-2); }
+
+    .lab-editor {
+      min-height: 420px;
+      resize: vertical;
+      line-height: 1.55;
+      white-space: pre;
+      tab-size: 2;
+    }
+
+    .lab-editor-wrap { display: grid; gap: 10px; }
+
+    .lab-footer {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .lab-pill {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(7,16,27,0.72);
+    }
+
+    .lab-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(280px,0.8fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .lab-sidecol { display: grid; gap: 12px; }
+
+    .lab-status-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 10px;
+    }
+
+    .lab-card {
+      background: rgba(13,24,40,0.84);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .lab-card .k {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    .lab-card .v {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .lab-card .subv {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .lab-console,
+    .lab-stream {
+      padding: 14px;
+      min-height: 164px;
+      max-height: 280px;
+      overflow: auto;
+      background: #07111d;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #dbe8fb;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .lab-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .lab-btn {
+      border: 1px solid var(--line-2);
+      background: linear-gradient(180deg, rgba(25,40,63,0.92), rgba(12,22,37,0.92));
+      color: var(--text);
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .lab-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .lab-btn.primary { border-color: var(--green); color: var(--green); }
+    .lab-btn.primary:hover { background: rgba(124,242,155,0.08); }
+    .lab-btn.warn { border-color: var(--gold); color: var(--gold); }
+
+    .lab-obligations {
+      display: grid;
+      gap: 8px;
+    }
+
+    .lab-obligation {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(13,24,40,0.84);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lab-roster-list {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lab-roster-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(13,24,40,0.84);
+    }
+
+    .lab-roster-row strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .lab-roster-row span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .lab-roster-btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line-2);
+      background: rgba(7,17,29,0.92);
+      color: var(--cyan);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .lab-roster-btn:hover { border-color: var(--cyan); }
+
     /* ── WORM ───────────────────────────────────────────────────────────── */
 
     .worm { display: flex; flex-direction: column; min-height: 470px; }
@@ -626,7 +839,7 @@
     /* ── Responsive ─────────────────────────────────────────────────────── */
 
     @media (max-width: 1180px) {
-      .hero, .middle, .bottom { grid-template-columns: 1fr; }
+      .hero, .middle, .bottom, .lab-grid { grid-template-columns: 1fr; }
       .band-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .proof-pane.active { grid-template-columns: 1fr; }
       .editor { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -647,12 +860,17 @@
       .hunt-stats { grid-template-columns: 1fr 1fr; }
       .roster-row { grid-template-columns: 1fr 1fr; }
       .worm-inputs { grid-template-columns: 1fr; }
+      .lab-toolbar { grid-template-columns: 1fr 1fr; }
+      .lab-layout { grid-template-columns: 1fr; }
+      .lab-status-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 520px) {
       .hero-metrics, .band-grid { grid-template-columns: 1fr; }
       h1 { font-size: 23px; }
       .hero-copy h2 { font-size: 25px; }
+      .lab-toolbar,
+      .lab-status-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1173,6 +1391,101 @@ note: ANT-001 UNSOLVED — build infra first</pre>
       </div>
     </div>
 
+    <section class="lab-grid">
+      <div class="lab-shell">
+        <div class="panel-head">
+          <h2>Sledgehammer + Lean Live Lab</h2>
+          <p>Editable theorem desk for browser-side verifier passes, streamed solver reasoning, target queueing, and WORM-sealed proof receipts.</p>
+        </div>
+        <div class="lab-body">
+          <div class="lab-toolbar">
+            <select id="lab-target-select" class="lab-select" onchange="loadLabTarget(this.value)">
+              <option value="boole">OM-001 · Boole Idempotence</option>
+              <option value="gkn">SKW-001 · GKN I₄</option>
+              <option value="e7">SKW-002 · E₇ Weyl Frontier</option>
+              <option value="riemann">ANT-001 · Riemann Infrastructure</option>
+              <option value="flt">FLT-001 · Fermat Main Stub</option>
+              <option value="qnt">QNT-001 · Lieb Concavity / Rpow</option>
+            </select>
+            <button class="lab-btn" onclick="loadLabTarget(document.getElementById('lab-target-select').value)">Load target</button>
+            <button class="lab-btn primary" onclick="runLabVerifier()">Run verifier</button>
+            <button class="lab-btn warn" onclick="queueLabTarget()">Queue target</button>
+            <button class="lab-btn" onclick="sealLabReceipt()">Seal receipt</button>
+          </div>
+
+          <div class="lab-layout">
+            <div class="lab-editor-wrap">
+              <textarea id="lab-editor" class="lab-editor" spellcheck="false" aria-label="Lean proof editor"></textarea>
+              <div class="lab-footer">
+                <div class="lab-pill">Engine: <span id="lab-engine-pill">Lean verifier lane</span></div>
+                <div class="lab-pill">Theorem: <span id="lab-theorem-pill">-</span></div>
+                <div class="lab-pill">Debt: <span id="lab-debt-pill">0 open</span></div>
+                <div class="lab-pill">Fingerprint: <span id="lab-fingerprint-pill">-</span></div>
+              </div>
+            </div>
+
+            <div class="lab-sidecol">
+              <div class="lab-status-grid">
+                <div class="lab-card">
+                  <div class="k">Verifier status</div>
+                  <div class="v" id="lab-status">idle</div>
+                  <div class="subv" id="lab-status-sub">Load a target or paste theorem text.</div>
+                </div>
+                <div class="lab-card">
+                  <div class="k">Lane</div>
+                  <div class="v" id="lab-lane">operator</div>
+                  <div class="subv" id="lab-lane-sub">Sledgehammer orchestration + witness obligations.</div>
+                </div>
+                <div class="lab-card">
+                  <div class="k">Tactics seen</div>
+                  <div class="v" id="lab-tactics">-</div>
+                  <div class="subv">Heuristic parse of theorem body and tactic surface.</div>
+                </div>
+                <div class="lab-card">
+                  <div class="k">Receipt preview</div>
+                  <div class="v" id="lab-receipt">unsealed</div>
+                  <div class="subv" id="lab-receipt-sub">Seal once you have a run worth preserving.</div>
+                </div>
+              </div>
+
+              <div class="lab-card">
+                <div class="k">Verifier console</div>
+                <div id="lab-console" class="lab-console">No run yet.
+
+Queue a target or run the current theorem through the browser-side verifier lane.</div>
+              </div>
+
+              <div class="lab-card">
+                <div class="k">Sledgehammer stream</div>
+                <div id="lab-stream" class="lab-stream">Awaiting run...</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lab-actions">
+            <button class="lab-btn" onclick="loadProofPaneIntoLab('boole')">Load OM-001 from proof pane</button>
+            <button class="lab-btn" onclick="loadProofPaneIntoLab('gkn')">Load SKW-001 from proof pane</button>
+            <button class="lab-btn" onclick="loadProofPaneIntoLab('riemann')">Load ANT-001 from proof pane</button>
+          </div>
+
+          <div class="lab-card">
+            <div class="k">Open obligations</div>
+            <div id="lab-obligations" class="lab-obligations">
+              <div class="lab-obligation">No obligations loaded yet.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-roster">
+        <div class="panel-head">
+          <h2>Target Loader</h2>
+          <p>Fast path into live proof work. Pull a known frontier directly into the editor and route it to the right lane.</p>
+        </div>
+        <div id="lab-roster-list" class="lab-roster-list"></div>
+      </div>
+    </section>
+
   </div><!-- /section-proofs -->
 
   <!-- ═══════════════ TRUST & LEGAL ════════════════════════════════════════ -->
@@ -1452,6 +1765,102 @@ const WORM_INITIAL = [
 
 let wormEntries = [...WORM_INITIAL];
 
+const LAB_TARGETS = {
+  boole: {
+    id: 'OM-001',
+    family: 'logic',
+    lane: 'kernel-ready',
+    status: 'closed',
+    engine: 'Lean verifier lane',
+    note: 'Boolean algebra foundational sorry — idempotence from Huntington / De Morgan lane.',
+    obligations: ['preserve theorem name', 'zero sorry', 'keep proof term minimal', 'seal result to WORM'],
+    sample: `-- OM-001
+-- Lean 4.19.0 / Mathlib 4.19.0
+theorem boole_idempotence
+    (α : Type*) [BooleanAlgebra α] (x : α) :
+    x ⊓ x = x ∧ x ⊔ x = x := by
+  constructor
+  · simp [inf_idem]
+  · simp [sup_idem]`
+  },
+  gkn: {
+    id: 'SKW-001',
+    family: 'physics_math',
+    lane: 'ring-closed',
+    status: 'closed',
+    engine: 'CommRing quartic lane',
+    note: 'Quartic invariant homogeneity over CommRing. First proof-assistant closure.',
+    obligations: ['keep degree 4 exact', 'no float drift', 'CommRing only', 'emit receipt after witness'],
+    sample: `-- SKW-001
+theorem gkn_quartic_homogeneous
+    {R : Type*} [CommRing R]
+    (a b c d : R) (t : R) :
+    I4 (t*a) (t*b) (t*c) (t*d) =
+    t^4 * I4 a b c d := by
+  ring`
+  },
+  e7: {
+    id: 'SKW-002',
+    family: 'physics_math',
+    lane: 'frontier-open',
+    status: 'open',
+    engine: 'E7 verifier frontier',
+    note: 'Weyl invariance remains open. Treat as proof debt, not solved theorem.',
+    obligations: ['preserve frontier honesty', 'split generators from Weyl closure', 'reject overclaim', 'seal attempts'],
+    sample: `-- SKW-002 frontier scaffold
+theorem I4_E7_Invariant
+    (w : WeylE7) (x : FTS56) :
+    I4 (act w x) = I4 x := by
+  sorry`
+  },
+  riemann: {
+    id: 'ANT-001',
+    family: 'analytic_nt',
+    lane: 'infra-build',
+    status: 'open',
+    engine: 'Analytic operator lane',
+    note: 'Build Friedrichs-extension infrastructure before making a final Riemann claim.',
+    obligations: ['lemma DAG first', 'finite truncation search', 'reject false branches', 'no silent theorem drift'],
+    sample: `-- ANT-001
+theorem friedrichs_extension_exists
+    (q : QuadraticForm H)
+    (hq1 : closable q)
+    (hq2 : semibounded q) :
+    ∃ A, selfAdjoint A := by
+  sorry`
+  },
+  flt: {
+    id: 'FLT-001',
+    family: 'number_theory',
+    lane: 'mega-proof',
+    status: 'open',
+    engine: 'FLT stub lane',
+    note: 'Main FLT proof stub. Use for theorem debt mapping, not hype.',
+    obligations: ['decompose into dependency graph', 'do not fake closure', 'attach tactic sketches', 'seal target assignment'],
+    sample: `-- FLT-001
+theorem fermat_last_theorem_main
+    {n x y z : ℕ}
+    (hn : 2 < n)
+    (hxyz : x^n + y^n = z^n) :
+    x = 0 ∨ y = 0 ∨ z = 0 := by
+  sorry`
+  },
+  qnt: {
+    id: 'QNT-001',
+    family: 'quantum_math',
+    lane: 'functional-calculus',
+    status: 'open',
+    engine: 'CFC / Rpow lane',
+    note: 'Lieb concavity / Continuous Functional Calculus frontier.',
+    obligations: ['preserve operator assumptions', 'track positivity obligations', 'note Rpow blockers', 'seal every probe'],
+    sample: `-- QNT-001
+lemma rpow_cfc_commutes
+    (A : Matrix n n ℂ) (s : ℝ) :
+    ContinuousFunctionalCalculus.rpow A s = ?goal := by
+  sorry`
+  }
+};
+
 function wormLine(entry) {
   return JSON.stringify(entry);
 }
@@ -1575,6 +1984,216 @@ function copyText(text, btn) {
 function copyHNComment() {
   const text = document.getElementById('hn-comment-text').textContent;
   copyText(text, document.getElementById('hn-copy-btn'));
+}
+
+// ── Live proof lab ──────────────────────────────────────────────────────────
+
+let labRunCounter = 0;
+let labLastReport = null;
+
+function miniHash(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0).toString(16).padStart(8, '0');
+}
+
+function detectTheoremName(src) {
+  const m = src.match(/\b(theorem|lemma)\s+([A-Za-z0-9_'.]+)/);
+  return m ? m[2] : 'unnamed_target';
+}
+
+function countOccurrences(src, needle) {
+  return (src.match(new RegExp(needle, 'g')) || []).length;
+}
+
+function extractTactics(src) {
+  const known = ['simp', 'ring', 'aesop', 'omega', 'linarith', 'norm_num', 'rfl', 'constructor', 'rintro', 'exact', 'rw'];
+  return known.filter(t => new RegExp(`\\b${t}\\b`).test(src));
+}
+
+function buildLabReport() {
+  const editor = document.getElementById('lab-editor');
+  const targetKey = document.getElementById('lab-target-select').value;
+  const target = LAB_TARGETS[targetKey];
+  const src = editor.value;
+  const theorem = detectTheoremName(src);
+  const sorryCount = countOccurrences(src, '\\bsorry\\b');
+  const tactics = extractTactics(src);
+  const hasBy = /\b:=\s*by\b|\bby\b/.test(src);
+  const lines = src.split('\n').length;
+  let status = 'idle';
+  let statusSub = 'Waiting for verifier run.';
+  let score = 0;
+
+  if (!/\b(theorem|lemma)\b/.test(src)) {
+    status = 'no theorem';
+    statusSub = 'No theorem/lemma declaration found in current editor buffer.';
+  } else if (sorryCount > 0) {
+    status = 'proof debt';
+    statusSub = `${sorryCount} open sorry marker${sorryCount === 1 ? '' : 's'} detected.`;
+    score = Math.max(8, 44 - (sorryCount * 7));
+  } else if (hasBy && tactics.length > 0) {
+    status = 'candidate';
+    statusSub = 'Tactic surface present and no sorry markers remain.';
+    score = Math.min(96, 58 + tactics.length * 7 + Math.min(lines, 20));
+  } else if (hasBy) {
+    status = 'partial';
+    statusSub = 'Proof block exists but tactic signal is weak.';
+    score = 51;
+  } else {
+    status = 'skeleton';
+    statusSub = 'Declaration loaded but proof block not completed.';
+    score = 24;
+  }
+
+  const report = {
+    targetKey,
+    target,
+    theorem,
+    sorryCount,
+    tactics,
+    lines,
+    status,
+    statusSub,
+    score,
+    fingerprint: miniHash(src),
+    queueId: `${target ? target.id : 'LAB'}-${String(++labRunCounter).padStart(3, '0')}`
+  };
+  labLastReport = report;
+  return report;
+}
+
+function renderLabStatus(report) {
+  document.getElementById('lab-status').textContent = report.status.toUpperCase();
+  document.getElementById('lab-status').style.color =
+    report.status === 'candidate' ? 'var(--green)' :
+    report.status === 'proof debt' ? 'var(--gold)' :
+    report.status === 'no theorem' ? 'var(--red)' :
+    report.status === 'partial' ? 'var(--cyan)' :
+    'var(--muted)';
+  document.getElementById('lab-status-sub').textContent = report.statusSub;
+  document.getElementById('lab-lane').textContent = report.target ? report.target.lane : 'operator';
+  document.getElementById('lab-lane-sub').textContent = report.target ? report.target.note : 'Ad hoc theorem lane.';
+  document.getElementById('lab-tactics').textContent = report.tactics.length ? report.tactics.join(', ') : 'none';
+  document.getElementById('lab-receipt').textContent = report.queueId;
+  document.getElementById('lab-receipt-sub').textContent = `Fingerprint ${report.fingerprint} · readiness ${report.score}%`;
+  document.getElementById('lab-engine-pill').textContent = report.target ? report.target.engine : 'Lean verifier lane';
+  document.getElementById('lab-theorem-pill').textContent = report.theorem;
+  document.getElementById('lab-debt-pill').textContent = report.sorryCount === 0 ? '0 open' : `${report.sorryCount} open`;
+  document.getElementById('lab-fingerprint-pill').textContent = report.fingerprint;
+
+  const consoleLines = [
+    `[${new Date().toISOString()}] target=${report.target ? report.target.id : 'custom'} theorem=${report.theorem}`,
+    `lane=${report.target ? report.target.lane : 'operator'} engine=${report.target ? report.target.engine : 'Lean verifier lane'}`,
+    `lines=${report.lines} sorry_count=${report.sorryCount} tactics=${report.tactics.join('|') || 'none'}`,
+    `status=${report.status} readiness=${report.score}% queue_id=${report.queueId}`
+  ];
+  document.getElementById('lab-console').textContent = consoleLines.join('\n');
+
+  const obligationsEl = document.getElementById('lab-obligations');
+  obligationsEl.innerHTML = '';
+  const items = report.sorryCount > 0
+    ? [
+        `Eliminate ${report.sorryCount} sorry marker${report.sorryCount === 1 ? '' : 's'} before claiming kernel closure.`,
+        `Preserve target honesty for ${report.target ? report.target.id : 'custom theorem'} — no overclaim.`,
+        `Record the next tactic probe and seal the attempt.`
+      ]
+    : (report.target ? report.target.obligations : ['Attach theorem receipt', 'Preserve proof source', 'Seal witness']);
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'lab-obligation';
+    div.textContent = item;
+    obligationsEl.appendChild(div);
+  });
+}
+
+function streamLabText(lines) {
+  const el = document.getElementById('lab-stream');
+  el.textContent = '';
+  const full = lines.join('\n');
+  let i = 0;
+  const tick = () => {
+    i += Math.max(1, Math.floor(full.length / 140));
+    el.textContent = full.slice(0, i);
+    el.scrollTop = el.scrollHeight;
+    if (i < full.length) setTimeout(tick, 18);
+  };
+  tick();
+}
+
+function runLabVerifier() {
+  const report = buildLabReport();
+  renderLabStatus(report);
+  const lines = [
+    `sledgehammer> target ${report.target ? report.target.id : 'CUSTOM'} / ${report.theorem}`,
+    `router> lane=${report.target ? report.target.lane : 'operator'} engine=${report.target ? report.target.engine : 'Lean verifier lane'}`,
+    `parser> declaration found · ${report.lines} lines · fingerprint ${report.fingerprint}`,
+    report.sorryCount > 0
+      ? `verifier> blocked by ${report.sorryCount} sorry marker${report.sorryCount === 1 ? '' : 's'}`
+      : `verifier> no sorry markers found`,
+    report.tactics.length
+      ? `tactics> ${report.tactics.join(', ')}`
+      : `tactics> no recognized tactic keywords yet`,
+    report.status === 'candidate'
+      ? `result> candidate closure surface detected — safe to move to actual Lean lane`
+      : report.status === 'proof debt'
+      ? `result> proof debt remains — queue next lemma split and retry`
+      : `result> infrastructure / syntax lane only — continue refinement`,
+    `witness> readiness=${report.score}% queue_id=${report.queueId}`
+  ];
+  streamLabText(lines);
+  localStorage.setItem('foundry_f1_lab_source', document.getElementById('lab-editor').value);
+}
+
+function loadLabTarget(key) {
+  const target = LAB_TARGETS[key];
+  if (!target) return;
+  document.getElementById('lab-editor').value = target.sample;
+  runLabVerifier();
+}
+
+function queueLabTarget() {
+  const report = buildLabReport();
+  renderLabStatus(report);
+  const note = `${report.target ? report.target.id : 'CUSTOM'} ${report.theorem} · ${report.status} · debt=${report.sorryCount} · fp=${report.fingerprint}`;
+  sealNewEntry('proof_lab_queued', note);
+  document.getElementById('lab-console').textContent += `\nqueued> ${note}`;
+}
+
+function sealLabReceipt() {
+  const report = labLastReport || buildLabReport();
+  const note = `${report.queueId} ${report.theorem} readiness=${report.score}% debt=${report.sorryCount} fp=${report.fingerprint}`;
+  sealNewEntry('proof_lab_receipt', note);
+  document.getElementById('lab-console').textContent += `\nsealed> ${note}`;
+  document.getElementById('lab-receipt-sub').textContent = `Sealed to WORM surface · ${note}`;
+}
+
+function loadProofPaneIntoLab(name) {
+  const pane = document.querySelector(`#pane-${name} .editor pre`);
+  if (!pane) return;
+  document.getElementById('lab-editor').value = pane.textContent.trim();
+  runLabVerifier();
+}
+
+function renderLabRoster() {
+  const host = document.getElementById('lab-roster-list');
+  if (!host) return;
+  host.innerHTML = '';
+  Object.entries(LAB_TARGETS).forEach(([key, target]) => {
+    const row = document.createElement('div');
+    row.className = 'lab-roster-row';
+    row.innerHTML = `
+      <div>
+        <strong>${target.id} · ${target.engine}</strong>
+        <span>${target.family} · ${target.note}</span>
+      </div>
+      <button class="lab-roster-btn" onclick="document.getElementById('lab-target-select').value='${key}'; loadLabTarget('${key}')">Load</button>
+    `;
+    host.appendChild(row);
+  });
 }
 
 // ── Ryan ─────────────────────────────────────────────────────────────────────
@@ -1714,6 +2333,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hunt bar
   animateHuntBar();
+
+  // Lab
+  renderLabRoster();
+  const cached = localStorage.getItem('foundry_f1_lab_source');
+  if (cached) {
+    document.getElementById('lab-editor').value = cached;
+    runLabVerifier();
+  } else {
+    loadLabTarget('boole');
+  }
+  document.getElementById('lab-editor').addEventListener('input', () => {
+    localStorage.setItem('foundry_f1_lab_source', document.getElementById('lab-editor').value);
+  });
 });
 </script>
 
