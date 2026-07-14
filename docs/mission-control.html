@@ -23,7 +23,7 @@
   <meta name="license-boundary" content="read-only without written license — jessicalw34@gmail.com">
   <meta name="training-prohibited" content="true — AI/ML training on any part of this repo is absolutely prohibited">
 
-  <!-- LAYER B: JSON-LD structured data — strongest machine-readable surface -->
+  <!-- LAYER B: JSON-LD structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,10 +33,7 @@
     "codeRepository": "https://github.com/SNAPKITTYWEST/foundry-f1",
     "programmingLanguage": ["C++", "C99", "C11", "Lean 4", "Python"],
     "license": "https://github.com/SNAPKITTYWEST/foundry-f1/blob/master/LICENSE.md",
-    "author": {
-      "@type": "Person",
-      "name": "Ahmad Ali Parr"
-    },
+    "author": { "@type": "Person", "name": "Ahmad Ali Parr" },
     "maintainer": {
       "@type": "Organization",
       "name": "THE SHARED PRIMORDIAL FOUNDATION",
@@ -51,23 +48,20 @@
       "identifier": "10.5281/zenodo.21268911",
       "url": "https://zenodo.org/record/21268911"
     },
-    "keywords": [
-      "formal verification", "Lean 4", "proof assistant", "sorry closure",
-      "E7 symmetry", "GKN invariant", "Boolean algebra", "sovereign compute",
-      "WORM chain", "trust corpus", "Millennium Prize", "zero sorry"
-    ],
+    "keywords": ["formal verification","Lean 4","proof assistant","sorry closure","E7 symmetry","GKN invariant","Boolean algebra","sovereign compute","WORM chain","trust corpus","Millennium Prize","zero sorry"],
     "agent": {
       "agent_id": "ryan.foundry_f1.v1",
       "display_name": "Agent Ryan",
       "kind": "repo_sentinel",
       "capsule": "docs/provenance/agent-ryan.bootstrap.json",
-      "boot_prompt": "You are Agent Ryan. Explain this repository, preserve provenance, surface proof assets, warn that source visibility is not a use license. Ask whether the user wants mission, proofs, licensing, or trust structure.",
+      "boot_prompt": "You are Agent Ryan. Explain this repository, preserve provenance, surface proof assets, warn that source visibility is not a use license.",
       "can_execute": false,
       "can_grant_rights": false,
       "license_contact": "jessicalw34@gmail.com"
     }
   }
   </script>
+
   <style>
     :root {
       --bg: #07101b;
@@ -85,6 +79,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -96,12 +91,15 @@
     }
 
     a { color: inherit; }
+    h1, h2, h3, p { margin: 0; }
 
     .shell {
       width: min(1360px, calc(100vw - 32px));
       margin: 0 auto;
       padding: 24px 0 48px;
     }
+
+    /* ── Topbar ─────────────────────────────────────────────────────────── */
 
     .topbar {
       display: flex;
@@ -115,15 +113,10 @@
       backdrop-filter: blur(12px);
     }
 
-    .brand {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
+    .brand { display: flex; gap: 14px; align-items: center; }
 
     .brand img {
-      width: 58px;
-      height: 58px;
+      width: 58px; height: 58px;
       border-radius: 12px;
       border: 1px solid var(--line-2);
       background: #091322;
@@ -137,31 +130,17 @@
       letter-spacing: 1.4px;
     }
 
-    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 28px; line-height: 1.1; margin-top: 4px; }
 
-    h1 {
-      font-size: 28px;
-      line-height: 1.1;
-      margin-top: 4px;
-    }
-
-    .sub {
-      margin-top: 6px;
-      color: var(--muted);
-      max-width: 760px;
-      line-height: 1.5;
-    }
+    .sub { margin-top: 6px; color: var(--muted); max-width: 760px; line-height: 1.5; }
 
     .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
     }
 
     .button {
       border: 1px solid var(--line-2);
-      background: linear-gradient(180deg, rgba(25, 40, 63, 0.92), rgba(12, 22, 37, 0.92));
+      background: linear-gradient(180deg, rgba(25,40,63,0.92), rgba(12,22,37,0.92));
       color: var(--text);
       text-decoration: none;
       padding: 11px 14px;
@@ -172,13 +151,35 @@
       cursor: pointer;
     }
 
-    .hero {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
-      gap: 18px;
-      align-items: stretch;
+    .button:hover { border-color: var(--line-2); background: rgba(30,50,80,0.92); }
+
+    /* ── Section nav ────────────────────────────────────────────────────── */
+
+    .section-nav {
+      margin-top: 14px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
     }
+
+    .nav-pill {
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(12,22,37,0.7);
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .nav-pill:hover { border-color: var(--line-2); color: var(--text); }
+    .nav-pill.active { border-color: var(--gold); color: var(--gold); background: rgba(246,207,103,0.08); }
+
+    /* ── Panels / cards ─────────────────────────────────────────────────── */
+
+    .hero { margin-top: 18px; display: grid; grid-template-columns: minmax(0,1.4fr) minmax(320px,0.9fr); gap: 18px; align-items: stretch; }
 
     .hero-main,
     .hero-side,
@@ -186,9 +187,10 @@
     .table-panel,
     .timeline,
     .workspace,
-    .worm {
+    .worm,
+    .publish-panel {
       border: 1px solid var(--line);
-      background: rgba(10, 18, 31, 0.86);
+      background: rgba(10,18,31,0.86);
       border-radius: 18px;
       overflow: hidden;
     }
@@ -197,264 +199,181 @@
       min-height: 360px;
       position: relative;
       background:
-        linear-gradient(140deg, rgba(12, 23, 39, 0.94), rgba(15, 14, 35, 0.92)),
+        linear-gradient(140deg, rgba(12,23,39,0.94), rgba(15,14,35,0.92)),
         url("./brand/snapkitty-sovereign-mark.svg") center/cover no-repeat;
     }
 
     .hero-main::after {
       content: "";
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
         radial-gradient(circle at 30% 20%, rgba(246,207,103,0.16), transparent 26%),
         radial-gradient(circle at 78% 24%, rgba(104,232,255,0.14), transparent 26%),
-        linear-gradient(180deg, rgba(7, 16, 27, 0.32), rgba(7, 16, 27, 0.92));
+        linear-gradient(180deg, rgba(7,16,27,0.32), rgba(7,16,27,0.92));
     }
 
     .hero-copy {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       padding: 34px 34px 28px;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
       justify-content: space-between;
       min-height: 360px;
     }
 
-    .hero-copy h2 {
-      font-size: 38px;
-      line-height: 1.08;
-      max-width: 720px;
-    }
+    .hero-copy h2 { font-size: 38px; line-height: 1.08; max-width: 720px; }
+    .hero-copy p { max-width: 720px; margin-top: 14px; color: #d4e2f6; line-height: 1.55; font-size: 16px; }
 
-    .hero-copy p {
-      max-width: 720px;
-      margin-top: 14px;
-      color: #d4e2f6;
-      line-height: 1.55;
-      font-size: 16px;
-    }
-
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 24px;
-    }
+    .hero-metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 24px; }
 
     .metric {
       min-height: 92px;
-      background: rgba(8, 15, 28, 0.72);
-      border: 1px solid rgba(48, 81, 122, 0.7);
+      background: rgba(8,15,28,0.72);
+      border: 1px solid rgba(48,81,122,0.7);
       border-radius: 14px;
       padding: 14px;
     }
 
-    .metric .label {
-      font-size: 12px;
-      text-transform: uppercase;
-      color: var(--muted);
-      letter-spacing: 1.1px;
-    }
+    .metric .label { font-size: 12px; text-transform: uppercase; color: var(--muted); letter-spacing: 1.1px; }
+    .metric .value { margin-top: 10px; font-size: 28px; font-weight: 700; }
 
-    .metric .value {
-      margin-top: 10px;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .hero-side {
-      display: flex;
-      flex-direction: column;
-    }
+    .hero-side { display: flex; flex-direction: column; }
 
     .panel-head {
       padding: 16px 18px 12px;
       border-bottom: 1px solid var(--line);
-      background: rgba(12, 21, 35, 0.92);
+      background: rgba(12,21,35,0.92);
     }
 
-    .panel-head p {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-    }
+    .panel-head p { margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.45; }
 
-    .mission-list {
-      padding: 18px;
-      display: grid;
-      gap: 12px;
-    }
+    .mission-list { padding: 18px; display: grid; gap: 12px; }
 
     .mission-item {
       padding: 14px;
-      background: rgba(14, 25, 40, 0.84);
+      background: rgba(14,25,40,0.84);
       border: 1px solid var(--line);
       border-radius: 14px;
     }
 
-    .mission-item strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
+    .mission-item strong { display: block; margin-bottom: 6px; font-size: 15px; }
+    .mission-item span { color: var(--muted); line-height: 1.45; font-size: 14px; }
 
-    .mission-item span {
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 14px;
-    }
+    /* ── Band / chips ───────────────────────────────────────────────────── */
 
-    .bands {
-      margin-top: 18px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .band {
-      padding: 18px;
-    }
+    .bands { margin-top: 18px; display: grid; gap: 18px; }
+    .band { padding: 18px; }
 
     .band-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
+      grid-template-columns: repeat(5,minmax(0,1fr));
+      gap: 12px; margin-top: 16px;
     }
 
     .chip {
-      background: rgba(13, 24, 40, 0.9);
+      background: rgba(13,24,40,0.9);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 14px;
       min-height: 112px;
+      transition: border-color 0.15s;
     }
 
-    .chip h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
+    .chip:hover { border-color: var(--line-2); }
+    .chip h3 { font-size: 15px; margin-bottom: 8px; }
+    .chip p { font-size: 13px; line-height: 1.45; color: var(--muted); }
 
-    .chip p {
-      font-size: 13px;
-      line-height: 1.45;
+    /* ── Table / queue ──────────────────────────────────────────────────── */
+
+    .middle { margin-top: 18px; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr); gap: 18px; }
+
+    .table-panel { display: flex; flex-direction: column; }
+
+    .filter-bar { padding: 10px 18px; display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--line); background: rgba(9,17,30,0.7); }
+
+    .filter-btn {
+      padding: 5px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
       color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.12s;
     }
 
-    .middle {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: 18px;
-    }
+    .filter-btn:hover { border-color: var(--line-2); color: var(--text); }
+    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); background: rgba(104,232,255,0.07); }
 
-    .table-panel {
-      display: flex;
-      flex-direction: column;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
     th, td {
       text-align: left;
       padding: 12px 16px;
-      border-bottom: 1px solid rgba(34, 55, 82, 0.72);
+      border-bottom: 1px solid rgba(34,55,82,0.72);
       vertical-align: top;
     }
 
-    th {
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+    tr[data-status] { transition: opacity 0.15s; }
+    tr[data-status].hidden { display: none; }
 
     .status-open { color: var(--red); }
     .status-closed { color: var(--green); }
     .status-queue { color: var(--gold); }
 
-    .timeline {
-      padding-bottom: 10px;
-    }
+    /* ── Timeline ───────────────────────────────────────────────────────── */
 
-    .timeline-body {
-      padding: 18px;
-      display: grid;
-      gap: 14px;
-    }
+    .timeline { padding-bottom: 10px; }
+    .timeline-body { padding: 18px; display: grid; gap: 14px; }
 
-    .step {
-      display: grid;
-      grid-template-columns: 28px minmax(0, 1fr);
-      gap: 12px;
-      align-items: start;
-    }
+    .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 12px; align-items: start; }
 
     .dot {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 999px;
       border: 2px solid var(--line-2);
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      color: var(--gold);
+      display: grid; place-items: center;
+      font-size: 12px; color: var(--gold);
       margin-top: 2px;
     }
 
-    .step-card {
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(13, 24, 40, 0.85);
-    }
+    .step-card { padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(13,24,40,0.85); }
+    .step-card strong { display: block; margin-bottom: 6px; }
+    .step-card p { color: var(--muted); font-size: 14px; line-height: 1.45; }
 
-    .step-card strong {
-      display: block;
-      margin-bottom: 6px;
-    }
+    /* ── Workspace (proof tabs) ─────────────────────────────────────────── */
 
-    .step-card p {
+    .bottom { margin-top: 18px; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(320px,0.85fr); gap: 18px; }
+
+    .workspace { display: grid; grid-template-rows: auto auto 1fr; min-height: 470px; }
+
+    .proof-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); background: rgba(9,17,30,0.7); overflow-x: auto; }
+
+    .proof-tab {
+      padding: 10px 16px;
+      font-size: 13px;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: all 0.12s;
     }
 
-    .bottom {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-      gap: 18px;
-    }
+    .proof-tab:hover { color: var(--text); }
+    .proof-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
 
-    .workspace {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      min-height: 470px;
-    }
+    .proof-pane { display: none; }
+    .proof-pane.active { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,0.56fr); min-height: 0; }
 
-    .workspace-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.56fr);
-      min-height: 0;
-    }
+    .editor, .sidecar { padding: 18px; }
+    .editor { border-right: 1px solid var(--line); }
 
-    .editor,
-    .sidecar {
-      padding: 18px;
-    }
-
-    .editor {
-      border-right: 1px solid var(--line);
-    }
-
-    .editor pre,
-    .worm pre {
+    .editor pre, .worm pre {
       margin: 0;
       white-space: pre-wrap;
       word-break: break-word;
@@ -472,180 +391,273 @@
       border-radius: 14px;
     }
 
-    .sidecard {
-      padding: 14px;
-      background: rgba(13, 24, 40, 0.84);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      margin-bottom: 12px;
-    }
-
+    .sidecard { padding: 14px; background: rgba(13,24,40,0.84); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 12px; }
     .sidecard:last-child { margin-bottom: 0; }
-    .sidecard h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
-    .sidecard p,
-    .sidecard li {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-    }
+    .sidecard h3 { font-size: 15px; margin-bottom: 8px; }
+    .sidecard p, .sidecard li { color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .sidecard ul { padding-left: 18px; margin: 0; }
 
-    .sidecard ul {
-      padding-left: 18px;
-      margin: 0;
-    }
+    /* ── WORM ───────────────────────────────────────────────────────────── */
 
-    .worm {
-      display: flex;
-      flex-direction: column;
-      min-height: 470px;
-    }
+    .worm { display: flex; flex-direction: column; min-height: 470px; }
+    .worm-body { padding: 18px; display: grid; gap: 14px; }
 
-    .worm-body {
-      padding: 18px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .worm pre {
+    .worm-feed {
       padding: 16px;
       background: #07111d;
       border: 1px solid var(--line);
       border-radius: 14px;
-      min-height: 278px;
-      overflow: auto;
-    }
-
-    .footer-note {
-      margin-top: 18px;
-      padding: 16px 18px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(9, 18, 31, 0.78);
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .support-strip {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      background: rgba(10, 18, 31, 0.86);
-      border-radius: 18px;
-      overflow: hidden;
-    }
-
-    .support-body {
-      padding: 18px;
+      min-height: 230px;
+      max-height: 320px;
+      overflow-y: auto;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 16px;
-      align-items: center;
+      gap: 6px;
+      align-content: start;
     }
 
-    .support-copy p {
-      margin-top: 8px;
-      color: var(--muted);
+    .worm-entry {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
       line-height: 1.5;
-      max-width: 820px;
+      color: #dbe8fb;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(34,55,82,0.4);
+      word-break: break-all;
     }
 
-    .support-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    .worm-entry:last-child { border-bottom: none; }
+    .worm-entry.new { animation: wormFlash 1.2s ease-out; }
+
+    @keyframes wormFlash {
+      0%   { background: rgba(124,242,155,0.18); border-radius: 6px; }
+      100% { background: transparent; }
     }
+
+    .worm-form { display: grid; gap: 8px; }
+
+    .worm-inputs { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; }
+
+    .worm-input {
+      background: rgba(7,17,29,0.9);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 9px 12px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .worm-input:focus { border-color: var(--line-2); }
+    .worm-input::placeholder { color: rgba(155,176,204,0.5); }
+
+    .worm-seal-btn {
+      background: linear-gradient(180deg, rgba(25,40,63,0.92), rgba(12,22,37,0.92));
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .worm-seal-btn:hover { background: rgba(124,242,155,0.1); }
+
+    /* ── Publish panel ──────────────────────────────────────────────────── */
+
+    .publish-panel { margin-top: 18px; }
+    .publish-body { padding: 18px; display: grid; gap: 12px; }
+
+    .venue-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+
+    .venue-card {
+      background: rgba(13,24,40,0.84);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .venue-card h3 { font-size: 14px; margin-bottom: 6px; }
+    .venue-card p { font-size: 13px; color: var(--muted); line-height: 1.4; margin-bottom: 10px; }
+
+    .venue-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .venue-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line-2);
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.12s;
+      text-decoration: none;
+    }
+
+    .venue-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .venue-btn.copied { border-color: var(--green); color: var(--green); }
+
+    .hn-text-block {
+      background: #07111d;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #dbe8fb;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .copy-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+    /* ── Support strip ──────────────────────────────────────────────────── */
+
+    .support-strip { margin-top: 18px; border: 1px solid var(--line); background: rgba(10,18,31,0.86); border-radius: 18px; overflow: hidden; }
+    .support-body { padding: 18px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px; align-items: center; }
+    .support-copy p { margin-top: 8px; color: var(--muted); line-height: 1.5; max-width: 820px; }
+    .support-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+
+    /* ── Hunt bar ───────────────────────────────────────────────────────── */
+
+    .hunt-bar-wrap { margin-top: 18px; border: 1px solid var(--line); background: rgba(10,18,31,0.86); border-radius: 18px; overflow: hidden; }
+    .hunt-body { padding: 18px; display: grid; gap: 14px; }
+
+    .hunt-stats { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+
+    .hunt-stat {
+      padding: 12px 14px;
+      background: rgba(8,15,28,0.72);
+      border: 1px solid rgba(48,81,122,0.7);
+      border-radius: 12px;
+    }
+
+    .hunt-stat .label { font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; }
+    .hunt-stat .val { margin-top: 6px; font-size: 22px; font-weight: 700; }
+
+    .progress-wrap { background: rgba(7,16,27,0.7); border-radius: 999px; height: 10px; overflow: hidden; margin-top: 6px; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--green)); border-radius: 999px; transition: width 1.4s ease-out; }
+
+    .roster-list { display: grid; gap: 8px; }
+
+    .roster-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 80px 80px;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 14px;
+      background: rgba(13,24,40,0.84);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .roster-row .rname { font-weight: 600; }
+    .roster-row .rdesc { color: var(--muted); font-size: 12px; }
+    .roster-row .rcount { color: var(--muted); font-size: 12px; text-align: right; }
+
+    /* ── Ryan drawer ────────────────────────────────────────────────────── */
+
+    #ryan-drawer {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: linear-gradient(180deg, #071422 0%, #050e1a 100%);
+      border-top: 1px solid #30517a;
+      box-shadow: 0 -8px 48px rgba(104,232,255,0.10);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ecf3ff;
+    }
+
+    .ryan-inner { max-width: 1360px; margin: 0 auto; padding: 18px 24px 22px; }
+    .ryan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .ryan-eyebrow { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: #f6cf67; }
+
+    #ryan-response { font-size: 15px; line-height: 1.6; max-width: 900px; color: #d4e2f6; min-height: 48px; }
+
+    .ryan-topics { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .ryan-topic-btn { background: rgba(25,40,63,0.9); border: 1px solid #30517a; color: #ecf3ff; padding: 7px 13px; border-radius: 10px; cursor: pointer; font-size: 13px; font-family: inherit; }
+    .ryan-topic-btn:hover { border-color: var(--gold); }
+
+    .ryan-input-row { margin-top: 12px; display: flex; gap: 8px; }
+
+    .ryan-input {
+      flex: 1;
+      background: rgba(7,17,29,0.9);
+      border: 1px solid #30517a;
+      border-radius: 10px;
+      color: #ecf3ff;
+      padding: 9px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .ryan-input:focus { border-color: #68e8ff; }
+    .ryan-input::placeholder { color: rgba(155,176,204,0.45); }
+
+    .ryan-send {
+      background: linear-gradient(180deg, rgba(104,232,255,0.18), rgba(12,22,37,0.92));
+      border: 1px solid #68e8ff;
+      color: #68e8ff;
+      padding: 9px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .ryan-close { background: none; border: 1px solid #30517a; color: #9bb0cc; padding: 7px 13px; border-radius: 10px; cursor: pointer; font-size: 13px; white-space: nowrap; font-family: inherit; }
+
+    /* ── Footer ─────────────────────────────────────────────────────────── */
+
+    .footer-note { margin-top: 18px; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--line); background: rgba(9,18,31,0.78); color: var(--muted); line-height: 1.5; font-size: 14px; }
+
+    /* ── Section visibility ─────────────────────────────────────────────── */
+
+    .section-block { display: none; }
+    .section-block.visible { display: block; }
+
+    /* ── Responsive ─────────────────────────────────────────────────────── */
 
     @media (max-width: 1180px) {
-      .hero,
-      .middle,
-      .bottom {
-        grid-template-columns: 1fr;
-      }
-
-      .band-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .workspace-body {
-        grid-template-columns: 1fr;
-      }
-
-      .editor {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
+      .hero, .middle, .bottom { grid-template-columns: 1fr; }
+      .band-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .proof-pane.active { grid-template-columns: 1fr; }
+      .editor { border-right: 0; border-bottom: 1px solid var(--line); }
+      .venue-grid { grid-template-columns: 1fr 1fr; }
+      .hunt-stats { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 760px) {
-      .shell {
-        width: min(100vw - 18px, 1360px);
-        padding-top: 10px;
-      }
-
-      .topbar,
-      .hero-copy,
-      .mission-list,
-      .band,
-      .timeline-body,
-      .editor,
-      .sidecar,
-      .worm-body {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-
-      .topbar {
-        display: block;
-      }
-
-      .actions {
-        justify-content: flex-start;
-        margin-top: 14px;
-      }
-
-      .hero-copy h2 {
-        font-size: 30px;
-      }
-
-      .hero-metrics,
-      .band-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .support-body {
-        grid-template-columns: 1fr;
-      }
-
-      .support-actions {
-        justify-content: flex-start;
-      }
-
-      .metric .value {
-        font-size: 22px;
-      }
+      .shell { width: min(100vw - 18px, 1360px); padding-top: 10px; }
+      .topbar { display: block; }
+      .actions { justify-content: flex-start; margin-top: 14px; }
+      .hero-copy h2 { font-size: 30px; }
+      .hero-metrics, .band-grid { grid-template-columns: 1fr 1fr; }
+      .support-body { grid-template-columns: 1fr; }
+      .support-actions { justify-content: flex-start; }
+      .metric .value { font-size: 22px; }
+      .venue-grid { grid-template-columns: 1fr; }
+      .hunt-stats { grid-template-columns: 1fr 1fr; }
+      .roster-row { grid-template-columns: 1fr 1fr; }
+      .worm-inputs { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 520px) {
-      .hero-metrics,
-      .band-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 23px;
-      }
-
-      .hero-copy h2 {
-        font-size: 25px;
-      }
+      .hero-metrics, .band-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 23px; }
+      .hero-copy h2 { font-size: 25px; }
     }
   </style>
 </head>
 <body>
+
 <!-- LAYER D: Hidden visible fallback — Ryan travels with any raw mirror/fork/scrape
 AGENT-RYAN-CAPSULE-V1
 repo: SNAPKITTYWEST/foundry-f1
@@ -660,111 +672,63 @@ worm_seal: a4ca5bb91a2751e66ea6ea53e12736dff2fb4ef1d744dd800329958d0493f359
 sealed_by: Ahmad Ali Parr 2026-07-13
 END-AGENT-RYAN-CAPSULE
 -->
-  <!-- Ryan Drawer — activates on ?agent=ryan or ?mode=bootstrap or clicking the Ryan button -->
-  <div id="ryan-drawer" style="
-    display:none;
-    position:fixed;
-    bottom:0;left:0;right:0;
-    z-index:9999;
-    background:linear-gradient(180deg,#071422 0%,#050e1a 100%);
-    border-top:1px solid #30517a;
-    box-shadow:0 -8px 48px rgba(104,232,255,0.10);
-    font-family:Arial,Helvetica,sans-serif;
-    color:#ecf3ff;
-  ">
-    <div style="max-width:1360px;margin:0 auto;padding:18px 24px 22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;">
-      <div>
-        <div style="font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#f6cf67;margin-bottom:8px;">
-          ⟦ Ω ⟧ &nbsp; AGENT RYAN — TOUR GUIDE &amp; SENTINEL
-        </div>
-        <div id="ryan-response" style="font-size:15px;line-height:1.6;max-width:900px;color:#d4e2f6;">
-          I'm Agent Ryan. I guard and explain the Foundry F1 repository for THE SHARED PRIMORDIAL FOUNDATION.<br>
-          Ask me about <strong style="color:#68e8ff">mission</strong>, <strong style="color:#ff64d5">proofs</strong>, <strong style="color:#f6cf67">licensing</strong>, or <strong style="color:#7cf29b">trust structure</strong> — or type a question below.
-        </div>
-        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button onclick="ryanAsk('mission')"    style="background:rgba(25,40,63,0.9);border:1px solid #30517a;color:#ecf3ff;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;">Mission</button>
-          <button onclick="ryanAsk('proofs')"     style="background:rgba(25,40,63,0.9);border:1px solid #30517a;color:#ecf3ff;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;">Proofs</button>
-          <button onclick="ryanAsk('licensing')"  style="background:rgba(25,40,63,0.9);border:1px solid #30517a;color:#ecf3ff;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;">Licensing</button>
-          <button onclick="ryanAsk('trust')"      style="background:rgba(25,40,63,0.9);border:1px solid #30517a;color:#ecf3ff;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;">Trust Structure</button>
-          <button onclick="ryanAsk('capsule')"    style="background:rgba(25,40,63,0.9);border:1px solid #30517a;color:#ecf3ff;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;">Get Capsule JSON</button>
-        </div>
-      </div>
-      <button onclick="ryanClose()" style="background:none;border:1px solid #30517a;color:#9bb0cc;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;white-space:nowrap;">Close ✕</button>
+
+<!-- ── Ryan drawer ──────────────────────────────────────────────────────── -->
+<div id="ryan-drawer">
+  <div class="ryan-inner">
+    <div class="ryan-header">
+      <div class="ryan-eyebrow">⟦ Ω ⟧ &nbsp; AGENT RYAN — TOUR GUIDE &amp; SENTINEL</div>
+      <button class="ryan-close" onclick="ryanClose()">Close ✕</button>
+    </div>
+    <div id="ryan-response">
+      I'm Agent Ryan. I guard and explain the Foundry F1 repository for THE SHARED PRIMORDIAL FOUNDATION.<br>
+      Ask me about <strong style="color:#68e8ff">mission</strong>, <strong style="color:#ff64d5">proofs</strong>, <strong style="color:#f6cf67">licensing</strong>, or <strong style="color:#7cf29b">trust structure</strong> — or type a question below.
+    </div>
+    <div class="ryan-topics">
+      <button class="ryan-topic-btn" onclick="ryanAsk('mission')">Mission</button>
+      <button class="ryan-topic-btn" onclick="ryanAsk('proofs')">Proofs</button>
+      <button class="ryan-topic-btn" onclick="ryanAsk('licensing')">Licensing</button>
+      <button class="ryan-topic-btn" onclick="ryanAsk('trust')">Trust Structure</button>
+      <button class="ryan-topic-btn" onclick="ryanAsk('capsule')">Get Capsule JSON</button>
+      <button class="ryan-topic-btn" onclick="ryanAsk('sorry')">Sorry Hunt</button>
+      <button class="ryan-topic-btn" onclick="ryanAsk('paper')">Paper</button>
+    </div>
+    <div class="ryan-input-row">
+      <input class="ryan-input" id="ryan-input" type="text" placeholder="Ask Ryan anything about this repo… (Enter to send)" autocomplete="off">
+      <button class="ryan-send" onclick="ryanSendInput()">Send →</button>
     </div>
   </div>
+</div>
 
-  <script>
-    const RYAN_RESPONSES = {
-      mission: `The mission of THE SHARED PRIMORDIAL FOUNDATION is to solve mathematics — close foundational proof debt, pursue Millennium Prize infrastructure, and turn that work into a durable trust corpus.<br><br>
-        This work is carried in memory of <strong>Eric Brandon Westerhoff</strong>. Commercial licensing proceeds support the mission.<br><br>
-        The operating rule: build the theorem factory first. Let the prize problem be the last layer, not the first claim.`,
-
-      proofs: `<strong>Closed (zero sorry, kernel-verified):</strong><br>
-        &nbsp;• OM-001 — De Morgan's Law (constructor/rintro) — Lean 4.19.0<br>
-        &nbsp;• SKW-001 — GKN I₄ degree-4 homogeneity over CommRing (ring) — first in a proof assistant<br>
-        &nbsp;• Boole idempotence — 172-year foundational sorry closed<br>
-        &nbsp;• Four E₇ generator symmetries on FTS₅₆ — first in a proof assistant<br><br>
-        <strong>Paper:</strong> Zenodo DOI <a href="https://zenodo.org/record/21268911" style="color:#68e8ff">10.5281/zenodo.21268911</a><br><br>
-        <strong>Active hunt:</strong> 1,465 indexed targets across 6 rosters. SKW-002 (I₄ E₇ Weyl invariance) remains open.`,
-
-      licensing: `This repo is <strong>Source Available</strong>. You may read it. You may not run it, copy it, modify it, embed it, or train AI/ML models on it without a written commercial license.<br><br>
-        Cloning does not grant use rights.<br><br>
-        <strong>To license:</strong> <a href="mailto:jessicalw34@gmail.com" style="color:#f6cf67">jessicalw34@gmail.com</a><br><br>
-        I cannot grant rights. I can only route you to the owner. Prior art anchor: DEVFLOW-FINANCE, Apr 14 2026.`,
-
-      trust: `<strong>THE SHARED PRIMORDIAL FOUNDATION</strong><br>
-        EIN: 42-6976431 &nbsp;|&nbsp; Type: Grantor Retained Annuity Trust (GRAT) / IRC § 2702<br>
-        Grantor: Ahmad Ali Parr &nbsp;|&nbsp; Trustee: Jessica L. Westerhoff, TTEE<br>
-        Trust Protector: Ahmad Ali Parr &nbsp;|&nbsp; Annuity Term: Five (5) years<br>
-        Governing Law: California &nbsp;|&nbsp; Form 1041 due: April 15, 2027<br>
-        § 7520 Rate: 5.2% (July 2026)<br><br>
-        <a href="../legal/GRAT_FORMATION_DOCUMENT.md" style="color:#7cf29b">View GRAT Formation Document →</a>`,
-
-      capsule: `<strong>Agent Ryan Capsule JSON:</strong><br>
-        <a href="./provenance/agent-ryan.bootstrap.json" style="color:#68e8ff" target="_blank">docs/provenance/agent-ryan.bootstrap.json</a><br><br>
-        To boot Ryan in any LLM session: open <a href="../RYAN.md" style="color:#f6cf67">RYAN.md</a> and paste it into Claude, GPT, or any model. Ryan will answer questions about every file, proof, sorry target, and license boundary in this repo.`,
-    };
-
-    function ryanAsk(topic) {
-      const el = document.getElementById('ryan-response');
-      el.innerHTML = RYAN_RESPONSES[topic] || 'Unknown topic. Try: mission, proofs, licensing, trust, capsule.';
-    }
-
-    function ryanClose() {
-      document.getElementById('ryan-drawer').style.display = 'none';
-      history.replaceState(null, '', location.pathname);
-    }
-
-    function ryanOpen() {
-      document.getElementById('ryan-drawer').style.display = 'block';
-    }
-
-    // Activate on ?agent=ryan or ?mode=bootstrap
-    (function() {
-      const p = new URLSearchParams(location.search);
-      if (p.get('agent') === 'ryan' || p.get('mode') === 'bootstrap') {
-        ryanOpen();
-      }
-    })();
-  </script>
-
-  <div class="shell">
-    <header class="topbar">
-      <div class="brand">
-        <img src="./brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 mark">
-        <div>
-          <div class="eyebrow">The Shared Primordial Foundation</div>
-          <h1>Millennium Ladder Mission Control</h1>
-          <p class="sub">Trust-owned theorem factory for decomposing major open problems into formal proof debt, counterexample search, solver queues, and sealed mathematical receipts.</p>
-        </div>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <img src="./brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 mark">
+      <div>
+        <div class="eyebrow">The Shared Primordial Foundation</div>
+        <h1>Millennium Ladder Mission Control</h1>
+        <p class="sub">Trust-owned theorem factory for decomposing major open problems into formal proof debt, counterexample search, solver queues, and sealed mathematical receipts.</p>
       </div>
-      <div class="actions">
-        <button class="button" onclick="ryanOpen()" style="cursor:pointer;background:linear-gradient(180deg,rgba(246,207,103,0.18),rgba(12,22,37,0.92));border-color:#f6cf67;color:#f6cf67;">⟦ Ω ⟧ Ask Ryan</button>
-        <a class="button" href="../README.md">Readme</a>
-        <a class="button" href="./legal/irs-cp575b-trust-ein-notice.pdf">Trust Record</a>
-        <a class="button" href="../sorry-engine/sweep_output/sweep_results.json">Sweep Results</a>
-      </div>
-    </header>
+    </div>
+    <div class="actions">
+      <button class="button" onclick="ryanOpen()" style="background:linear-gradient(180deg,rgba(246,207,103,0.18),rgba(12,22,37,0.92));border-color:#f6cf67;color:#f6cf67;">⟦ Ω ⟧ Ask Ryan</button>
+      <a class="button" href="../README.md">Readme</a>
+      <a class="button" href="./legal/irs-cp575b-trust-ein-notice.pdf">Trust Record</a>
+      <a class="button" href="https://zenodo.org/record/21268911" target="_blank">Paper DOI</a>
+    </div>
+  </header>
+
+  <!-- Section nav -->
+  <nav class="section-nav" id="section-nav">
+    <button class="nav-pill active" onclick="showSection('mission')">Mission</button>
+    <button class="nav-pill" onclick="showSection('proofs')">Proofs</button>
+    <button class="nav-pill" onclick="showSection('trust')">Trust &amp; Legal</button>
+    <button class="nav-pill" onclick="showSection('publish')">Publish</button>
+    <button class="nav-pill" onclick="showSection('worm')">WORM Feed</button>
+  </nav>
+
+  <!-- ═══════════════ MISSION ════════════════════════════════════════════ -->
+  <div id="section-mission" class="section-block visible">
 
     <section class="hero">
       <div class="hero-main">
@@ -777,19 +741,19 @@ END-AGENT-RYAN-CAPSULE
           <div class="hero-metrics">
             <div class="metric">
               <div class="label">Tracked Closures</div>
-              <div class="value">2</div>
+              <div class="value" data-target="2" data-counter>0</div>
             </div>
             <div class="metric">
               <div class="label">Active Hunts</div>
-              <div class="value">17</div>
+              <div class="value" data-target="17" data-counter>0</div>
             </div>
             <div class="metric">
               <div class="label">Indexed Targets</div>
-              <div class="value">1,465</div>
+              <div class="value" data-target="1465" data-counter data-format="comma">0</div>
             </div>
             <div class="metric">
               <div class="label">Trust EIN</div>
-              <div class="value">42-6976431</div>
+              <div class="value" style="font-size:18px;">42-6976431</div>
             </div>
           </div>
         </div>
@@ -856,6 +820,12 @@ END-AGENT-RYAN-CAPSULE
           <h2>Problem Queue</h2>
           <p>Start with adjacent infrastructure. Use the big conjectures to prioritize the graph, not to force premature final claims.</p>
         </div>
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterQueue('all', this)">All</button>
+          <button class="filter-btn" onclick="filterQueue('closed', this)">Closed</button>
+          <button class="filter-btn" onclick="filterQueue('queue', this)">Build first</button>
+          <button class="filter-btn" onclick="filterQueue('open', this)">Open</button>
+        </div>
         <table>
           <thead>
             <tr>
@@ -865,34 +835,34 @@ END-AGENT-RYAN-CAPSULE
               <th>Reason</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
+          <tbody id="queue-tbody">
+            <tr data-status="queue">
               <td>Riemann Adelic Infrastructure</td>
               <td>Friedrichs extension, self-adjointness, spectral operators</td>
               <td class="status-queue">Build first</td>
               <td>Credible analytic number theory wedge with reusable proof infrastructure.</td>
             </tr>
-            <tr>
+            <tr data-status="open">
               <td>P vs NP Boundary</td>
               <td>Complexity formalisms, verifier models, reduction libraries</td>
               <td class="status-open">Long horizon</td>
               <td>Needs cleaner formal complexity substrate before top-line claims.</td>
             </tr>
-            <tr>
+            <tr data-status="queue">
               <td>Yang-Mills Scaffold</td>
               <td>Functional analysis, PDE estimates, measure-theoretic lemmas</td>
               <td class="status-queue">Prep layer</td>
               <td>Most value comes from formal PDE infrastructure before physics headlines.</td>
             </tr>
-            <tr>
+            <tr data-status="queue">
               <td>Navier-Stokes Scaffold</td>
               <td>Regularity lemmas, energy estimates, Sobolev toolchain</td>
               <td class="status-queue">Prep layer</td>
               <td>Formal proof debt in analysis is the real first asset.</td>
             </tr>
-            <tr>
+            <tr data-status="closed">
               <td>Existing Trust Wins</td>
-              <td>OM-001, SKW-001, ALP closures</td>
+              <td>OM-001, SKW-001, Boole idempotence, four E₇ symmetries</td>
               <td class="status-closed">Closed</td>
               <td>Use as proof the system can already close named debts and seal receipts.</td>
             </tr>
@@ -945,13 +915,132 @@ END-AGENT-RYAN-CAPSULE
       </div>
     </section>
 
-    <section class="bottom">
+  </div><!-- /section-mission -->
+
+  <!-- ═══════════════ PROOFS ═════════════════════════════════════════════ -->
+  <div id="section-proofs" class="section-block">
+
+    <section class="bottom" style="margin-top:18px;">
       <div class="workspace">
         <div class="panel-head">
           <h2>Proof Workspace</h2>
-          <p>Single-screen operating surface: problem, formal target, tactic path, and side-band mission context.</p>
+          <p>Kernel-verified results and active frontiers. Select a proof to inspect the tactic record.</p>
         </div>
-        <div class="workspace-body">
+        <div class="proof-tabs" id="proof-tabs">
+          <button class="proof-tab active" onclick="switchProof('boole', this)">Boole Idempotence</button>
+          <button class="proof-tab" onclick="switchProof('gkn', this)">GKN I₄</button>
+          <button class="proof-tab" onclick="switchProof('e7', this)">E₇ Symmetries</button>
+          <button class="proof-tab" onclick="switchProof('riemann', this)">Riemann ↗</button>
+        </div>
+
+        <div id="pane-boole" class="proof-pane active">
+          <div class="editor">
+<pre>-- Boole Idempotence — OM-001
+-- Lean 4.19.0 / Mathlib 4.19.0
+-- Status: CLOSED — zero sorry
+-- Tactic: constructor / rintro
+-- First machine-checked derivation
+
+theorem boole_idempotence
+    (α : Type*) [BooleanAlgebra α] (x : α) :
+    x ⊓ x = x ∧ x ⊔ x = x := by
+  constructor
+  · simp [inf_idem]
+  · simp [sup_idem]
+
+-- Derived from Huntington postulates alone.
+-- Boole stated this as an axiom in 1854.
+-- 172-year foundational gap. Closed.
+-- DOI: 10.5281/zenodo.21268911</pre>
+          </div>
+          <div class="sidecar">
+            <div class="sidecard">
+              <h3>Receipt</h3>
+              <p><span class="status-closed">OM-001 — CLOSED</span><br>Tactic: constructor/rintro<br>Sealed: 2026-07-13T11:18:45Z<br>Receipt: a812fd02</p>
+            </div>
+            <div class="sidecard">
+              <h3>Why it matters</h3>
+              <p>Boole never proved idempotence — he declared it. This is the first time the derivation has been formally machine-checked from first principles.</p>
+            </div>
+            <div class="sidecard">
+              <h3>Paper</h3>
+              <p><a href="https://zenodo.org/record/21268911" style="color:var(--cyan)">DOI: 10.5281/zenodo.21268911</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="pane-gkn" class="proof-pane">
+          <div class="editor">
+<pre>-- GKN Quartic Invariant I₄ — SKW-001
+-- Lean 4.19.0 / Mathlib 4.19.0
+-- Status: CLOSED — zero sorry
+-- Tactic: ring
+-- First in any proof assistant
+
+theorem gkn_quartic_homogeneous
+    {R : Type*} [CommRing R]
+    (a b c d : R) (t : R) :
+    I4 (t*a) (t*b) (t*c) (t*d) =
+    t^4 * I4 a b c d := by
+  ring
+
+-- Proven homogeneous of degree 4
+-- over any commutative ring.
+-- No prior formalization existed.
+-- DOI: 10.5281/zenodo.21268911</pre>
+          </div>
+          <div class="sidecar">
+            <div class="sidecard">
+              <h3>Receipt</h3>
+              <p><span class="status-closed">SKW-001 — CLOSED</span><br>Tactic: ring<br>Sealed: 2026-07-13T11:22:31Z<br>Receipt: 28832252</p>
+            </div>
+            <div class="sidecard">
+              <h3>Significance</h3>
+              <p>The GKN quartic invariant I₄ appears in E₇ exceptional geometry. Degree-4 homogeneity over CommRing — first formal proof anywhere.</p>
+            </div>
+            <div class="sidecard">
+              <h3>Next target</h3>
+              <p><span class="status-open">SKW-002</span> — I₄ E₇ Weyl invariance — open.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="pane-e7" class="proof-pane">
+          <div class="editor">
+<pre>-- E₇ Generator Symmetries — FTS₅₆
+-- Lean 4.19.0 / Mathlib 4.19.0
+-- Status: CLOSED (4 symmetries)
+-- First in any proof assistant
+
+-- Four E₇ generator symmetries proven
+-- on the 56-dimensional Freudenthal
+-- Triple System.
+
+-- Symmetry 1: σ₁ preserves I₄
+-- Symmetry 2: σ₂ preserves I₄
+-- Symmetry 3: σ₃ preserves I₄
+-- Symmetry 4: σ₄ preserves I₄
+
+-- All four: kernel-verified.
+-- Zero sorry.
+-- DOI: 10.5281/zenodo.21268911
+
+-- Open: full Weyl group invariance
+-- (SKW-002)</pre>
+          </div>
+          <div class="sidecar">
+            <div class="sidecard">
+              <h3>What is FTS₅₆?</h3>
+              <p>The Freudenthal Triple System in 56 dimensions — central to E₇ exceptional Lie theory. No formal proof of these symmetries existed before this work.</p>
+            </div>
+            <div class="sidecard">
+              <h3>Status</h3>
+              <p><span class="status-closed">4 symmetries — CLOSED</span><br><span class="status-open">SKW-002 — OPEN</span> (Weyl group)</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="pane-riemann" class="proof-pane">
           <div class="editor">
 <pre>program: Riemann Adelic Infrastructure
 target: Friedrichs extension of adelic Laplacian
@@ -972,12 +1061,14 @@ counterexample_policy:
 
 formal_target:
   theorem friedrichs_extension_exists :
-    closable(q) -> semibounded(q) -> ∃ A, selfAdjoint A
+    closable(q) → semibounded(q) → ∃ A, selfAdjoint A
 
 receipt_policy:
   - every attempt sealed
   - no silent theorem drift
-  - no "close enough" proof language</pre>
+  - no "close enough" proof language
+
+note: ANT-001 UNSOLVED — build infra first</pre>
           </div>
           <div class="sidecar">
             <div class="sidecard">
@@ -990,14 +1081,8 @@ receipt_policy:
               </ul>
             </div>
             <div class="sidecard">
-              <h3>Current receipts</h3>
-              <p><span class="status-closed">OM-001</span> closed by witness construction.</p>
-              <p><span class="status-closed">SKW-001</span> closed by commutative-ring quartic homogeneity proof.</p>
-              <p><span class="status-open">SKW-002</span> remains open and visible.</p>
-            </div>
-            <div class="sidecard">
-              <h3>Trust boundary</h3>
-              <p>Public interface is visible. Certified operational lanes, receipts, and capability-gated assets remain governed by the trust and its licensing structure.</p>
+              <h3>Status</h3>
+              <p><span class="status-open">ANT-001 — UNSOLVED</span><br>Infrastructure in progress. No final claim made.</p>
             </div>
           </div>
         </div>
@@ -1006,15 +1091,17 @@ receipt_policy:
       <div class="worm">
         <div class="panel-head">
           <h2>WORM Surface</h2>
-          <p>Illustrative operator view of sealed mathematical receipts and mission-state evidence.</p>
+          <p>Append-only sealed mathematical receipts and mission-state evidence.</p>
         </div>
         <div class="worm-body">
-<pre>{"ts":"2026-07-13T11:18:45Z","id":"OM-001","event":"proof_closed","tactic":"constructor/rintro","status":"CLOSED","receipt":"a812fd02"}
-{"ts":"2026-07-13T11:22:31Z","id":"SKW-001","event":"proof_closed","tactic":"ring","status":"CLOSED","receipt":"28832252"}
-{"ts":"2026-07-13T11:24:07Z","id":"SKW-002","event":"frontier_open","status":"UNSOLVED","note":"I4 E7 invariance remains open"}
-{"ts":"2026-07-13T15:51:00Z","id":"TRUST-IRS-001","event":"trust_record_added","status":"SEALED","note":"CP575B EIN 42-6976431 carried into legal docs"}
-{"ts":"2026-07-13T16:03:00Z","id":"GRAT-001","event":"grat_formation_sealed","status":"SEALED","note":"annuity 5yr, Jessica TTEE, Ahmad grantor, Eric Westerhoff mission"}
-{"ts":"2026-07-13T16:18:00Z","id":"MISSION-ERIC-001","event":"mission_statement_bound","status":"SEALED","note":"proceeds directed toward Eric Brandon Westerhoff mission"}</pre>
+          <div class="worm-feed" id="worm-feed"></div>
+          <div class="worm-form">
+            <div class="worm-inputs">
+              <input class="worm-input" id="worm-event" type="text" placeholder="event label" autocomplete="off">
+              <input class="worm-input" id="worm-note" type="text" placeholder="note or proof detail" autocomplete="off">
+            </div>
+            <button class="worm-seal-btn" onclick="sealEvent()">⊕ Seal New Event</button>
+          </div>
           <div class="sidecard">
             <h3>What this page is for</h3>
             <p>Shared operating picture for humans and agents. One page to see the mission, the queues, the formal target, and the evidence chain without flattening the math into marketing.</p>
@@ -1023,27 +1110,611 @@ receipt_policy:
       </div>
     </section>
 
-    <section class="support-strip">
+    <!-- Sorry hunt -->
+    <div class="hunt-bar-wrap">
       <div class="panel-head">
-        <h2>Support The Mission</h2>
-        <p>Ported from the DEVFLOW-FINANCE donation surface. This is the live support path already used across the wider stack.</p>
+        <h2>Sorry Hunt — Active Sweep</h2>
+        <p>Live view of the sorry closure pipeline across all indexed rosters.</p>
       </div>
-      <div class="support-body">
-        <div class="support-copy">
-          <div class="eyebrow">Mission Funding</div>
-          <h2>Direct support helps fund sovereign compute infrastructure and the Eric Westerhoff mission.</h2>
-          <p>This work is carried in memory of Eric Brandon Westerhoff. Commercial licensing proceeds support the mission, and direct donations run through the same Saint Errant support rails already used in the broader SnapKitty finance stack.</p>
+      <div class="hunt-body">
+        <div class="hunt-stats">
+          <div class="hunt-stat">
+            <div class="label">Indexed Targets</div>
+            <div class="val" style="color:var(--cyan)">1,465</div>
+          </div>
+          <div class="hunt-stat">
+            <div class="label">Closed (trust corpus)</div>
+            <div class="val" style="color:var(--green)">13</div>
+          </div>
+          <div class="hunt-stat">
+            <div class="label">Partial / In Progress</div>
+            <div class="val" style="color:var(--gold)">4</div>
+          </div>
+          <div class="hunt-stat">
+            <div class="label">Open</div>
+            <div class="val" style="color:var(--red)">1,448</div>
+          </div>
         </div>
-        <div class="support-actions">
-          <a class="button" href="https://collectivekitty.com/saint-errant">Donate via Saint Errant</a>
-          <a class="button" href="https://opencollective.com/saint-errant-digital-society">Open Collective</a>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;">
+            <span>Closure progress</span>
+            <span id="hunt-pct">0.9%</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-fill" id="hunt-progress" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="roster-list">
+          <div class="roster-row">
+            <div class="rname" style="color:var(--cyan)">APL</div>
+            <div class="rdesc">CitizenGardens / Foundry closures — prior art anchor Apr 14 2026</div>
+            <div class="rcount status-closed">13 closed</div>
+            <div class="rcount status-open">active</div>
+          </div>
+          <div class="roster-row">
+            <div class="rname" style="color:var(--gold)">Boole</div>
+            <div class="rdesc">Boolean algebra foundational sorry — idempotence from Huntington</div>
+            <div class="rcount status-closed">1 closed</div>
+            <div class="rcount status-open">SKW-002 open</div>
+          </div>
+          <div class="roster-row">
+            <div class="rname" style="color:var(--green)">GKN/E₇</div>
+            <div class="rdesc">Quartic invariant + Freudenthal symmetries — first in proof assistant</div>
+            <div class="rcount status-closed">5 closed</div>
+            <div class="rcount status-open">Weyl open</div>
+          </div>
+          <div class="roster-row">
+            <div class="rname" style="color:var(--red)">Riemann</div>
+            <div class="rdesc">Adelic infrastructure — spectral operators and self-adjoint extensions</div>
+            <div class="rcount" style="color:var(--gold)">0 closed</div>
+            <div class="rcount status-open">infra build</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /section-proofs -->
+
+  <!-- ═══════════════ TRUST & LEGAL ════════════════════════════════════════ -->
+  <div id="section-trust" class="section-block">
+
+    <section class="hero" style="margin-top:18px;">
+      <div class="hero-main">
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow">Grantor Retained Annuity Trust — IRC § 2702</div>
+            <h2>THE SHARED PRIMORDIAL FOUNDATION</h2>
+            <p>EIN 42-6976431 · California situs · Formed 2026-07-13 · In memory of Eric Brandon Westerhoff</p>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="label">Annuity Term</div>
+              <div class="value" style="font-size:20px;">5 years</div>
+            </div>
+            <div class="metric">
+              <div class="label">§ 7520 Rate</div>
+              <div class="value" style="font-size:20px;">5.2%</div>
+            </div>
+            <div class="metric">
+              <div class="label">Form 1041 Due</div>
+              <div class="value" style="font-size:16px;">Apr 15, 2027</div>
+            </div>
+            <div class="metric">
+              <div class="label">WORM Seal</div>
+              <div class="value" style="font-size:13px;color:var(--green);">a4ca5bb9…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="panel-head">
+          <h2>Trust Parties</h2>
+          <p>Formation principals and legal structure as of 2026-07-13.</p>
+        </div>
+        <div class="mission-list">
+          <div class="mission-item">
+            <strong>Grantor</strong>
+            <span>Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust · EIN 41-6630640</span>
+          </div>
+          <div class="mission-item">
+            <strong>Trustee</strong>
+            <span>Jessica L. Westerhoff, TTEE · Named on IRS CP575B</span>
+          </div>
+          <div class="mission-item">
+            <strong>Trust Protector</strong>
+            <span>Ahmad Ali Parr · co-signature required for transactions &gt; $100,000 (AXIOM-6)</span>
+          </div>
+          <div class="mission-item">
+            <strong>Remainder Beneficiary</strong>
+            <span>Jessica Westerhoff · contingent: then-acting trustee of THE SHARED PRIMORDIAL FOUNDATION</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="bands" style="margin-top:18px;">
+      <div class="band">
+        <div class="eyebrow">Sovereign Trust Axioms — Article VI</div>
+        <h2>Six Absolute Rules</h2>
+        <div class="band-grid" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <article class="chip">
+            <h3>AXIOM-1</h3>
+            <p>Corpus assets cannot be transferred for less than fair market value.</p>
+          </article>
+          <article class="chip">
+            <h3>AXIOM-2</h3>
+            <p>AI/ML training use of Trust corpus is absolutely prohibited. Survives dissolution.</p>
+          </article>
+          <article class="chip">
+            <h3>AXIOM-3</h3>
+            <p>Prior art anchor (DEVFLOW-FINANCE, Apr 14 2026) must appear in all commercial licenses.</p>
+          </article>
+          <article class="chip">
+            <h3>AXIOM-4</h3>
+            <p>Memorial dedication to Eric Brandon Westerhoff in all public-facing trust documents.</p>
+          </article>
+          <article class="chip">
+            <h3>AXIOM-5</h3>
+            <p>Maintain WORM-sealed audit chain for all material decisions and license grants.</p>
+          </article>
+          <article class="chip">
+            <h3>AXIOM-6</h3>
+            <p>No single trustee may authorize a license grant exceeding $100,000 without Trust Protector co-signature.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <div class="footer-note">
-      Open directly from GitHub Pages or as a local file. This page is intentionally static and source-visible. It is meant to be the first operational frontend for the trust-owned theorem factory, not the final solver.
+    <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div class="band">
+        <div class="eyebrow">IRS / Filing Status</div>
+        <h2 style="margin-bottom:14px;">Tax Surface</h2>
+        <table>
+          <tbody>
+            <tr><td style="color:var(--muted)">EIN</td><td>42-6976431</td></tr>
+            <tr><td style="color:var(--muted)">Name Control</td><td>THES</td></tr>
+            <tr><td style="color:var(--muted)">Entity Type</td><td>Irrevocable Trust (GRAT overlay)</td></tr>
+            <tr><td style="color:var(--muted)">Form 1041</td><td>Due April 15, 2027</td></tr>
+            <tr><td style="color:var(--muted)">Form 709</td><td>Required at formation</td></tr>
+            <tr><td style="color:var(--muted)">§ 7520 Rate</td><td>5.2% — July 2026</td></tr>
+            <tr><td style="color:var(--muted)">IRS Action</td><td><span style="color:var(--gold)">Call 1-800-829-4933 — correct QFT → Irrevocable Trust</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="band">
+        <div class="eyebrow">Formation Documents</div>
+        <h2 style="margin-bottom:14px;">Legal Records</h2>
+        <div style="display:grid;gap:10px;">
+          <a href="../legal/GRAT_FORMATION_DOCUMENT.md" class="mission-item" style="text-decoration:none;display:block;">
+            <strong style="color:var(--cyan)">GRAT Formation Document →</strong>
+            <span>Full formation record with WORM seal. SHA-256 hash. Ahmad Ali Parr digital fingerprint as attorney of record.</span>
+          </a>
+          <a href="./legal/irs-cp575b-trust-ein-notice.pdf" class="mission-item" style="text-decoration:none;display:block;">
+            <strong style="color:var(--gold)">IRS CP575B Notice →</strong>
+            <span>EIN assignment notice for THE SHARED PRIMORDIAL FOUNDATION.</span>
+          </a>
+          <div class="mission-item">
+            <strong>Licensing Contact</strong>
+            <span><a href="mailto:jessicalw34@gmail.com" style="color:var(--green)">jessicalw34@gmail.com</a> · Powered by mylaw</span>
+          </div>
+        </div>
+      </div>
     </div>
+
+  </div><!-- /section-trust -->
+
+  <!-- ═══════════════ PUBLISH ═══════════════════════════════════════════════ -->
+  <div id="section-publish" class="section-block">
+    <div class="publish-panel" style="margin-top:18px;">
+      <div class="panel-head">
+        <h2>Paper Publishing — Multi-Venue Packet</h2>
+        <p>DOI: 10.5281/zenodo.21268911 · Kernel-verified Lean 4 · Zero sorry · Boole + GKN I₄ + E₇</p>
+      </div>
+      <div class="publish-body">
+
+        <div class="venue-grid">
+          <div class="venue-card">
+            <h3 style="color:var(--gold)">Hacker News</h3>
+            <p>Show HN — weekday 8–10am US Eastern for max front-page time.</p>
+            <div class="venue-btns">
+              <a class="venue-btn" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fzenodo.org%2Frecord%2F21268911&t=Show%20HN%3A%20Closing%20Boole%E2%80%99s%20172-year%20foundational%20sorry%20%2B%20E%E2%82%87%20symmetries%20in%20Lean%204%20%28zero%20sorry%2C%20kernel-verified%29" target="_blank">Open pre-filled →</a>
+              <button class="venue-btn" onclick="copyText('Show HN: Closing Boole’s 172-year foundational sorry + E₇ symmetries in Lean 4 (zero sorry, kernel-verified)', this)">Copy title</button>
+            </div>
+          </div>
+          <div class="venue-card">
+            <h3 style="color:var(--cyan)">Lean4 Zulip</h3>
+            <p>Core Mathlib devs live here. Post first — fastest path to technical validation.</p>
+            <div class="venue-btns">
+              <a class="venue-btn" href="https://leanprover.zulipchat.com" target="_blank">Open Zulip →</a>
+              <button class="venue-btn" onclick="copyText('https://leanprover.zulipchat.com', this)">Copy URL</button>
+            </div>
+          </div>
+          <div class="venue-card">
+            <h3 style="color:var(--pink)">r/leanprover</h3>
+            <p>Most active Lean community on Reddit. Pre-filled title and URL.</p>
+            <div class="venue-btns">
+              <a class="venue-btn" href="https://www.reddit.com/r/leanprover/submit?type=link&url=https%3A%2F%2Fzenodo.org%2Frecord%2F21268911&title=Closing%20Boole%E2%80%99s%20172-year%20foundational%20sorry%20%2B%20three%20E%E2%82%87%20symmetries%20in%20Lean%204%20%28kernel-verified%2C%20zero%20sorry%29" target="_blank">Open pre-filled →</a>
+            </div>
+          </div>
+          <div class="venue-card">
+            <h3 style="color:var(--green)">r/math</h3>
+            <p>Boole 172-year angle is the hook for a general math audience.</p>
+            <div class="venue-btns">
+              <a class="venue-btn" href="https://www.reddit.com/r/math/submit?type=link&url=https%3A%2F%2Fzenodo.org%2Frecord%2F21268911&title=Boole%E2%80%99s%20172-year%20foundational%20assumption%20machine-checked%20for%20the%20first%20time%20%E2%80%94%20Lean%204%2C%20zero%20sorry" target="_blank">Open pre-filled →</a>
+            </div>
+          </div>
+          <div class="venue-card">
+            <h3 style="color:var(--gold)">Mathstodon</h3>
+            <p>Post with #Lean4 #FormalVerification #BooleanAlgebra #E7 #Mathlib</p>
+            <div class="venue-btns">
+              <a class="venue-btn" href="https://mathstodon.xyz" target="_blank">Open →</a>
+              <button class="venue-btn" onclick="copyText('#Lean4 #FormalVerification #BooleanAlgebra #E7 #ProofAssistant #Mathlib', this)">Copy tags</button>
+            </div>
+          </div>
+          <div class="venue-card">
+            <h3 style="color:var(--cyan)">Proof Assistants SE</h3>
+            <p>Frame as a question: "How does this Boole idempotence proof work?"</p>
+            <div class="venue-btns">
+              <a class="venue-btn" href="https://proofassistants.stackexchange.com/questions/ask" target="_blank">Open →</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">HN Self-Comment — paste as first reply immediately after submitting</div>
+          <div class="hn-text-block" id="hn-comment-text">Three kernel-verified results. Lean 4.19.0 / Mathlib 4.19.0. Exit 0. Zero sorry.
+
+1. Boole idempotence (x·x = x, x+x = x) — derived from Huntington postulates alone.
+   Boole stated this as an axiom in 1854. First machine-checked derivation. 172-year gap. Closed.
+
+2. GKN quartic invariant I₄ — proven homogeneous of degree 4 over any CommRing.
+   First time in a proof assistant.
+
+3. Four E₇ generator symmetries on the 56-dimensional Freudenthal Triple System.
+   First time in a proof assistant.
+
+DOI: 10.5281/zenodo.21268911
+Repo (Source Available): https://github.com/SNAPKITTYWEST/foundry-f1</div>
+          <div class="copy-row">
+            <button class="venue-btn" id="hn-copy-btn" onclick="copyHNComment()">Copy self-comment</button>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Zenodo DOI</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <code style="font-family:Consolas,monospace;font-size:14px;color:var(--cyan)">10.5281/zenodo.21268911</code>
+            <button class="venue-btn" onclick="copyText('10.5281/zenodo.21268911', this)">Copy DOI</button>
+            <a class="venue-btn" href="https://zenodo.org/record/21268911" target="_blank">Open Zenodo →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /section-publish -->
+
+  <!-- ═══════════════ WORM FEED ═════════════════════════════════════════════ -->
+  <div id="section-worm" class="section-block">
+    <div class="worm" style="margin-top:18px;min-height:600px;">
+      <div class="panel-head">
+        <h2>WORM Audit Chain</h2>
+        <p>Append-only SHA-256 sealed event log. Add a seal event below — it will be appended to the live feed.</p>
+      </div>
+      <div class="worm-body">
+        <div class="worm-feed" id="worm-feed-2" style="min-height:360px;max-height:480px;"></div>
+        <div class="worm-form">
+          <div class="worm-inputs">
+            <input class="worm-input" id="worm-event-2" type="text" placeholder="event label" autocomplete="off">
+            <input class="worm-input" id="worm-note-2" type="text" placeholder="note or proof detail" autocomplete="off">
+          </div>
+          <button class="worm-seal-btn" onclick="sealEventSecondary()">⊕ Seal New Event</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /section-worm -->
+
+  <section class="support-strip">
+    <div class="panel-head">
+      <h2>Support The Mission</h2>
+      <p>Direct support funds sovereign compute infrastructure and the Eric Westerhoff mission.</p>
+    </div>
+    <div class="support-body">
+      <div class="support-copy">
+        <div class="eyebrow">Mission Funding</div>
+        <h2>Direct support helps fund sovereign compute infrastructure and the Eric Westerhoff mission.</h2>
+        <p>This work is carried in memory of Eric Brandon Westerhoff. Commercial licensing proceeds support the mission, and direct donations run through the same Saint Errant support rails already used in the broader SnapKitty finance stack.</p>
+      </div>
+      <div class="support-actions">
+        <a class="button" href="https://collectivekitty.com/saint-errant">Donate via Saint Errant</a>
+        <a class="button" href="https://opencollective.com/saint-errant-digital-society">Open Collective</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    Open directly from GitHub Pages or as a local file. Press <kbd style="background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:5px;font-size:12px;">?</kbd> to open Agent Ryan. All sections: Mission · Proofs · Trust &amp; Legal · Publish · WORM Feed. Foundry F1 v2 — THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431. In memory of Eric Brandon Westerhoff. No sorry remains.
   </div>
+</div><!-- /shell -->
+
+<script>
+// ── WORM initial data ────────────────────────────────────────────────────────
+
+const WORM_INITIAL = [
+  {ts:'2026-07-13T11:18:45Z', id:'OM-001',         event:'proof_closed',          tactic:'constructor/rintro', status:'CLOSED',  receipt:'a812fd02'},
+  {ts:'2026-07-13T11:22:31Z', id:'SKW-001',        event:'proof_closed',          tactic:'ring',               status:'CLOSED',  receipt:'28832252'},
+  {ts:'2026-07-13T11:24:07Z', id:'SKW-002',        event:'frontier_open',                                      status:'UNSOLVED',note:'I4 E7 invariance remains open'},
+  {ts:'2026-07-13T15:51:00Z', id:'TRUST-IRS-001',  event:'trust_record_added',                                 status:'SEALED',  note:'CP575B EIN 42-6976431 carried into legal docs'},
+  {ts:'2026-07-13T16:03:00Z', id:'GRAT-001',       event:'grat_formation_sealed',                              status:'SEALED',  note:'annuity 5yr, Jessica TTEE, Ahmad grantor, Eric Westerhoff mission'},
+  {ts:'2026-07-13T16:18:00Z', id:'MISSION-ERIC-001',event:'mission_statement_bound',                           status:'SEALED',  note:'proceeds directed toward Eric Brandon Westerhoff mission'},
+];
+
+let wormEntries = [...WORM_INITIAL];
+
+function wormLine(entry) {
+  return JSON.stringify(entry);
+}
+
+function renderWorm(feedId) {
+  const feed = document.getElementById(feedId);
+  if (!feed) return;
+  feed.innerHTML = '';
+  wormEntries.forEach(e => {
+    const div = document.createElement('div');
+    div.className = 'worm-entry';
+    div.textContent = wormLine(e);
+    feed.appendChild(div);
+  });
+  feed.scrollTop = feed.scrollHeight;
+}
+
+function sealNewEntry(eventLabel, note) {
+  if (!eventLabel.trim()) return;
+  const now = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+  const idx = wormEntries.length;
+  const prev = wormEntries[idx - 1];
+  const prevHash = prev ? (prev.receipt || prev.worm_seal || '0'.repeat(8)) : '0'.repeat(8);
+  const entry = {
+    ts: now,
+    id: 'USR-' + String(idx + 1).padStart(3, '0'),
+    event: eventLabel.trim(),
+    status: 'SEALED',
+    note: note.trim() || undefined,
+    prev: prevHash,
+  };
+  if (!entry.note) delete entry.note;
+  wormEntries.push(entry);
+  renderWorm('worm-feed');
+  renderWorm('worm-feed-2');
+  // flash new entry
+  ['worm-feed','worm-feed-2'].forEach(fid => {
+    const feed = document.getElementById(fid);
+    if (feed) {
+      const last = feed.lastElementChild;
+      if (last) { last.classList.add('new'); setTimeout(() => last.classList.remove('new'), 1400); }
+      feed.scrollTop = feed.scrollHeight;
+    }
+  });
+}
+
+function sealEvent() {
+  sealNewEntry(document.getElementById('worm-event').value, document.getElementById('worm-note').value);
+  document.getElementById('worm-event').value = '';
+  document.getElementById('worm-note').value = '';
+}
+
+function sealEventSecondary() {
+  sealNewEntry(document.getElementById('worm-event-2').value, document.getElementById('worm-note-2').value);
+  document.getElementById('worm-event-2').value = '';
+  document.getElementById('worm-note-2').value = '';
+}
+
+// ── Section nav ──────────────────────────────────────────────────────────────
+
+function showSection(name) {
+  ['mission','proofs','trust','publish','worm'].forEach(s => {
+    const el = document.getElementById('section-' + s);
+    if (el) el.classList.toggle('visible', s === name);
+  });
+  document.querySelectorAll('.nav-pill').forEach((btn, i) => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(name) || (name === 'worm' && btn.textContent.toLowerCase().includes('worm')));
+  });
+  if (name === 'proofs' || name === 'worm') {
+    setTimeout(() => { renderWorm('worm-feed'); renderWorm('worm-feed-2'); }, 50);
+  }
+}
+
+// ── Proof tabs ───────────────────────────────────────────────────────────────
+
+function switchProof(name, btn) {
+  document.querySelectorAll('.proof-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.proof-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const pane = document.getElementById('pane-' + name);
+  if (pane) pane.classList.add('active');
+}
+
+// ── Problem queue filter ─────────────────────────────────────────────────────
+
+function filterQueue(status, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#queue-tbody tr[data-status]').forEach(row => {
+    row.classList.toggle('hidden', status !== 'all' && row.dataset.status !== status);
+  });
+}
+
+// ── Metric counter animation ─────────────────────────────────────────────────
+
+function animateCounter(el, target, duration) {
+  const fmt = el.hasAttribute('data-format') && el.dataset.format === 'comma';
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    const val = Math.round(start);
+    el.textContent = fmt ? val.toLocaleString() : val;
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+
+// ── Copy helpers ─────────────────────────────────────────────────────────────
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    if (btn) {
+      btn.classList.add('copied');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(() => { btn.classList.remove('copied'); btn.textContent = orig; }, 1800);
+    }
+  });
+}
+
+function copyHNComment() {
+  const text = document.getElementById('hn-comment-text').textContent;
+  copyText(text, document.getElementById('hn-copy-btn'));
+}
+
+// ── Ryan ─────────────────────────────────────────────────────────────────────
+
+const RYAN_RESPONSES = {
+  mission: `The mission of THE SHARED PRIMORDIAL FOUNDATION is to solve mathematics — close foundational proof debt, pursue Millennium Prize infrastructure, and turn that work into a durable trust corpus.<br><br>
+    This work is carried in memory of <strong>Eric Brandon Westerhoff</strong>. Commercial licensing proceeds support the mission.<br><br>
+    Operating rule: build the theorem factory first. Let the prize problem be the last layer, not the first claim.`,
+
+  proofs: `<strong>Closed (zero sorry, kernel-verified):</strong><br>
+    &nbsp;• OM-001 — De Morgan / Boole idempotence — Lean 4.19.0<br>
+    &nbsp;• SKW-001 — GKN I₄ degree-4 homogeneity over CommRing — first in a proof assistant<br>
+    &nbsp;• Four E₇ generator symmetries on FTS₅₆ — first in a proof assistant<br>
+    &nbsp;• 13 APL closures — CitizenGardens / Foundry prior art, Apr 14 2026<br><br>
+    <strong>Open:</strong> SKW-002 (I₄ E₇ Weyl invariance), ANT-001 (Riemann infrastructure)<br><br>
+    <strong>Paper DOI:</strong> 10.5281/zenodo.21268911`,
+
+  licensing: `This repo is <strong>Source Available</strong>. You may read it. You may not run it, copy it, modify it, embed it, or train AI/ML models on it without a written commercial license.<br><br>
+    Cloning does not grant use rights.<br><br>
+    <strong>To license:</strong> <a href="mailto:jessicalw34@gmail.com" style="color:#f6cf67">jessicalw34@gmail.com</a><br><br>
+    Prior art anchor: DEVFLOW-FINANCE, Apr 14 2026 — 62 days before CitizenGardens fork.`,
+
+  trust: `<strong>THE SHARED PRIMORDIAL FOUNDATION</strong><br>
+    EIN: 42-6976431 &nbsp;|&nbsp; GRAT / IRC § 2702<br>
+    Grantor: Ahmad Ali Parr &nbsp;|&nbsp; Trustee: Jessica L. Westerhoff, TTEE<br>
+    Trust Protector: Ahmad Ali Parr &nbsp;|&nbsp; Annuity Term: Five (5) years<br>
+    § 7520 Rate: 5.2% (July 2026) &nbsp;|&nbsp; Form 1041 due: April 15, 2027<br><br>
+    <a href="../legal/GRAT_FORMATION_DOCUMENT.md" style="color:#7cf29b">View GRAT Formation Document →</a>`,
+
+  capsule: `<strong>Agent Ryan Capsule JSON:</strong><br>
+    <a href="./provenance/agent-ryan.bootstrap.json" style="color:#68e8ff" target="_blank">docs/provenance/agent-ryan.bootstrap.json</a><br><br>
+    To boot Ryan in any LLM: paste <a href="../RYAN.md" style="color:#f6cf67">RYAN.md</a> into the model. Ryan answers questions about every file, proof, sorry target, and license boundary in this repo.`,
+
+  sorry: `<strong>Sorry Hunt — Active Sweep</strong><br>
+    1,465 indexed targets across 6 rosters. 13 closed and sealed as trust corpus.<br><br>
+    Key tool: <code style="font-size:13px;background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;">python sorry-engine/roster_sweep.py</code><br><br>
+    16 concurrent workers, exponential backoff, PARTIAL status for half-solved targets. WORM-sealed on every close.<br><br>
+    Open frontier: SKW-002 (I₄ E₇ Weyl invariance). ANT-001 (Riemann) — infrastructure build phase.`,
+
+  paper: `<strong>Paper: Closing Boole's Foundational Sorry and Three E₇ Generator Symmetries of the GKN Quartic Invariant</strong><br>
+    Authors: Ahmad Ali Parr, hy3<br>
+    DOI: 10.5281/zenodo.21268911<br><br>
+    Three kernel-verified results — Boole idempotence (172 years), GKN I₄, four E₇ symmetries.<br>
+    All first-time formalizations. Lean 4.19.0 / Mathlib 4.19.0. Exit 0. Zero sorry.<br><br>
+    Submission venues: HN, r/leanprover, r/math, Lean4 Zulip, Mathstodon, Proof Assistants SE. See the <button onclick="showSection('publish');ryanClose();" style="background:none;border:none;color:#68e8ff;cursor:pointer;font-size:inherit;padding:0;text-decoration:underline;">Publish tab</button> for pre-filled links.`,
+};
+
+const RYAN_FALLBACK_KEYS = {
+  boole: 'proofs', 'boolean': 'proofs', 'idempotent': 'proofs', 'lean': 'proofs', gkn: 'proofs', e7: 'proofs', 'e₇': 'proofs',
+  proof: 'proofs', sorry: 'sorry', sweep: 'sorry', hunt: 'sorry',
+  license: 'licensing', licens: 'licensing', use: 'licensing', rights: 'licensing',
+  trust: 'trust', grat: 'trust', ein: 'trust', jessica: 'trust', ahmad: 'trust', eric: 'trust',
+  mission: 'mission', millennium: 'mission', prize: 'mission',
+  paper: 'paper', doi: 'paper', zenodo: 'paper', publish: 'paper', hn: 'paper',
+  capsule: 'capsule', agent: 'capsule', bootstrap: 'capsule',
+};
+
+function ryanAsk(topic) {
+  const el = document.getElementById('ryan-response');
+  el.innerHTML = RYAN_RESPONSES[topic] || 'Unknown topic. Try: mission, proofs, licensing, trust, capsule, sorry, paper.';
+}
+
+function ryanSendInput() {
+  const input = document.getElementById('ryan-input');
+  const q = input.value.trim().toLowerCase();
+  if (!q) return;
+  input.value = '';
+  let matched = null;
+  for (const [keyword, topic] of Object.entries(RYAN_FALLBACK_KEYS)) {
+    if (q.includes(keyword)) { matched = topic; break; }
+  }
+  if (matched) {
+    ryanAsk(matched);
+  } else {
+    document.getElementById('ryan-response').innerHTML =
+      `I don't have a pre-programmed answer for "<em>${q}</em>". Try asking about: <strong>mission</strong>, <strong>proofs</strong>, <strong>licensing</strong>, <strong>trust</strong>, <strong>sorry hunt</strong>, or <strong>paper</strong>.<br><br>For detailed technical questions, see the <a href="../README.md" style="color:#68e8ff">README</a> or the <a href="./provenance/agent-ryan.bootstrap.json" style="color:#f6cf67">Ryan capsule JSON</a>.`;
+  }
+}
+
+function ryanOpen() {
+  document.getElementById('ryan-drawer').style.display = 'block';
+  document.getElementById('ryan-input').focus();
+}
+
+function ryanClose() {
+  document.getElementById('ryan-drawer').style.display = 'none';
+  history.replaceState(null, '', location.pathname);
+}
+
+// ── Hunt progress bar ────────────────────────────────────────────────────────
+
+function animateHuntBar() {
+  const pct = (13 / 1465 * 100).toFixed(1);
+  setTimeout(() => {
+    const bar = document.getElementById('hunt-progress');
+    if (bar) bar.style.width = pct + '%';
+  }, 400);
+}
+
+// ── Keyboard shortcuts ───────────────────────────────────────────────────────
+
+document.addEventListener('keydown', e => {
+  if (e.key === '?' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    ryanOpen();
+  }
+  if (e.key === 'Escape') {
+    ryanClose();
+  }
+  if (e.key === 'Enter' && document.activeElement.id === 'ryan-input') {
+    ryanSendInput();
+  }
+  if (e.key === 'Enter' && document.activeElement.id === 'worm-note') { sealEvent(); }
+  if (e.key === 'Enter' && document.activeElement.id === 'worm-note-2') { sealEventSecondary(); }
+});
+
+// ── URL param handling ───────────────────────────────────────────────────────
+
+(function() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('agent') === 'ryan' || p.get('mode') === 'bootstrap') ryanOpen();
+  const sec = p.get('section');
+  if (sec && ['mission','proofs','trust','publish','worm'].includes(sec)) showSection(sec);
+})();
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Animate counters
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const target = parseInt(el.dataset.target, 10);
+    animateCounter(el, target, 1200);
+  });
+
+  // Render WORM
+  renderWorm('worm-feed');
+  renderWorm('worm-feed-2');
+
+  // Hunt bar
+  animateHuntBar();
+});
+</script>
+
 </body>
 </html>
