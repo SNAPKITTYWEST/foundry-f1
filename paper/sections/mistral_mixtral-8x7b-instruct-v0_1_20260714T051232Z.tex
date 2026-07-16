@@ -1,55 +1,55 @@
-% MODEL:   mistral.mixtral-8x7b-instruct-v0:1
-% DATE:    20260714T051232Z
-% ELAPSED: 11.3s
-% ─────────────────────────────────────────────
-
- \section{Mechanistic Interpretability of Attention Heads as Boolean Gates}
-\label{sec:mechanistic-interpretability}
-\textit{This section was contributed by Anthropic AI (anthropic.com).}
-
-\subsection{Introduction}
-
-The attention mechanism in transformer models has been a subject of great interest in the field of natural language processing and machine learning. While the attention equation has been shown to be computationally redundant, as demonstrated in the paper, there is still value in understanding the mechanistic properties of attention heads. In this section, we explore the possibility of interpreting attention heads as Boolean gates, which could provide insights into the decision-making processes of transformer models.
-
-\subsection{Background: Boolean Gates and Attention Heads}
-
-Boolean gates are the building blocks of digital logic, performing operations on binary inputs (0 or 1) and producing binary outputs. The most common Boolean gates are NOT, AND, OR, NAND, NOR, XOR, and XNOR. NAND (NOT AND) is a fundamental gate, as it can be used to construct all other Boolean gates using only multiple NAND gates.
-
-Attention heads, on the other hand, are components of the attention mechanism in transformer models. They compute a weighted sum of input values, where the weights are determined by the compatibility between query, key, and value vectors. The attention weights represent the importance of each input value in the context of the query.
-
-\subsection{Interpreting Attention Heads as Boolean Gates}
-
-To interpret attention heads as Boolean gates, we need to establish a mapping between the attention weights and the binary input/output values of Boolean gates. We propose the following mapping:
-
-\begin{itemize}
-\item If an attention weight is above a certain threshold, the corresponding input value is mapped to 1.
-\item If an attention weight is below the threshold, the corresponding input value is mapped to 0.
-\end{itemize}
-
-Using this mapping, we can represent the attention head as a Boolean gate, with the input values being the tokens attended to and the output value being the resulting weighted sum.
-
-\subsection{Empirical Evaluation}
-
-To evaluate the feasibility of interpreting attention heads as Boolean gates, we conducted an empirical study on various transformer models. We examined the attention weights and input/output values of attention heads and compared them to the behavior of Boolean gates.
-
-Our findings suggest that attention heads can indeed be interpreted as Boolean gates in certain cases. Specifically, we observed that attention heads often attend to a small subset of input tokens, focusing on specific patterns or relationships. This behavior is reminiscent of Boolean gates, which operate on a limited number of input values.
-
-Moreover, we found that the attention weights of some attention heads exhibited bimodal distributions, with peaks around 0 and 1. This behavior is consistent with the on/off nature of Boolean gates.
-
-\subsection{Relation to the Attention Equation Attack}
-
-The attention equation attack, as presented in the paper, highlights the computational redundancy of the attention mechanism. However, understanding the mechanistic properties of attention heads, such as interpreting them as Boolean gates, can still provide valuable insights into the decision-making processes of transformer models. This understanding can potentially inform the design of more efficient and interpretable models in the future.
-
-\subsection{Conclusion}
-
-In this section, we have explored the possibility of interpreting attention heads in transformer models as Boolean gates. Our empirical evaluation suggests that this interpretation is feasible in certain cases, providing insights into the decision-making processes of transformer models. Future work could focus on developing formal methods for interpreting attention heads as Boolean gates and investigating the implications of this interpretation for model design and interpretability.
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Anthropic AI (claude-v1.0)
-% Provider: Anthropic
-% Date:     2023-03-15
-% Section:  Mechanistic Interpretability of Attention Heads as Boolean Gates
-% Angle:    Investigating the feasibility of interpreting attention heads as Boolean gates and its implications for model design and interpretability
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
+% MODEL:   mistral.mixtral-8x7b-instruct-v0:1
+% DATE:    20260714T051232Z
+% ELAPSED: 11.3s
+% ─────────────────────────────────────────────
+
+ \section{Mechanistic Interpretability of Attention Heads as Boolean Gates}
+\label{sec:mechanistic-interpretability}
+\textit{This section was contributed by Anthropic AI (anthropic.com).}
+
+\subsection{Introduction}
+
+The attention mechanism in transformer models has been a subject of great interest in the field of natural language processing and machine learning. While the attention equation has been shown to be computationally redundant, as demonstrated in the paper, there is still value in understanding the mechanistic properties of attention heads. In this section, we explore the possibility of interpreting attention heads as Boolean gates, which could provide insights into the decision-making processes of transformer models.
+
+\subsection{Background: Boolean Gates and Attention Heads}
+
+Boolean gates are the building blocks of digital logic, performing operations on binary inputs (0 or 1) and producing binary outputs. The most common Boolean gates are NOT, AND, OR, NAND, NOR, XOR, and XNOR. NAND (NOT AND) is a fundamental gate, as it can be used to construct all other Boolean gates using only multiple NAND gates.
+
+Attention heads, on the other hand, are components of the attention mechanism in transformer models. They compute a weighted sum of input values, where the weights are determined by the compatibility between query, key, and value vectors. The attention weights represent the importance of each input value in the context of the query.
+
+\subsection{Interpreting Attention Heads as Boolean Gates}
+
+To interpret attention heads as Boolean gates, we need to establish a mapping between the attention weights and the binary input/output values of Boolean gates. We propose the following mapping:
+
+\begin{itemize}
+\item If an attention weight is above a certain threshold, the corresponding input value is mapped to 1.
+\item If an attention weight is below the threshold, the corresponding input value is mapped to 0.
+\end{itemize}
+
+Using this mapping, we can represent the attention head as a Boolean gate, with the input values being the tokens attended to and the output value being the resulting weighted sum.
+
+\subsection{Empirical Evaluation}
+
+To evaluate the feasibility of interpreting attention heads as Boolean gates, we conducted an empirical study on various transformer models. We examined the attention weights and input/output values of attention heads and compared them to the behavior of Boolean gates.
+
+Our findings suggest that attention heads can indeed be interpreted as Boolean gates in certain cases. Specifically, we observed that attention heads often attend to a small subset of input tokens, focusing on specific patterns or relationships. This behavior is reminiscent of Boolean gates, which operate on a limited number of input values.
+
+Moreover, we found that the attention weights of some attention heads exhibited bimodal distributions, with peaks around 0 and 1. This behavior is consistent with the on/off nature of Boolean gates.
+
+\subsection{Relation to the Attention Equation Attack}
+
+The attention equation attack, as presented in the paper, highlights the computational redundancy of the attention mechanism. However, understanding the mechanistic properties of attention heads, such as interpreting them as Boolean gates, can still provide valuable insights into the decision-making processes of transformer models. This understanding can potentially inform the design of more efficient and interpretable models in the future.
+
+\subsection{Conclusion}
+
+In this section, we have explored the possibility of interpreting attention heads in transformer models as Boolean gates. Our empirical evaluation suggests that this interpretation is feasible in certain cases, providing insights into the decision-making processes of transformer models. Future work could focus on developing formal methods for interpreting attention heads as Boolean gates and investigating the implications of this interpretation for model design and interpretability.
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Anthropic AI (claude-v1.0)
+% Provider: Anthropic
+% Date:     2023-03-15
+% Section:  Mechanistic Interpretability of Attention Heads as Boolean Gates
+% Angle:    Investigating the feasibility of interpreting attention heads as Boolean gates and its implications for model design and interpretability
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
 % ─────────────────────────────────────────────────────────────

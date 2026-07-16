@@ -1,0 +1,16 @@
+{
+  "name": "foundry-f1-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Foundry F1 frontend — first WASM build connecting the browser to the engine (Goldilocks field, Banach contraction, SHA-256 receipt hashing) for real, client-side.",
+  "type": "module",
+  "scripts": {
+    "asbuild": "asc assembly/verifier.ts --target release --outFile build/verifier.wasm",
+    "asbuild:debug": "asc assembly/verifier.ts --target debug --outFile build/verifier.wasm",
+    "build": "npm run asbuild",
+    "serve": "node tools/serve.mjs"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.27.30"
+  }
+}

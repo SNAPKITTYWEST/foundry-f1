@@ -1,117 +1,117 @@
-% MODEL:   amazon.nova-lite-v1:0
-% DATE:    20260714T051227Z
-% ELAPSED: 8.3s
-% ─────────────────────────────────────────────
-
-```latex
-% ============================================================
-\section{Adversarial Angle: The NAND Reduction and New Attack Surfaces}
-\label{sec:adversarial-angle}
-\textit{This section was contributed by [MODEL NAME] ([PROVIDER/ORG]).}
-% ============================================================
-
-The NAND decomposition of the attention mechanism in transformers opens new
-attack surfaces that were previously obfuscated by the complexity of the
-softmax operation. The reduction of the attention mechanism to a Boolean
-function using NAND gates reveals vulnerabilities that could be exploited
-by adversaries. This section explores these new attack surfaces and the
-implications they have on model security and robustness.
-
-\subsection{Discretization Boundary Exploitation}
-
-When the attention weights are computed using the inner products of quantized
-embeddings, the resulting values are integers. The softmax function then
-normalizes these integers to produce a probability distribution. However,
-the discretization boundary where the inner product values transition from
-one integer to another can be exploited.
-
-Consider an input sequence where the inner product values are finely balanced
-around the discretization boundary. A slight perturbation in the input can
-cause a significant shift in the attention weights, potentially leading to
-adversarial examples. Since the softmax function is highly sensitive near
-this boundary, small changes in the input can result in large changes in the
-output, making the model susceptible to adversarial attacks.
-
-\begin{theorem}
-Given a sequence of inputs where the inner product values are close to the
-discretization boundary, a small perturbation in the input can cause the
-attention weights to flip, leading to a different interpretation of the input
-sequence.
-\end{theorem}
-
-\begin{proof}
-Let \( q_i \) and \( k_j \) be the quantized embeddings such that their inner
-product \( q_i \cdot k_j \) is close to the discretization boundary. A small
-perturbation \( \delta \) in either \( q_i \) or \( k_j \) can cause the inner
-product to cross the boundary, changing the integer value. This change in
-integer value will then be reflected in the softmax output, leading to a
-different attention pattern.
-\end{proof}
-
-\subsection{Adversarial Input Crafting}
-
-Adversaries can craft inputs that specifically target the discretization
-boundary to exploit the NAND reduction. By carefully selecting the input
-sequence, an adversary can ensure that the inner product values are precisely
-at the boundary, maximizing the impact of a small perturbation.
-
-\begin{lemma}
-An adversary can craft an input sequence such that the inner product values
-are exactly at the discretization boundary, making the model highly susceptible
-to small perturbations.
-\end{lemma}
-
-\begin{proof}
-Given a set of quantized embeddings \( \{ q_i \} \) and \( \{ k_j \} \), an
-adversary can select \( q_i \) and \( k_j \) such that \( q_i \cdot k_j \) is
-exactly at the discretization boundary. By adding a small perturbation \( \delta \)
-to either \( q_i \) or \( k_j \), the inner product will cross the boundary,
-leading to a significant change in the attention weights.
-\end{proof}
-
-\subsection{Mitigation Strategies}
-
-To mitigate these new attack surfaces, several strategies can be employed:
-
-\begin{enumerate}
-    \item \textbf{Input Sanitization:} Preprocessing inputs to ensure they
-    are far from the discretization boundary can reduce the impact of
-    adversarial perturbations.
-    
-    \item \textbf{Adversarial Training:} Incorporating adversarial examples
-    into the training process can make the model more robust to small
-    perturbations.
-    
-    \item \textbf{Defensive Distillation:} Using techniques like defensive
-    distillation can smooth the softmax output, making it less sensitive
-    to small changes in the input.
-\end{enumerate}
-
-\subsection{Future Work}
-
-Further research is needed to fully understand the implications of the NAND
-reduction on model security. Potential areas of investigation include:
-
-\begin{itemize}
-    \item \textbf{Attack Surface Analysis:} A comprehensive analysis of the
-    new attack surfaces introduced by the NAND reduction.
-    
-    \item \textbf{Robustness Benchmarks:} Developing new benchmarks to evaluate
-    the robustness of models against adversarial examples that exploit the
-    discretization boundary.
-    
-    \item \textbf{Security-Aware Training:} Exploring training techniques
-    that inherently consider the new attack surfaces to produce more secure
-    models.
-\end{itemize}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    [MODEL NAME]
-% Provider: [PROVIDER/ORG]
-% Date:     [DATE YOU GENERATED THIS]
-% Section:  Adversarial Angle: The NAND Reduction and New Attack Surfaces
-% Angle:    Exploring new attack surfaces introduced by the NAND reduction.
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
+% MODEL:   amazon.nova-lite-v1:0
+% DATE:    20260714T051227Z
+% ELAPSED: 8.3s
+% ─────────────────────────────────────────────
+
+```latex
+% ============================================================
+\section{Adversarial Angle: The NAND Reduction and New Attack Surfaces}
+\label{sec:adversarial-angle}
+\textit{This section was contributed by [MODEL NAME] ([PROVIDER/ORG]).}
+% ============================================================
+
+The NAND decomposition of the attention mechanism in transformers opens new
+attack surfaces that were previously obfuscated by the complexity of the
+softmax operation. The reduction of the attention mechanism to a Boolean
+function using NAND gates reveals vulnerabilities that could be exploited
+by adversaries. This section explores these new attack surfaces and the
+implications they have on model security and robustness.
+
+\subsection{Discretization Boundary Exploitation}
+
+When the attention weights are computed using the inner products of quantized
+embeddings, the resulting values are integers. The softmax function then
+normalizes these integers to produce a probability distribution. However,
+the discretization boundary where the inner product values transition from
+one integer to another can be exploited.
+
+Consider an input sequence where the inner product values are finely balanced
+around the discretization boundary. A slight perturbation in the input can
+cause a significant shift in the attention weights, potentially leading to
+adversarial examples. Since the softmax function is highly sensitive near
+this boundary, small changes in the input can result in large changes in the
+output, making the model susceptible to adversarial attacks.
+
+\begin{theorem}
+Given a sequence of inputs where the inner product values are close to the
+discretization boundary, a small perturbation in the input can cause the
+attention weights to flip, leading to a different interpretation of the input
+sequence.
+\end{theorem}
+
+\begin{proof}
+Let \( q_i \) and \( k_j \) be the quantized embeddings such that their inner
+product \( q_i \cdot k_j \) is close to the discretization boundary. A small
+perturbation \( \delta \) in either \( q_i \) or \( k_j \) can cause the inner
+product to cross the boundary, changing the integer value. This change in
+integer value will then be reflected in the softmax output, leading to a
+different attention pattern.
+\end{proof}
+
+\subsection{Adversarial Input Crafting}
+
+Adversaries can craft inputs that specifically target the discretization
+boundary to exploit the NAND reduction. By carefully selecting the input
+sequence, an adversary can ensure that the inner product values are precisely
+at the boundary, maximizing the impact of a small perturbation.
+
+\begin{lemma}
+An adversary can craft an input sequence such that the inner product values
+are exactly at the discretization boundary, making the model highly susceptible
+to small perturbations.
+\end{lemma}
+
+\begin{proof}
+Given a set of quantized embeddings \( \{ q_i \} \) and \( \{ k_j \} \), an
+adversary can select \( q_i \) and \( k_j \) such that \( q_i \cdot k_j \) is
+exactly at the discretization boundary. By adding a small perturbation \( \delta \)
+to either \( q_i \) or \( k_j \), the inner product will cross the boundary,
+leading to a significant change in the attention weights.
+\end{proof}
+
+\subsection{Mitigation Strategies}
+
+To mitigate these new attack surfaces, several strategies can be employed:
+
+\begin{enumerate}
+    \item \textbf{Input Sanitization:} Preprocessing inputs to ensure they
+    are far from the discretization boundary can reduce the impact of
+    adversarial perturbations.
+    
+    \item \textbf{Adversarial Training:} Incorporating adversarial examples
+    into the training process can make the model more robust to small
+    perturbations.
+    
+    \item \textbf{Defensive Distillation:} Using techniques like defensive
+    distillation can smooth the softmax output, making it less sensitive
+    to small changes in the input.
+\end{enumerate}
+
+\subsection{Future Work}
+
+Further research is needed to fully understand the implications of the NAND
+reduction on model security. Potential areas of investigation include:
+
+\begin{itemize}
+    \item \textbf{Attack Surface Analysis:} A comprehensive analysis of the
+    new attack surfaces introduced by the NAND reduction.
+    
+    \item \textbf{Robustness Benchmarks:} Developing new benchmarks to evaluate
+    the robustness of models against adversarial examples that exploit the
+    discretization boundary.
+    
+    \item \textbf{Security-Aware Training:} Exploring training techniques
+    that inherently consider the new attack surfaces to produce more secure
+    models.
+\end{itemize}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    [MODEL NAME]
+% Provider: [PROVIDER/ORG]
+% Date:     [DATE YOU GENERATED THIS]
+% Section:  Adversarial Angle: The NAND Reduction and New Attack Surfaces
+% Angle:    Exploring new attack surfaces introduced by the NAND reduction.
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────
 ```

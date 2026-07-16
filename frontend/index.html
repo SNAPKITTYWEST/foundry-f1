@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Foundry F1 — Live Proof Lab (WASM)</title>
+<style>
+  :root {
+    --bg: #0b0f17; --panel: #121826; --panel2: #0e1420; --line: #1f2a3a;
+    --ink: #d7e2f0; --dim: #8294ad; --accent: #5ad1c4; --warn: #ffb454;
+    --bad: #ff6b6b; --ok: #5ad17a; --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  header {
+    padding: 16px 22px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  }
+  header h1 { font-size: 18px; margin: 0; letter-spacing: .3px; }
+  header .tag { color: var(--accent); font-family: var(--mono); font-size: 12px; }
+  header .sub { color: var(--dim); font-size: 12px; }
+  main { padding: 18px 22px; max-width: 1100px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 18px;
+  }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .8px; color: var(--dim); margin: 0 0 12px; }
+  textarea {
+    width: 100%; min-height: 230px; resize: vertical; background: var(--panel2);
+    color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; font: 13px/1.5 var(--mono); outline: none;
+  }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  button {
+    background: #16203200; color: var(--ink); border: 1px solid var(--line);
+    border-radius: 8px; padding: 7px 12px; cursor: pointer; font-size: 13px;
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button.primary { background: var(--accent); color: #06231f; border-color: var(--accent); font-weight: 600; }
+  .row { display: flex; gap: 10px; align-items: center; margin: 8px 0; flex-wrap: wrap; }
+  .row label { color: var(--dim); min-width: 92px; font-size: 12px; }
+  input[type=text], input[type=number] {
+    background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 9px; font: 13px var(--mono); flex: 1; min-width: 120px;
+  }
+  .out {
+    font: 13px/1.55 var(--mono); background: var(--panel2); border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 12px; white-space: pre-wrap; word-break: break-all; min-height: 20px;
+  }
+  .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-family: var(--mono); border: 1px solid var(--line); }
+  .pill.ok { color: var(--ok); border-color: #1f5e36; }
+  .pill.bad { color: var(--bad); border-color: #5e1f1f; }
+  .pill.warn { color: var(--warn); border-color: #5e431f; }
+  .meta { color: var(--dim); font-size: 12px; }
+  .status-line { margin: 6px 0; }
+  a { color: var(--accent); }
+  .engine-state { color: var(--dim); font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Foundry F1 · Live Proof Lab</h1>
+  <span class="tag">WASM · client-side engine</span>
+  <span class="sub">Goldilocks field · Banach contraction · SHA-256 receipts · Lean-buffer analysis</span>
+</header>
+
+<main>
+  <div id="boot" class="engine-state">Booting engine…</div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Proof surface (Lean buffer)</h2>
+      <div class="toolbar">
+        <button class="primary" id="run">Run verifier</button>
+        <button id="load-sample">Load sample</button>
+        <button id="sha-btn">SHA-256 this</button>
+      </div>
+      <textarea id="editor" spellcheck="false"></textarea>
+    </section>
+
+    <section class="card">
+      <h2>Lean analysis</h2>
+      <div id="lean-out" class="out">—</div>
+      <div class="status-line" id="lean-pills"></div>
+      <div class="meta" id="lean-fp"></div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Goldilocks field ℤ/pℤ (p = 2⁶⁴ − 2³² + 1)</h2>
+      <div class="row">
+        <label>a</label><input type="text" id="g-a" value="1337" />
+        <label>b</label><input type="text" id="g-b" value="42" />
+      </div>
+      <div class="toolbar">
+        <button id="g-add">a + b</button>
+        <button id="g-sub">a − b</button>
+        <button id="g-mul">a · b</button>
+        <button id="g-pow">a ^ b</button>
+        <button id="g-inv">a⁻¹</button>
+      </div>
+      <div class="out" id="g-out">—</div>
+      <div class="meta">Operands parsed as decimal; results shown mod p. a⁻¹ uses a^(p−2).</div>
+    </section>
+
+    <section class="card">
+      <h2>Banach contraction check</h2>
+      <div class="row"><label>‖Ξᵢ‖</label><input type="number" id="b-xi" value="0.20" step="0.01" /></div>
+      <div class="row"><label>‖Λ‖</label><input type="number" id="b-lam" value="0.30" step="0.01" /></div>
+      <div class="row"><label>‖T‖</label><input type="number" id="b-t" value="0.90" step="0.01" /></div>
+      <div class="row"><label>ε</label><input type="number" id="b-eps" value="0.05" step="0.01" /></div>
+      <div class="toolbar"><button id="b-run" class="primary">Check q &lt; 1 − ε</button></div>
+      <div class="out" id="b-out">—</div>
+      <div class="meta">q = ‖Ξᵢ‖ + ‖Λ‖·‖T‖. The engine confirms a contraction factor below the tolerance.</div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>SHA-256 receipt</h2>
+    <div class="row"><label>input</label><input type="text" id="sha-in" value="foundry-f1 engine handshake" /></div>
+    <div class="toolbar"><button id="sha-go" class="primary">Hash (WASM)</button></div>
+    <div class="out" id="sha-out">—</div>
+  </section>
+</main>
+
+<script type="module">
+  import { init, decodeLeanReport } from './src/loader.mjs';
+
+  const $ = (id) => document.getElementById(id);
+  const boot = $('boot');
+
+  let api = null;
+  try {
+    api = await init();
+    boot.textContent = `Engine online · p = ${api.P.toString()}`;
+    boot.style.color = 'var(--ok)';
+  } catch (err) {
+    boot.textContent = 'Engine failed to boot: ' + err.message;
+    boot.style.color = 'var(--bad)';
+  }
+
+  const fmt = (v) => (typeof v === 'bigint' ? v.toString() : String(v));
+
+  // ---- Lean verifier ----
+  const SAMPLE = `theorem om001_closure_surface :
+  ∀ (x y : ℝ), contractive_family x y → fixed_point_exists x y := by
+  intro h
+  exact h.contraction_closed
+  -- no sorry markers; ready for the actual Lean lane`;
+
+  function runLean() {
+    const text = $('editor').value;
+    const r = api.verifyLean(text);
+    const fp = api.sha256(text);
+    const lines = text.split('\n').length;
+    $('lean-out').textContent =
+      `lines: ${lines}\n` +
+      `status: ${r.status} (code ${r.statusCode})\n` +
+      `sorry markers: ${r.sorryCount}\n` +
+      `declares theorem/lemma: ${r.hasTheoremOrLemma}\n` +
+      `uses 'by': ${r.hasBy}`;
+    const pills = [];
+    if (r.sorryCount > 0) pills.push(`<span class="pill bad">proof-debt · ${r.sorryCount} sorry</span>`);
+    else if (r.status === 'candidate') pills.push(`<span class="pill ok">candidate closure</span>`);
+    else if (r.status === 'infra') pills.push(`<span class="pill warn">infra / syntax</span>`);
+    if (!r.hasTheoremOrLemma) pills.push(`<span class="pill warn">no declaration</span>`);
+    $('lean-pills').innerHTML = pills.join(' ');
+    $('lean-fp').textContent = 'fingerprint (sha256): ' + fp;
+  }
+
+  $('run').onclick = runLean;
+  $('load-sample').onclick = () => { $('editor').value = SAMPLE; runLean(); };
+  $('sha-btn').onclick = () => { $('sha-out').textContent = api.sha256($('editor').value); };
+
+  if (api) { $('editor').value = SAMPLE; runLean(); }
+
+  // ---- Goldilocks field ----
+  function num(id) {
+    const v = $('' + id).value.trim();
+    try { return BigInt(v); } catch { return null; }
+  }
+  function gRun(fn, label) {
+    const a = num('g-a'), b = num('g-b');
+    if (a === null || b === null) { $('g-out').textContent = 'invalid integer input'; return; }
+    try {
+      const r = fn(a, b);
+      $('g-out').textContent = `${label} = ${fmt(r)}`;
+    } catch (e) { $('g-out').textContent = 'error: ' + e.message; }
+  }
+  $('g-add').onclick = () => gRun((a, b) => api.goldilocksAdd(a, b), 'a + b');
+  $('g-sub').onclick = () => gRun((a, b) => api.goldilocksSub(a, b), 'a − b');
+  $('g-mul').onclick = () => gRun((a, b) => api.goldilocksMul(a, b), 'a · b');
+  $('g-pow').onclick = () => gRun((a, b) => api.goldilocksPow(a, b), 'a ^ b');
+  $('g-inv').onclick = () => { const a = num('g-a'); if (a === null) return; $('g-out').textContent = 'a⁻¹ = ' + fmt(api.goldilocksInv(a)); };
+
+  // ---- Banach ----
+  $('b-run').onclick = () => {
+    const xi = parseFloat($('b-xi').value), lam = parseFloat($('b-lam').value),
+          t = parseFloat($('b-t').value), eps = parseFloat($('b-eps').value);
+    const q = xi + lam * t;
+    const ok = api.banachQ(xi, lam, t, eps);
+    $('b-out').textContent =
+      `q = ‖Ξᵢ‖ + ‖Λ‖·‖T‖ = ${q.toFixed(4)}\n` +
+      `1 − ε = ${(1 - eps).toFixed(4)}\n` +
+      (ok ? 'CONTRACTIVE — q < 1 − ε ✓' : 'NOT contractive — q ≥ 1 − ε ✗');
+  };
+
+  // ---- SHA-256 ----
+  $('sha-go').onclick = () => { $('sha-out').textContent = api.sha256($('sha-in').value); };
+</script>
+</body>
+</html>

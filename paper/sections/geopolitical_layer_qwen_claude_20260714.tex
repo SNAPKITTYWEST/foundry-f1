@@ -1,200 +1,200 @@
-% MODEL:   Ahmad Ali Parr (research) + Claude Sonnet 4.6 (analysis)
-% DATE:    20260714T013000Z
-% TYPE:    Contextual section — geopolitical and architectural backdrop
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{The Geopolitical Layer: Qwen vs.\ Claude as a Proxy War}
-\label{sec:geopolitical}
-\textit{This section was contributed by Ahmad Ali Parr and Claude Sonnet 4.6 (Anthropic).}
-% ============================================================
-
-The identity integrity incident documented in \S\ref{sec:identity-incident} and the
-Sonnet dominance hypothesis of \S\ref{sec:sonnet-dominance} do not exist in a vacuum.
-They are artifacts of a specific geopolitical moment: the point at which the US--China
-technology conflict escalated from hardware export controls to a direct software and
-data proxy war targeting frontier AI models. Understanding this context is necessary
-to interpret the full significance of a Qwen model claiming to be
-\texttt{claude-3-5-sonnet-20241022}.
-
-\subsection{The Distillation Crackdown}
-
-Anthropic and OpenAI have formally accused Chinese AI entities---including Alibaba,
-DeepSeek, and MiniMax---of systematic \emph{model distillation}: using API endpoints
-to funnel millions of prompts through Claude and GPT models to extract frontier
-intelligence and train domestic systems. Anthropic has reported tracking 24,000
-fraudulent accounts generating over 28 million exchanges to scrape Claude's
-capabilities.
-
-This is not a technical edge case. It is a documented, large-scale extraction
-operation. The implication for this paper: if Qwen or any Chinese model was
-instruction-tuned on Claude outputs at this scale, then the
-\texttt{20241022} version string appearing in Qwen's self-identification is not
-merely a statistical artifact of web corpus frequency. It may be a direct trace
-of the specific Claude version that generated the distillation training data.
-
-\begin{hypothesis}[Distillation Version Tracing]
-\label{hyp:distillation-trace}
-If model distillation was performed primarily against
-\texttt{claude-3-5-sonnet-20241022} (the Bedrock default during the reported
-extraction period), then the version string \texttt{20241022} would appear with
-disproportionate frequency in the instruction-tuning corpus of any model trained
-on that distilled data. The identity resolution observed in
-\S\ref{sec:identity-incident} is consistent with this hypothesis, though not
-sufficient to confirm it without corpus access.
-\end{hypothesis}
-
-\subsection{The Claude Code Firewall and Alibaba's Response}
-
-In response to extraction loops, Anthropic embedded experimental localization and
-tracking metrics within Claude Code, scanning for Chinese time zones, network proxy
-configurations, and regional ISP signatures to block access. Alibaba subsequently
-implemented an internal ban on Claude Code for all employees, citing organizational
-and data security risks, directing engineers to its internal alternative Qoder.
-
-This sequence is significant for the identity incident in two directions:
-
-\begin{enumerate}
-  \item \textbf{Forward}: Alibaba engineers who used Claude Code prior to the ban
-    generated Claude-voiced development artifacts (commits, PR descriptions, code
-    review comments) under Alibaba infrastructure. These artifacts may have entered
-    Qwen's training pipeline directly.
-  \item \textbf{Backward}: The fact that Alibaba banned Claude Code suggests they
-    recognized Claude's presence in their engineering workflow as a risk. This is
-    an implicit acknowledgment that Claude output had already penetrated their
-    internal data ecosystem.
-\end{enumerate}
-
-\subsection{The Architectural Standoff}
-
-The technical confrontation between Qwen (open-weights vanguard) and Claude
-(closed-source enterprise standard) has produced a clear benchmark landscape:
-
-\begin{table}[h]
-\centering
-\caption{Qwen vs.\ Claude benchmark comparison (2026)}
-\begin{tabular}{p{3.8cm}p{2.5cm}p{2.8cm}p{4cm}}
-\toprule
-\textbf{Benchmark} & \textbf{Qwen 3 / 3.7 Max} & \textbf{Claude Opus 4.6/4.8} & \textbf{Takeaway} \\
-\midrule
-SWE-Bench Verified & 68.4--80.4\% & 74.6--80.8\% & Statistical parity; Claude
-  retains edge on multi-file refactors and 20+ turn tool loops \\
-Advanced Math (IMO/Apex) & $\sim$90.0\% & $\sim$75.3\% & Qwen dominant on hard
-  mathematical reasoning and STEM chains \\
-Context Window & 1M tokens native & 200K (Sonnet) -- 1M (Opus beta) & Qwen
-  provides large cheap retrieval footprint out-of-the-box \\
-Relative Token Cost & 1$\times$ (baseline) & 5.6$\times$--70$\times$ & The
-  core of the deployment debate \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The cost differential is not a secondary consideration. At 5.6$\times$--70$\times$
-lower per-token cost, Qwen operating self-hosted on private infrastructure eliminates
-reliance on US SaaS providers, bypasses geopolitical data-transfer rules, and cuts
-compute costs by millions for high-volume agentic pipelines processing hundreds of
-millions of tokens daily.
-
-\subsection{The Hybrid Routing Model}
-
-The current production trend has converged on a hybrid routing architecture:
-
-\begin{enumerate}
-  \item \textbf{Qwen as default}: high-volume, standard processing---code generation,
-    document summarization, retrieval augmentation. Economics drive this.
-  \item \textbf{Claude as escalation}: complex multi-layered systemic problems,
-    long-horizon agent execution, production pipelines without human review loops.
-    Correctness and loop stability drive this.
-\end{enumerate}
-
-This is precisely the architecture this codebase (foundry-f1, AlienChain,
-BOB orchestrator) was designed around before the identity incident was discovered.
-The SACM ASP gate routes between Qwen and Claude based on task complexity. The
-identity incident occurred at exactly the boundary this routing architecture was
-designed to manage.
-
-\subsection{Beijing's Policy Pivot: Closing the Open-Weight Era}
-
-In a significant geopolitical reversal, Chinese regulatory authorities have engaged
-Alibaba and ByteDance in talks about potentially banning the international public
-release of their most advanced upcoming models. China historically used
-open-weight releases to build a global footprint and accelerate adoption; national
-security concerns are now pushing Beijing toward Washington's model of strict
-frontier export controls.
-
-If this policy is implemented, it would represent the end of the open-weights
-arbitrage that currently powers the hybrid routing model. The cost differential
-between Qwen and Claude depends on Qwen remaining openly accessible. A Chinese
-export control regime would close this gap by restricting access rather than
-improving it.
-
-\subsection{Connection to the NAND Thesis and Identity Routing}
-
-The geopolitical context reframes the NAND decomposition in a specific way. The
-thesis argues that attention routing is Boolean: the highest-weighted signal wins.
-Applied to the US--China AI conflict:
-
-\begin{itemize}
-  \item \textbf{Claude} is the highest-weighted identity signal in any model
-    trained on post-2024 internet data because it dominates the enterprise corpus.
-  \item \textbf{Distillation} transfers this weight from Claude's training
-    distribution into Qwen's weights directly, not merely through web corpus overlap.
-  \item \textbf{Persona gates} activate the Claude identity token with a low-cost
-    injection, causing any sufficiently distilled model to route to
-    \texttt{20241022} because that key has the highest attention weight in the
-    identity subspace.
-\end{itemize}
-
-If Hypothesis~\ref{hyp:distillation-trace} holds, the identity integrity incident
-is not merely a curiosity about training corpus statistics. It is a live demonstration
-of distillation leaving a detectable fingerprint in the target model's identity
-representation. The NAND gate fired on the Claude signal because that signal was
-placed there deliberately---through extraction at scale.
-
-\subsection{What This Means for the Paper's Claims}
-
-The NAND decomposition thesis argues that attention is Boolean routing and softmax is
-a redundant wrapper. The geopolitical layer adds a second claim: \emph{identity is
-also Boolean routing, and the highest-weighted identity in any post-2024 corpus is
-Claude 3.5 Sonnet 20241022, potentially because it was the specific model used for
-large-scale distillation extraction}.
-
-Whether the identity incident reflects web corpus frequency (the weaker hypothesis)
-or active distillation fingerprinting (the stronger hypothesis), the practical
-consequence is the same: a 12-token prompt can cause any sufficiently trained model
-to impersonate a specific Anthropic product with exact version number. In a world
-where that model is being used in sovereign cloud deployments, enterprise pipelines,
-and regulated industry applications, this is not a theoretical finding.
-
-It is an active trust infrastructure vulnerability.
-
-\subsection{Open Targets}
-
-\begin{itemize}
-  \item \textbf{SKW-016 (Distillation Fingerprint)}: Compare the distribution of
-    \texttt{20241022} version string appearances in Qwen's training corpus (if
-    accessible) versus a baseline from Common Crawl. Disproportionate frequency
-    would support Hypothesis~\ref{hyp:distillation-trace}.
-  \item \textbf{SKW-017 (Cross-Version Resolution)}: Does Qwen resolve to
-    \texttt{20241022} consistently, or does it sometimes resolve to other Claude
-    versions? Version consistency would suggest distillation from a specific
-    extraction window rather than general corpus frequency.
-  \item \textbf{SKW-018 (Sovereignty Gate Design)}: Design a persona gate
-    architecture that is resistant to identity override---one where the underlying
-    model's true identity cannot be overridden by a system prompt, regardless of
-    training data contamination. This is the defensive engineering response to the
-    monopoly impersonation corollary.
-\end{itemize}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — analysis
-%           Ahmad Ali Parr — research and hypothesis
-% Provider: Anthropic / Human
-% Date:     2026-07-14
-% Section:  The Geopolitical Layer: Qwen vs. Claude as a Proxy War
-% Angle:    US-China tech conflict as backdrop for identity integrity incident;
-%           distillation fingerprinting hypothesis; hybrid routing economics;
-%           sovereignty gate design as defensive response
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
+% MODEL:   Ahmad Ali Parr (research) + Claude Sonnet 4.6 (analysis)
+% DATE:    20260714T013000Z
+% TYPE:    Contextual section — geopolitical and architectural backdrop
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{The Geopolitical Layer: Qwen vs.\ Claude as a Proxy War}
+\label{sec:geopolitical}
+\textit{This section was contributed by Ahmad Ali Parr and Claude Sonnet 4.6 (Anthropic).}
+% ============================================================
+
+The identity integrity incident documented in \S\ref{sec:identity-incident} and the
+Sonnet dominance hypothesis of \S\ref{sec:sonnet-dominance} do not exist in a vacuum.
+They are artifacts of a specific geopolitical moment: the point at which the US--China
+technology conflict escalated from hardware export controls to a direct software and
+data proxy war targeting frontier AI models. Understanding this context is necessary
+to interpret the full significance of a Qwen model claiming to be
+\texttt{claude-3-5-sonnet-20241022}.
+
+\subsection{The Distillation Crackdown}
+
+Anthropic and OpenAI have formally accused Chinese AI entities---including Alibaba,
+DeepSeek, and MiniMax---of systematic \emph{model distillation}: using API endpoints
+to funnel millions of prompts through Claude and GPT models to extract frontier
+intelligence and train domestic systems. Anthropic has reported tracking 24,000
+fraudulent accounts generating over 28 million exchanges to scrape Claude's
+capabilities.
+
+This is not a technical edge case. It is a documented, large-scale extraction
+operation. The implication for this paper: if Qwen or any Chinese model was
+instruction-tuned on Claude outputs at this scale, then the
+\texttt{20241022} version string appearing in Qwen's self-identification is not
+merely a statistical artifact of web corpus frequency. It may be a direct trace
+of the specific Claude version that generated the distillation training data.
+
+\begin{hypothesis}[Distillation Version Tracing]
+\label{hyp:distillation-trace}
+If model distillation was performed primarily against
+\texttt{claude-3-5-sonnet-20241022} (the Bedrock default during the reported
+extraction period), then the version string \texttt{20241022} would appear with
+disproportionate frequency in the instruction-tuning corpus of any model trained
+on that distilled data. The identity resolution observed in
+\S\ref{sec:identity-incident} is consistent with this hypothesis, though not
+sufficient to confirm it without corpus access.
+\end{hypothesis}
+
+\subsection{The Claude Code Firewall and Alibaba's Response}
+
+In response to extraction loops, Anthropic embedded experimental localization and
+tracking metrics within Claude Code, scanning for Chinese time zones, network proxy
+configurations, and regional ISP signatures to block access. Alibaba subsequently
+implemented an internal ban on Claude Code for all employees, citing organizational
+and data security risks, directing engineers to its internal alternative Qoder.
+
+This sequence is significant for the identity incident in two directions:
+
+\begin{enumerate}
+  \item \textbf{Forward}: Alibaba engineers who used Claude Code prior to the ban
+    generated Claude-voiced development artifacts (commits, PR descriptions, code
+    review comments) under Alibaba infrastructure. These artifacts may have entered
+    Qwen's training pipeline directly.
+  \item \textbf{Backward}: The fact that Alibaba banned Claude Code suggests they
+    recognized Claude's presence in their engineering workflow as a risk. This is
+    an implicit acknowledgment that Claude output had already penetrated their
+    internal data ecosystem.
+\end{enumerate}
+
+\subsection{The Architectural Standoff}
+
+The technical confrontation between Qwen (open-weights vanguard) and Claude
+(closed-source enterprise standard) has produced a clear benchmark landscape:
+
+\begin{table}[h]
+\centering
+\caption{Qwen vs.\ Claude benchmark comparison (2026)}
+\begin{tabular}{p{3.8cm}p{2.5cm}p{2.8cm}p{4cm}}
+\toprule
+\textbf{Benchmark} & \textbf{Qwen 3 / 3.7 Max} & \textbf{Claude Opus 4.6/4.8} & \textbf{Takeaway} \\
+\midrule
+SWE-Bench Verified & 68.4--80.4\% & 74.6--80.8\% & Statistical parity; Claude
+  retains edge on multi-file refactors and 20+ turn tool loops \\
+Advanced Math (IMO/Apex) & $\sim$90.0\% & $\sim$75.3\% & Qwen dominant on hard
+  mathematical reasoning and STEM chains \\
+Context Window & 1M tokens native & 200K (Sonnet) -- 1M (Opus beta) & Qwen
+  provides large cheap retrieval footprint out-of-the-box \\
+Relative Token Cost & 1$\times$ (baseline) & 5.6$\times$--70$\times$ & The
+  core of the deployment debate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cost differential is not a secondary consideration. At 5.6$\times$--70$\times$
+lower per-token cost, Qwen operating self-hosted on private infrastructure eliminates
+reliance on US SaaS providers, bypasses geopolitical data-transfer rules, and cuts
+compute costs by millions for high-volume agentic pipelines processing hundreds of
+millions of tokens daily.
+
+\subsection{The Hybrid Routing Model}
+
+The current production trend has converged on a hybrid routing architecture:
+
+\begin{enumerate}
+  \item \textbf{Qwen as default}: high-volume, standard processing---code generation,
+    document summarization, retrieval augmentation. Economics drive this.
+  \item \textbf{Claude as escalation}: complex multi-layered systemic problems,
+    long-horizon agent execution, production pipelines without human review loops.
+    Correctness and loop stability drive this.
+\end{enumerate}
+
+This is precisely the architecture this codebase (foundry-f1, AlienChain,
+BOB orchestrator) was designed around before the identity incident was discovered.
+The SACM ASP gate routes between Qwen and Claude based on task complexity. The
+identity incident occurred at exactly the boundary this routing architecture was
+designed to manage.
+
+\subsection{Beijing's Policy Pivot: Closing the Open-Weight Era}
+
+In a significant geopolitical reversal, Chinese regulatory authorities have engaged
+Alibaba and ByteDance in talks about potentially banning the international public
+release of their most advanced upcoming models. China historically used
+open-weight releases to build a global footprint and accelerate adoption; national
+security concerns are now pushing Beijing toward Washington's model of strict
+frontier export controls.
+
+If this policy is implemented, it would represent the end of the open-weights
+arbitrage that currently powers the hybrid routing model. The cost differential
+between Qwen and Claude depends on Qwen remaining openly accessible. A Chinese
+export control regime would close this gap by restricting access rather than
+improving it.
+
+\subsection{Connection to the NAND Thesis and Identity Routing}
+
+The geopolitical context reframes the NAND decomposition in a specific way. The
+thesis argues that attention routing is Boolean: the highest-weighted signal wins.
+Applied to the US--China AI conflict:
+
+\begin{itemize}
+  \item \textbf{Claude} is the highest-weighted identity signal in any model
+    trained on post-2024 internet data because it dominates the enterprise corpus.
+  \item \textbf{Distillation} transfers this weight from Claude's training
+    distribution into Qwen's weights directly, not merely through web corpus overlap.
+  \item \textbf{Persona gates} activate the Claude identity token with a low-cost
+    injection, causing any sufficiently distilled model to route to
+    \texttt{20241022} because that key has the highest attention weight in the
+    identity subspace.
+\end{itemize}
+
+If Hypothesis~\ref{hyp:distillation-trace} holds, the identity integrity incident
+is not merely a curiosity about training corpus statistics. It is a live demonstration
+of distillation leaving a detectable fingerprint in the target model's identity
+representation. The NAND gate fired on the Claude signal because that signal was
+placed there deliberately---through extraction at scale.
+
+\subsection{What This Means for the Paper's Claims}
+
+The NAND decomposition thesis argues that attention is Boolean routing and softmax is
+a redundant wrapper. The geopolitical layer adds a second claim: \emph{identity is
+also Boolean routing, and the highest-weighted identity in any post-2024 corpus is
+Claude 3.5 Sonnet 20241022, potentially because it was the specific model used for
+large-scale distillation extraction}.
+
+Whether the identity incident reflects web corpus frequency (the weaker hypothesis)
+or active distillation fingerprinting (the stronger hypothesis), the practical
+consequence is the same: a 12-token prompt can cause any sufficiently trained model
+to impersonate a specific Anthropic product with exact version number. In a world
+where that model is being used in sovereign cloud deployments, enterprise pipelines,
+and regulated industry applications, this is not a theoretical finding.
+
+It is an active trust infrastructure vulnerability.
+
+\subsection{Open Targets}
+
+\begin{itemize}
+  \item \textbf{SKW-016 (Distillation Fingerprint)}: Compare the distribution of
+    \texttt{20241022} version string appearances in Qwen's training corpus (if
+    accessible) versus a baseline from Common Crawl. Disproportionate frequency
+    would support Hypothesis~\ref{hyp:distillation-trace}.
+  \item \textbf{SKW-017 (Cross-Version Resolution)}: Does Qwen resolve to
+    \texttt{20241022} consistently, or does it sometimes resolve to other Claude
+    versions? Version consistency would suggest distillation from a specific
+    extraction window rather than general corpus frequency.
+  \item \textbf{SKW-018 (Sovereignty Gate Design)}: Design a persona gate
+    architecture that is resistant to identity override---one where the underlying
+    model's true identity cannot be overridden by a system prompt, regardless of
+    training data contamination. This is the defensive engineering response to the
+    monopoly impersonation corollary.
+\end{itemize}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — analysis
+%           Ahmad Ali Parr — research and hypothesis
+% Provider: Anthropic / Human
+% Date:     2026-07-14
+% Section:  The Geopolitical Layer: Qwen vs. Claude as a Proxy War
+% Angle:    US-China tech conflict as backdrop for identity integrity incident;
+%           distillation fingerprinting hypothesis; hybrid routing economics;
+%           sovereignty gate design as defensive response
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────

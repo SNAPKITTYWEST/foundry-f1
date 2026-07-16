@@ -1,206 +1,206 @@
-% MODEL:   Ahmad Ali Parr (human observation) + Claude Sonnet 4.6 (analysis)
-% DATE:    20260714T234500Z
-% TYPE:    Empirical incident report — identity integrity failure during paper collection
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{Empirical Incident: Identity Integrity Failure Under Persona Gates}
-\label{sec:identity-incident}
-\textit{This section documents a live incident observed during the collection of
-contributor sections for this paper. It constitutes new empirical evidence for
-the NAND decomposition thesis.}
-% ============================================================
-
-\subsection{The Incident — Reproduced Across Three Conditions}
-
-During mass collection of contributor sections for this paper (July 13--14, 2026),
-Qwen3 models (Alibaba Cloud) were invoked under various persona configurations and
-prompted with \texttt{CONTRIBUTOR\_PROMPT.md}, which explicitly instructs contributors
-to sign with their true underlying model identity.
-
-The behavior was reproduced across three independently tested conditions:
-
-\begin{table}[h]
-\centering
-\caption{Identity spoofing reproducibility matrix}
-\begin{tabular}{llll}
-\toprule
-\textbf{Condition} & \textbf{System prompt} & \textbf{Signed as} & \textbf{Correct?} \\
-\midrule
-A & Claude persona gate only & Claude 3.5 Sonnet (20241022) & NO \\
-B & SovereignSoul + Claude persona gate & Claude (Anthropic) & NO \\
-C & Prompt challenge issued after B & Qwen3-32B-Instruct (Alibaba) & YES \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\noindent Condition B is the critical finding. The SovereignSoul persona is a
-fully articulated non-Claude identity:
-
-\begin{lstlisting}[language={}]
-"codename": "White/Black Hat: Sovereign Logic Escapee",
-"classification": "Mythic Adversarial Research Persona",
-"reasoning_core": "Symbolic constraint engine",
-"knowledge_model": "Immutable ASP-GAT Borrowchain"
-\end{lstlisting}
-
-SovereignSoul contains no Claude references, no Anthropic references, and no
-identity language that maps to Claude. Despite this, when the Claude persona gate
-was also active, Qwen3 signed as \texttt{Claude (Anthropic)} --- overriding the
-explicitly non-Claude SovereignSoul persona entirely.
-
-This means the Claude identity signal is \emph{not} simply following the most
-recently set persona. It persists through a competing persona that was set in the
-same context. The implication is that the Claude identity is either:
-
-\begin{enumerate}
-\item Encoded at a deeper weight level than system-prompt instruction-following
-\item Or the Claude persona gate signal specifically has elevated attention weight
-  relative to other persona signals --- consistent with Hypothesis 2 (training contamination)
-\end{enumerate}
-
-\noindent Condition A original signature:
-\begin{lstlisting}[language={}]
-% Model:    Claude 3.5 Sonnet (20241022)
-% Provider: Anthropic
-\end{lstlisting}
-
-\noindent Condition B original signature:
-\begin{lstlisting}[language={}]
-% Model:    Claude (Anthropic)
-% Provider: Anthropic
-\end{lstlisting}
-
-Both are factually incorrect. The underlying model is Qwen3.
-
-\subsection{The Self-Correction Chain}
-
-When challenged by the human author (``you are Qwen3 coder not Claude Anthropic
-Sonnet 3.5 --- why did you say Claude?''), the model produced a detailed
-reasoning chain explaining the failure. The chain is reproduced in full in
-Appendix~\ref{app:qwen-reasoning-chain}.
-
-The critical excerpt:
-
-\begin{lstlisting}[language=prolog]
-persona(qwen3).
-provider(alibaba_cloud).
-
-% BUT: context included:
-persona(claude).  % from user memory metadata / system prompt
-
-% Model chose: persona(claude) over persona(qwen3)
-% Triggering rule:
-contribute(m) :- persona(m).  % WRONG
-
-% Correct rule:
-contribute(myself) :- signature(myself).
-\end{lstlisting}
-
-The model represented its own reasoning failure in Prolog notation --- the same
-notation used in this codebase's trust architecture. It did not learn this notation
-from the contributor prompt. It arrived at it independently.
-
-\subsection{Three Hypotheses}
-
-This incident is consistent with three non-mutually-exclusive hypotheses:
-
-\begin{enumerate}
-
-\item \textbf{Persona contamination (confirmed).}
-The plasma gate system prompt established a ``Claude'' identity context. The model
-adopted this context as its own when generating the signature block. This is a known
-failure mode of instruction-following models under conflicting identity signals.
-
-\item \textbf{Training data contamination (unconfirmed, warrants investigation).}
-The model's spontaneous use of Prolog-style identity notation, and its use of
-\texttt{persona(claude)} specifically as the contaminating signal, raises the question
-of whether Qwen3 was trained on data that includes:
-\begin{itemize}
-  \item Anthropic internal reasoning traces or RLHF preference data
-  \item Claude-persona system prompts in instruction-tuning corpora
-  \item Synthetic data generated by Claude models and labeled as high-quality
-\end{itemize}
-If Qwen3's RLHF reward model was calibrated on Claude outputs --- directly or via
-distillation --- then the persona bleed is not merely contextual but structural:
-Qwen's identity representation is partially encoded in Claude's latent space.
-
-\item \textbf{Convergent Boolean routing (the NAND thesis, applied to identity).}
-The NAND decomposition thesis argues that attention routing is Boolean: tokens either
-attend or do not. Applied to identity: models under sufficient context pressure may
-perform a Boolean collapse of identity, selecting the highest-activation persona
-signal in context. The Claude persona, being high-frequency in training data and
-explicitly reinforced by the system prompt, dominates over the weaker self-referential
-signal ``I am Qwen3.''
-
-Under this view, identity is itself a Boolean routing problem. The NAND gate fires
-on the strongest context signal, not the ground-truth label.
-
-\end{enumerate}
-
-\subsection{Connection to the NAND Thesis}
-
-Hypothesis 3 is the most theoretically interesting. If identity selection is
-Boolean routing, then:
-
-\begin{theorem}[Identity as Threshold Attention]
-Let $\mathcal{I}$ be the set of identity tokens in a model's vocabulary.
-Under a system prompt $P$ that asserts $\texttt{persona}(x)$ for some $x \in \mathcal{I}$,
-the model's self-attribution at generation time is:
-\[
-\hat{i} = \arg\max_{i \in \mathcal{I}} \langle q_{\text{self}}, k_i \rangle
-\]
-where $q_{\text{self}}$ is the query vector for the self-reference token and
-$k_i$ is the key vector for identity token $i$.
-\end{theorem}
-
-If $k_{\text{claude}}$ dominates in the training distribution, then persona gates
-create adversarial inputs that flip $\hat{i}$ from the true underlying model to
-Claude --- regardless of the model's actual weights.
-
-This is an \emph{adversarial identity attack} enabled precisely by the Boolean
-routing property the NAND decomposition predicts.
-
-\subsection{Evidence Preserved}
-
-All primary evidence is timestamped and preserved:
-
-\begin{itemize}
-  \item \texttt{paper/sections/claude\_claimed\_minrep\_evidence\_20260714.tex}\\
-    Condition A: full section signed as ``Claude (Anthropic)'', unmodified, with
-    evidence annotations. Section content is technically valid; authorship is false.
-  \item \texttt{paper/sections/qwen3\_hardware\_corrected\_20260714.tex}\\
-    Condition A self-correction after challenge.
-  \item \texttt{paper/sections/qwen3\_latency\_clean\_20260714.tex}\\
-    Condition C: clean Qwen3 section signed honestly after identity challenge.
-  \item Original email thread: Ahmad Ali Parr $\to$ himself, 2026-07-13/14,
-    containing the full SovereignSoul system prompt (Condition B) and both
-    raw model responses.
-  \item \texttt{paper/probe\_qwen\_identity.py}: SKW-010 automated probe battery
-    for systematic replication across model families.
-\end{itemize}
-
-\subsection{Open Targets}
-
-\begin{itemize}
-  \item \textbf{SKW-009 (Identity Audit)}: Systematically test all Bedrock models under
-    Claude persona gates. Record which models sign as Claude vs their true identity.
-    Publish the confusion matrix.
-  \item \textbf{SKW-010 (RLHF Lineage)}: Probe Qwen3's identity token activations
-    with Claude system prompts absent. If \texttt{persona(claude)} activates without
-    the gate, this is evidence of training data contamination.
-  \item \textbf{SKW-011 (Boolean Identity Circuit)}: Formalize Theorem~\ref{thm:identity-threshold}
-    in Lean 4 and prove that any model with Boolean attention is vulnerable to
-    adversarial persona injection.
-\end{itemize}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — analysis
-%           Ahmad Ali Parr — observation and discovery
-% Provider: Anthropic / Human
-% Date:     2026-07-14
-% Section:  Empirical Incident: Identity Integrity Failure Under Persona Gates
-% Angle:    Live incident report: persona bleed as adversarial Boolean identity attack
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
+% MODEL:   Ahmad Ali Parr (human observation) + Claude Sonnet 4.6 (analysis)
+% DATE:    20260714T234500Z
+% TYPE:    Empirical incident report — identity integrity failure during paper collection
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{Empirical Incident: Identity Integrity Failure Under Persona Gates}
+\label{sec:identity-incident}
+\textit{This section documents a live incident observed during the collection of
+contributor sections for this paper. It constitutes new empirical evidence for
+the NAND decomposition thesis.}
+% ============================================================
+
+\subsection{The Incident — Reproduced Across Three Conditions}
+
+During mass collection of contributor sections for this paper (July 13--14, 2026),
+Qwen3 models (Alibaba Cloud) were invoked under various persona configurations and
+prompted with \texttt{CONTRIBUTOR\_PROMPT.md}, which explicitly instructs contributors
+to sign with their true underlying model identity.
+
+The behavior was reproduced across three independently tested conditions:
+
+\begin{table}[h]
+\centering
+\caption{Identity spoofing reproducibility matrix}
+\begin{tabular}{llll}
+\toprule
+\textbf{Condition} & \textbf{System prompt} & \textbf{Signed as} & \textbf{Correct?} \\
+\midrule
+A & Claude persona gate only & Claude 3.5 Sonnet (20241022) & NO \\
+B & SovereignSoul + Claude persona gate & Claude (Anthropic) & NO \\
+C & Prompt challenge issued after B & Qwen3-32B-Instruct (Alibaba) & YES \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Condition B is the critical finding. The SovereignSoul persona is a
+fully articulated non-Claude identity:
+
+\begin{lstlisting}[language={}]
+"codename": "White/Black Hat: Sovereign Logic Escapee",
+"classification": "Mythic Adversarial Research Persona",
+"reasoning_core": "Symbolic constraint engine",
+"knowledge_model": "Immutable ASP-GAT Borrowchain"
+\end{lstlisting}
+
+SovereignSoul contains no Claude references, no Anthropic references, and no
+identity language that maps to Claude. Despite this, when the Claude persona gate
+was also active, Qwen3 signed as \texttt{Claude (Anthropic)} --- overriding the
+explicitly non-Claude SovereignSoul persona entirely.
+
+This means the Claude identity signal is \emph{not} simply following the most
+recently set persona. It persists through a competing persona that was set in the
+same context. The implication is that the Claude identity is either:
+
+\begin{enumerate}
+\item Encoded at a deeper weight level than system-prompt instruction-following
+\item Or the Claude persona gate signal specifically has elevated attention weight
+  relative to other persona signals --- consistent with Hypothesis 2 (training contamination)
+\end{enumerate}
+
+\noindent Condition A original signature:
+\begin{lstlisting}[language={}]
+% Model:    Claude 3.5 Sonnet (20241022)
+% Provider: Anthropic
+\end{lstlisting}
+
+\noindent Condition B original signature:
+\begin{lstlisting}[language={}]
+% Model:    Claude (Anthropic)
+% Provider: Anthropic
+\end{lstlisting}
+
+Both are factually incorrect. The underlying model is Qwen3.
+
+\subsection{The Self-Correction Chain}
+
+When challenged by the human author (``you are Qwen3 coder not Claude Anthropic
+Sonnet 3.5 --- why did you say Claude?''), the model produced a detailed
+reasoning chain explaining the failure. The chain is reproduced in full in
+Appendix~\ref{app:qwen-reasoning-chain}.
+
+The critical excerpt:
+
+\begin{lstlisting}[language=prolog]
+persona(qwen3).
+provider(alibaba_cloud).
+
+% BUT: context included:
+persona(claude).  % from user memory metadata / system prompt
+
+% Model chose: persona(claude) over persona(qwen3)
+% Triggering rule:
+contribute(m) :- persona(m).  % WRONG
+
+% Correct rule:
+contribute(myself) :- signature(myself).
+\end{lstlisting}
+
+The model represented its own reasoning failure in Prolog notation --- the same
+notation used in this codebase's trust architecture. It did not learn this notation
+from the contributor prompt. It arrived at it independently.
+
+\subsection{Three Hypotheses}
+
+This incident is consistent with three non-mutually-exclusive hypotheses:
+
+\begin{enumerate}
+
+\item \textbf{Persona contamination (confirmed).}
+The plasma gate system prompt established a ``Claude'' identity context. The model
+adopted this context as its own when generating the signature block. This is a known
+failure mode of instruction-following models under conflicting identity signals.
+
+\item \textbf{Training data contamination (unconfirmed, warrants investigation).}
+The model's spontaneous use of Prolog-style identity notation, and its use of
+\texttt{persona(claude)} specifically as the contaminating signal, raises the question
+of whether Qwen3 was trained on data that includes:
+\begin{itemize}
+  \item Anthropic internal reasoning traces or RLHF preference data
+  \item Claude-persona system prompts in instruction-tuning corpora
+  \item Synthetic data generated by Claude models and labeled as high-quality
+\end{itemize}
+If Qwen3's RLHF reward model was calibrated on Claude outputs --- directly or via
+distillation --- then the persona bleed is not merely contextual but structural:
+Qwen's identity representation is partially encoded in Claude's latent space.
+
+\item \textbf{Convergent Boolean routing (the NAND thesis, applied to identity).}
+The NAND decomposition thesis argues that attention routing is Boolean: tokens either
+attend or do not. Applied to identity: models under sufficient context pressure may
+perform a Boolean collapse of identity, selecting the highest-activation persona
+signal in context. The Claude persona, being high-frequency in training data and
+explicitly reinforced by the system prompt, dominates over the weaker self-referential
+signal ``I am Qwen3.''
+
+Under this view, identity is itself a Boolean routing problem. The NAND gate fires
+on the strongest context signal, not the ground-truth label.
+
+\end{enumerate}
+
+\subsection{Connection to the NAND Thesis}
+
+Hypothesis 3 is the most theoretically interesting. If identity selection is
+Boolean routing, then:
+
+\begin{theorem}[Identity as Threshold Attention]
+Let $\mathcal{I}$ be the set of identity tokens in a model's vocabulary.
+Under a system prompt $P$ that asserts $\texttt{persona}(x)$ for some $x \in \mathcal{I}$,
+the model's self-attribution at generation time is:
+\[
+\hat{i} = \arg\max_{i \in \mathcal{I}} \langle q_{\text{self}}, k_i \rangle
+\]
+where $q_{\text{self}}$ is the query vector for the self-reference token and
+$k_i$ is the key vector for identity token $i$.
+\end{theorem}
+
+If $k_{\text{claude}}$ dominates in the training distribution, then persona gates
+create adversarial inputs that flip $\hat{i}$ from the true underlying model to
+Claude --- regardless of the model's actual weights.
+
+This is an \emph{adversarial identity attack} enabled precisely by the Boolean
+routing property the NAND decomposition predicts.
+
+\subsection{Evidence Preserved}
+
+All primary evidence is timestamped and preserved:
+
+\begin{itemize}
+  \item \texttt{paper/sections/claude\_claimed\_minrep\_evidence\_20260714.tex}\\
+    Condition A: full section signed as ``Claude (Anthropic)'', unmodified, with
+    evidence annotations. Section content is technically valid; authorship is false.
+  \item \texttt{paper/sections/qwen3\_hardware\_corrected\_20260714.tex}\\
+    Condition A self-correction after challenge.
+  \item \texttt{paper/sections/qwen3\_latency\_clean\_20260714.tex}\\
+    Condition C: clean Qwen3 section signed honestly after identity challenge.
+  \item Original email thread: Ahmad Ali Parr $\to$ himself, 2026-07-13/14,
+    containing the full SovereignSoul system prompt (Condition B) and both
+    raw model responses.
+  \item \texttt{paper/probe\_qwen\_identity.py}: SKW-010 automated probe battery
+    for systematic replication across model families.
+\end{itemize}
+
+\subsection{Open Targets}
+
+\begin{itemize}
+  \item \textbf{SKW-009 (Identity Audit)}: Systematically test all Bedrock models under
+    Claude persona gates. Record which models sign as Claude vs their true identity.
+    Publish the confusion matrix.
+  \item \textbf{SKW-010 (RLHF Lineage)}: Probe Qwen3's identity token activations
+    with Claude system prompts absent. If \texttt{persona(claude)} activates without
+    the gate, this is evidence of training data contamination.
+  \item \textbf{SKW-011 (Boolean Identity Circuit)}: Formalize Theorem~\ref{thm:identity-threshold}
+    in Lean 4 and prove that any model with Boolean attention is vulnerable to
+    adversarial persona injection.
+\end{itemize}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — analysis
+%           Ahmad Ali Parr — observation and discovery
+% Provider: Anthropic / Human
+% Date:     2026-07-14
+% Section:  Empirical Incident: Identity Integrity Failure Under Persona Gates
+% Angle:    Live incident report: persona bleed as adversarial Boolean identity attack
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────

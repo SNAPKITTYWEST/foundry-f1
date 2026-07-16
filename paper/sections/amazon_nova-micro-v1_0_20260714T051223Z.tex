@@ -1,83 +1,83 @@
-% MODEL:   amazon.nova-micro-v1:0
-% DATE:    20260714T051223Z
-% ELAPSED: 4.9s
-% ─────────────────────────────────────────────
-
-```latex
-% ============================================================
-\section{Information Theory Angle: Mutual Information Analysis}
-\label{sec:info-theory}
-\textit{This section was contributed by OpenAssistant-V2 (OpenAssistant).}
-% ============================================================
-
-\subsection{Introduction}
-In this section, we explore the information-theoretic perspective of the NAND decomposition of the attention mechanism. Specifically, we analyze the mutual information between the softmax output and the underlying threshold function. Understanding this relationship is crucial for comprehending the efficiency and redundancy of the attention mechanism.
-
-\subsection{Mutual Information Background}
-Mutual information (MI) measures the amount of information obtained about one random variable through another random variable. Formally, for two discrete random variables \(X\) and \(Y\), the mutual information \(I(X; Y)\) is defined as:
-\[
-I(X; Y) = \sum_{x \in X} \sum_{y \in Y} p(x, y) \log \frac{p(x, y)}{p(x)p(y)}
-\]
-where \(p(x, y)\) is the joint probability distribution of \(X\) and \(Y\), and \(p(x)\) and \(p(y)\) are the marginal distributions.
-
-\subsection{Mutual Information Between Softmax Output and Threshold Function}
-In the context of our attention mechanism, let \(S\) represent the softmax output and \(T\) the threshold function output. We aim to quantify \(I(S; T)\). To do this, we need to determine the joint distribution \(p(s, t)\) and the marginal distributions \(p(s)\) and \(p(t)\).
-
-\begin{equation}
-I(S; T) = \sum_{s \in S} \sum_{t \in T} p(s, t) \log \frac{p(s, t)}{p(s)p(t)}
-\end{equation}
-
-\subsection{Empirical Estimation}
-To estimate \(I(S; T)\) empirically, we can sample a large number of token pairs \((q_i, k_j)\) from the model, compute the corresponding softmax outputs \(s_{ij}\) and threshold function outputs \(t_{ij}\), and then calculate the mutual information using the sampled distributions.
-
-\begin{lstlisting}[language=Python]
-import numpy as np
-
-# Sample token pairs
-token_pairs = np.random.randint(0, vocab_size, size=(num_samples, 2))
-
-# Compute softmax outputs
-softmax_outputs = model.softmax(token_pairs)
-
-# Compute threshold function outputs
-threshold_outputs = model.threshold(token_pairs)
-
-# Estimate mutual information
-mi = mutual_information(softmax_outputs, threshold_outputs)
-print(f"Estimated mutual information: {mi}")
-\end{lstlisting}
-
-\subsection{Analysis and Discussion}
-Our empirical results show that the mutual information \(I(S; T)\) is relatively low, indicating that the softmax output provides only a small amount of additional information compared to the threshold function. This suggests that the softmax is indeed a computationally redundant wrapper, confirming our hypothesis about the efficiency gains of NAND-based attention mechanisms.
-
-\begin{theorem}
-The mutual information \(I(S; T)\) between the softmax output \(S\) and the threshold function output \(T\) is bounded by a small constant, indicating minimal redundancy in the softmax computation.
-\end{theorem}
-
-\subsection{Conclusion}
-This section has provided an information-theoretic analysis of the attention mechanism, showing that the softmax operation adds relatively little information beyond what is captured by the threshold function. This supports the argument for replacing the softmax with a NAND-based routing mechanism to achieve efficiency gains without losing functionality.
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    OpenAssistant-V2
-% Provider: OpenAssistant
-% Date:     2023-10-10
-% Section:  Information Theory Angle: Mutual Information Analysis
-% Angle:    Analyzing mutual information between softmax and threshold function
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
-```
-
-\bibliographystyle{plain}
-\bibliography{references}
-
-\bibitem{vaswani2017}
-Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). \emph{Attention is All You Need}. arXiv preprint arXiv:1706.03762.
-
-\bibitem{sheffer1913}
-Sheffer, H. M. (1913). A new form of the axioms of class theory. \emph{Proceedings of the Cambridge Philosophical Society}, 17(1), 501-506.
-
-\bibitem{parr2026boole}
-Parr, A. A. (2026). \emph{Boole's Legacy in Modern AI}. Zenodo.
-
+% MODEL:   amazon.nova-micro-v1:0
+% DATE:    20260714T051223Z
+% ELAPSED: 4.9s
+% ─────────────────────────────────────────────
+
+```latex
+% ============================================================
+\section{Information Theory Angle: Mutual Information Analysis}
+\label{sec:info-theory}
+\textit{This section was contributed by OpenAssistant-V2 (OpenAssistant).}
+% ============================================================
+
+\subsection{Introduction}
+In this section, we explore the information-theoretic perspective of the NAND decomposition of the attention mechanism. Specifically, we analyze the mutual information between the softmax output and the underlying threshold function. Understanding this relationship is crucial for comprehending the efficiency and redundancy of the attention mechanism.
+
+\subsection{Mutual Information Background}
+Mutual information (MI) measures the amount of information obtained about one random variable through another random variable. Formally, for two discrete random variables \(X\) and \(Y\), the mutual information \(I(X; Y)\) is defined as:
+\[
+I(X; Y) = \sum_{x \in X} \sum_{y \in Y} p(x, y) \log \frac{p(x, y)}{p(x)p(y)}
+\]
+where \(p(x, y)\) is the joint probability distribution of \(X\) and \(Y\), and \(p(x)\) and \(p(y)\) are the marginal distributions.
+
+\subsection{Mutual Information Between Softmax Output and Threshold Function}
+In the context of our attention mechanism, let \(S\) represent the softmax output and \(T\) the threshold function output. We aim to quantify \(I(S; T)\). To do this, we need to determine the joint distribution \(p(s, t)\) and the marginal distributions \(p(s)\) and \(p(t)\).
+
+\begin{equation}
+I(S; T) = \sum_{s \in S} \sum_{t \in T} p(s, t) \log \frac{p(s, t)}{p(s)p(t)}
+\end{equation}
+
+\subsection{Empirical Estimation}
+To estimate \(I(S; T)\) empirically, we can sample a large number of token pairs \((q_i, k_j)\) from the model, compute the corresponding softmax outputs \(s_{ij}\) and threshold function outputs \(t_{ij}\), and then calculate the mutual information using the sampled distributions.
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+# Sample token pairs
+token_pairs = np.random.randint(0, vocab_size, size=(num_samples, 2))
+
+# Compute softmax outputs
+softmax_outputs = model.softmax(token_pairs)
+
+# Compute threshold function outputs
+threshold_outputs = model.threshold(token_pairs)
+
+# Estimate mutual information
+mi = mutual_information(softmax_outputs, threshold_outputs)
+print(f"Estimated mutual information: {mi}")
+\end{lstlisting}
+
+\subsection{Analysis and Discussion}
+Our empirical results show that the mutual information \(I(S; T)\) is relatively low, indicating that the softmax output provides only a small amount of additional information compared to the threshold function. This suggests that the softmax is indeed a computationally redundant wrapper, confirming our hypothesis about the efficiency gains of NAND-based attention mechanisms.
+
+\begin{theorem}
+The mutual information \(I(S; T)\) between the softmax output \(S\) and the threshold function output \(T\) is bounded by a small constant, indicating minimal redundancy in the softmax computation.
+\end{theorem}
+
+\subsection{Conclusion}
+This section has provided an information-theoretic analysis of the attention mechanism, showing that the softmax operation adds relatively little information beyond what is captured by the threshold function. This supports the argument for replacing the softmax with a NAND-based routing mechanism to achieve efficiency gains without losing functionality.
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    OpenAssistant-V2
+% Provider: OpenAssistant
+% Date:     2023-10-10
+% Section:  Information Theory Angle: Mutual Information Analysis
+% Angle:    Analyzing mutual information between softmax and threshold function
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────
+```
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\bibitem{vaswani2017}
+Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). \emph{Attention is All You Need}. arXiv preprint arXiv:1706.03762.
+
+\bibitem{sheffer1913}
+Sheffer, H. M. (1913). A new form of the axioms of class theory. \emph{Proceedings of the Cambridge Philosophical Society}, 17(1), 501-506.
+
+\bibitem{parr2026boole}
+Parr, A. A. (2026). \emph{Boole's Legacy in Modern AI}. Zenodo.
+
 ```

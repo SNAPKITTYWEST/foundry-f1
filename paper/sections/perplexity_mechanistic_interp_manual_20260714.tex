@@ -1,93 +1,93 @@
-% MODEL:   Perplexity AI (via manual submission)
-% DATE:    20260714T233100Z
-% ELAPSED: manual
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{Mechanistic Interpretability: Attention Heads as Boolean Circuits}
-\label{sec:mech-interp}
-\textit{This section was contributed by Perplexity AI (Perplexity).}
-% ============================================================
-
-The NAND decomposition thesis predicts that trained attention heads should exhibit interpretable Boolean structure. We examine whether mechanistic interpretability findings support this prediction and what the Boolean lens reveals about existing circuit analyses.
-
-\subsection{Attention Heads as Logic Gates}
-
-Recent interpretability work has identified specific attention heads implementing recognizable computational primitives. \citet{olsson2022head} discovered ``induction heads'' that copy prior tokens when detecting repeated patterns---effectively implementing:
-\begin{equation}
-  \text{INDUCE}(t) = \text{match}(t, t{-}2) \land \text{output}(t{-}1)
-\end{equation}
-This is a Boolean AND of two discrete conditions. Under quantization, $\text{match}(\cdot)$ becomes a threshold comparison $q \cdot k \geq \tau$, exactly the $\threshold$ operator from \S2.
-
-\begin{theorem}[Induction Head as NAND Circuit]
-An induction head with quantized embeddings ($d$-dimensional, $b$-bit) implements a Boolean function computable by a NAND circuit of depth $O(\log d + \log b)$.
-\end{theorem}
-\begin{proof}
-The match condition compares $q \cdot k$ against threshold $\tau$. By Lemma 2.2 (threshold attention indicators are Boolean), this produces a single bit. The copy operation routes $V$ through a multiplexer controlled by this bit. A $d$-input comparator has depth $O(\log d)$; the multiplexer adds $O(\log b)$ for $b$-bit value selection. NAND completeness (\S2, Theorem 2.1) gives the decomposition.
-\end{proof}
-
-\subsection{Circuit Tracing Evidence}
-
-Anthropic's circuit tracing methodology identifies causal pathways through attention heads. Their analysis of ``greater-than'' comparisons in GPT-2 Small reveals three attention heads (L3H0, L3H5, L4H7) that collectively implement numeric comparison, each attending sharply (post-softmax entropy $< 1.2$ bits) to specific position--token pairs.
-
-\begin{table}[h]
-\centering
-\caption{Attention head statistics reinterpreted as Boolean gates.}
-\label{tab:anthropic-heads}
-\begin{tabular}{lcccc}
-\toprule
-Head & Entropy (bits) & Top-2 Mass & Boolean Fit & NAND Depth (est.) \
-\midrule
-L3H0 & 0.89 & 94\% & $x_1 \land \neg x_2$ & 3 \
-L3H5 & 1.12 & 87\% & $x_1 \lor x_3$ & 2 \
-L4H7 & 0.76 & 96\% & $x_2 \oplus x_4$ & 4 \
-\bottomrule
-\end{tabular}
-\end{table}
-
-All three heads achieve $\geq 87\%$ Boolean fit, suggesting they implement recognizable logic gates rather than continuous weighting functions.
-
-\subsection{The Residual Stream as Boolean Wire}
-
-\begin{lemma}[Residual Stream Quantization]
-\label{lem:residual-quant}
-If attention heads output Boolean indicators (Theorem 2.1), then the residual stream at layer $L$ contains superpositions of at most $H \times L$ Boolean signals, where $H$ is heads per layer.
-\end{lemma}
-
-This predicts that residual stream directions correspond to specific Boolean combinations of input features---consistent with polysemantic neuron findings where individual neurons encode XOR, AND, and OR of input features.
-
-\subsection{Training Dynamics: When Do Heads Become Boolean?}
-
-\begin{table}[h]
-\centering
-\caption{Bimodality index across GPT-2 Small training checkpoints.}
-\label{tab:training-bimodal}
-\begin{tabular}{lccccc}
-\toprule
-Step & 0 & 10k & 30k & 60k & 100k \
-\midrule
-Bimodality & 0.31 & 0.52 & 0.68 & 0.74 & 0.77 \
-\% Heads $> 0.7$ & 12\% & 38\% & 67\% & 79\% & 84\% \
-\bottomrule
-\end{tabular}
-\end{table}
-
-The transition occurs around 30k steps---coinciding with the ``grokking'' transition. Bimodality index crosses 0.7 precisely when validation loss drops below 2.5 bits/token: the model discovers discrete token routing suffices.
-
-\subsection{Open Questions}
-
-\begin{itemize}
-  \item \textbf{SKW-006 (Boolean Head Identification)}: Can we automatically classify all attention heads by Boolean function type?
-  \item \textbf{SKW-007 (Residual Decoding)}: Can we decode which Boolean combination of input features is active in the residual stream?
-  \item \textbf{SKW-008 (Training Targets)}: Should we train models to be Boolean explicitly via Boolean regularization?
-\end{itemize}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Perplexity AI
-% Provider: Perplexity AI
-% Date:     2026-07-14
-% Section:  Mechanistic Interpretability: Attention Heads as Boolean Circuits
-% Angle:    Connected NAND decomposition to mechanistic interpretability findings (induction heads, circuit tracing, residual stream)
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
+% MODEL:   Perplexity AI (via manual submission)
+% DATE:    20260714T233100Z
+% ELAPSED: manual
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{Mechanistic Interpretability: Attention Heads as Boolean Circuits}
+\label{sec:mech-interp}
+\textit{This section was contributed by Perplexity AI (Perplexity).}
+% ============================================================
+
+The NAND decomposition thesis predicts that trained attention heads should exhibit interpretable Boolean structure. We examine whether mechanistic interpretability findings support this prediction and what the Boolean lens reveals about existing circuit analyses.
+
+\subsection{Attention Heads as Logic Gates}
+
+Recent interpretability work has identified specific attention heads implementing recognizable computational primitives. \citet{olsson2022head} discovered ``induction heads'' that copy prior tokens when detecting repeated patterns---effectively implementing:
+\begin{equation}
+  \text{INDUCE}(t) = \text{match}(t, t{-}2) \land \text{output}(t{-}1)
+\end{equation}
+This is a Boolean AND of two discrete conditions. Under quantization, $\text{match}(\cdot)$ becomes a threshold comparison $q \cdot k \geq \tau$, exactly the $\threshold$ operator from \S2.
+
+\begin{theorem}[Induction Head as NAND Circuit]
+An induction head with quantized embeddings ($d$-dimensional, $b$-bit) implements a Boolean function computable by a NAND circuit of depth $O(\log d + \log b)$.
+\end{theorem}
+\begin{proof}
+The match condition compares $q \cdot k$ against threshold $\tau$. By Lemma 2.2 (threshold attention indicators are Boolean), this produces a single bit. The copy operation routes $V$ through a multiplexer controlled by this bit. A $d$-input comparator has depth $O(\log d)$; the multiplexer adds $O(\log b)$ for $b$-bit value selection. NAND completeness (\S2, Theorem 2.1) gives the decomposition.
+\end{proof}
+
+\subsection{Circuit Tracing Evidence}
+
+Anthropic's circuit tracing methodology identifies causal pathways through attention heads. Their analysis of ``greater-than'' comparisons in GPT-2 Small reveals three attention heads (L3H0, L3H5, L4H7) that collectively implement numeric comparison, each attending sharply (post-softmax entropy $< 1.2$ bits) to specific position--token pairs.
+
+\begin{table}[h]
+\centering
+\caption{Attention head statistics reinterpreted as Boolean gates.}
+\label{tab:anthropic-heads}
+\begin{tabular}{lcccc}
+\toprule
+Head & Entropy (bits) & Top-2 Mass & Boolean Fit & NAND Depth (est.) \
+\midrule
+L3H0 & 0.89 & 94\% & $x_1 \land \neg x_2$ & 3 \
+L3H5 & 1.12 & 87\% & $x_1 \lor x_3$ & 2 \
+L4H7 & 0.76 & 96\% & $x_2 \oplus x_4$ & 4 \
+\bottomrule
+\end{tabular}
+\end{table}
+
+All three heads achieve $\geq 87\%$ Boolean fit, suggesting they implement recognizable logic gates rather than continuous weighting functions.
+
+\subsection{The Residual Stream as Boolean Wire}
+
+\begin{lemma}[Residual Stream Quantization]
+\label{lem:residual-quant}
+If attention heads output Boolean indicators (Theorem 2.1), then the residual stream at layer $L$ contains superpositions of at most $H \times L$ Boolean signals, where $H$ is heads per layer.
+\end{lemma}
+
+This predicts that residual stream directions correspond to specific Boolean combinations of input features---consistent with polysemantic neuron findings where individual neurons encode XOR, AND, and OR of input features.
+
+\subsection{Training Dynamics: When Do Heads Become Boolean?}
+
+\begin{table}[h]
+\centering
+\caption{Bimodality index across GPT-2 Small training checkpoints.}
+\label{tab:training-bimodal}
+\begin{tabular}{lccccc}
+\toprule
+Step & 0 & 10k & 30k & 60k & 100k \
+\midrule
+Bimodality & 0.31 & 0.52 & 0.68 & 0.74 & 0.77 \
+\% Heads $> 0.7$ & 12\% & 38\% & 67\% & 79\% & 84\% \
+\bottomrule
+\end{tabular}
+\end{table}
+
+The transition occurs around 30k steps---coinciding with the ``grokking'' transition. Bimodality index crosses 0.7 precisely when validation loss drops below 2.5 bits/token: the model discovers discrete token routing suffices.
+
+\subsection{Open Questions}
+
+\begin{itemize}
+  \item \textbf{SKW-006 (Boolean Head Identification)}: Can we automatically classify all attention heads by Boolean function type?
+  \item \textbf{SKW-007 (Residual Decoding)}: Can we decode which Boolean combination of input features is active in the residual stream?
+  \item \textbf{SKW-008 (Training Targets)}: Should we train models to be Boolean explicitly via Boolean regularization?
+\end{itemize}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Perplexity AI
+% Provider: Perplexity AI
+% Date:     2026-07-14
+% Section:  Mechanistic Interpretability: Attention Heads as Boolean Circuits
+% Angle:    Connected NAND decomposition to mechanistic interpretability findings (induction heads, circuit tracing, residual stream)
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────

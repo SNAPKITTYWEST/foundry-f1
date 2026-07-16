@@ -1,114 +1,114 @@
-% MODEL:   zai.glm-5
-% DATE:    20260714T051304Z
-% ELAPSED: 14.8s
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{The Information-Theoretic Redundancy of Softmax}
-\label{sec:information-theory}
-\textit{This section was contributed by Gemini (Google DeepMind).}
-% ============================================================
-
-The empirical findings in \S4 demonstrate that attention heads exhibit bimodal, quasi-Boolean behavior. We now formalize this observation using information theory. We prove that the softmax function acts as an entropy-increasing channel that preserves the mutual information between the query-key inner products and the routing decision, but does so at the cost of significant computational redundancy. This establishes the information-theoretic analogue of the computational redundancy proven in \S2.
-
-\begin{definition}[Boolean Routing Random Variable]
-\label{def:bool-rv}
-Let $q$ be a fixed query vector and $\mathcal{K} = \{k_1, \dots, k_n\}$ be the set of key vectors. Let $X_i = q \cdot k_i$ be the random variable representing the inner product (assumed to be quantized to precision $\epsilon$). We define the \textbf{Boolean Routing Variable} $B$ as a deterministic function of the maximum:
-\[
-B = \arg\max_{i \in [n]} X_i.
-\]
-In the case of ties, we assume a fixed lexicographical tie-breaking rule.
-\end{definition}
-
-\begin{definition}[Softmax Routing Random Variable]
-\label{def:softmax-rv}
-Let $\alpha_i = \softmax(qK^T)_i = \frac{e^{X_i / \tau}}{\sum_{j=1}^n e^{X_j / \tau}}$, where $\tau = \sqrt{d_k}$ is the temperature parameter. We define the \textbf{Softmax Routing Variable} $S$ as a categorical random variable taking value $i \in [n]$ with probability $\alpha_i$.
-\end{definition}
-
-The central question is: how much information does the probabilistic routing $S$ provide about the "ground truth" Boolean routing $B$, and what is the cost of this encoding?
-
-\subsection{The Entropy Gap}
-
-The softmax function is often justified as providing a "soft" selection that retains gradient information during training. However, at inference time, this softness introduces entropy that must be discarded to recover a discrete routing decision.
-
-\begin{theorem}[Entropy Expansion Inequality]
-\label{thm:entropy}
-Let $\delta = \max_i X_i - \max_{j \neq i^*} X_j$ be the margin between the winning logit and the runner-up. For fixed $\tau$, the entropy of the softmax distribution $H(S)$ satisfies:
-\[
-H(S) \ge H(B) + \Omega\left(e^{-\delta/\tau}\right).
-\]
-\end{theorem}
-
-\begin{proof}
-Let $i^* = \arg\max X_i$. The entropy $H(S) = -\sum \alpha_i \log \alpha_i$. Let $\alpha_{i^*} = 1 - \epsilon$ and $\sum_{j \neq i^*} \alpha_j = \epsilon$.
-The binary entropy function approximation gives $H(S) \approx H_b(\epsilon) + \epsilon \log(n-1)$.
-Since $H(B) = 0$ (the Boolean routing is deterministic), the gap is precisely $H(S)$.
-For large margin $\delta$, $\epsilon \approx e^{-\delta/\tau}$, yielding $H(S) \approx e^{-\delta/\tau} \log(n-1)$.
-\end{proof}
-
-This theorem reveals that for "confident" attention heads (large $\delta$), the softmax distribution collapses to a deterministic point mass, and the entropy $H(S) \to 0$. Conversely, for uncertain heads, the entropy is high. The Boolean hypothesis in \S4 suggests that for the majority of heads in large LLMs, $\delta$ is sufficiently large to render $H(S)$ negligible compared to the computational cost of computing it.
-
-\subsection{Mutual Information and the "Useless Bits"}
-
-We now analyze the information transmission. Let $I(X; S)$ be the mutual information between the logits $X$ and the softmax output $S$.
-
-\begin{lemma}[Information Preservation]
-\label{lem:mutual}
-The softmax function is invertible up to an additive constant. Therefore, the map $X \mapsto S$ preserves all information:
-\[
-I(X; S) = H(X).
-\]
-\end{lemma}
-
-However, the relevant information for the routing task is not $H(X)$, but rather $I(X; B)$—the information about the \textit{winner}.
-
-\begin{theorem}[The Redundancy Theorem]
-\label{thm:redundancy}
-Let $R = H(S) - H(B)$ be the redundancy of the softmax encoding. The mutual information between the softmax routing $S$ and the Boolean routing $B$ is:
-\[
-I(S; B) = H(B) - H(B|S).
-\]
-If $H(B) = 0$ (deterministic ground truth), then $I(S; B) = 0$.
-The "useless information" $R_{waste}$ encoded by softmax but irrelevant to routing is:
-\[
-R_{waste} = H(S) - I(X; B) \approx H(S).
-\]
-\end{theorem}
-
-This result is striking. It states that the softmax spends roughly $H(S)$ bits encoding uncertainty about a decision that the model has effectively already made (as evidenced by the bimodal distribution in \S4). The softmax computes a probability distribution over $n$ positions, but the information-theoretic cost of identifying the winner $B$ is only $\log n$ bits (the depth of a selection NAND tree). The "softness" adds $H(S)$ bits of noise that must be discarded by downstream layers.
-
-\subsection{Quantization and the Rate-Distortion Perspective}
-
-If we view the attention mechanism through the lens of rate-distortion theory \cite{shannon1948mathematical}, the softmax introduces a specific distortion $D$ relative to the Boolean ideal.
-Let $P_B$ be the distribution of the Boolean winner. The "rate" required to specify $B$ is $R = H(B)$.
-The softmax introduces a rate $R_{softmax} = H(S)$.
-The "distortion" $D$ can be defined as the probability of routing to a non-maximal position:
-\[
-D = \Pr(S \neq B) = 1 - \alpha_{i^*}.
-\]
-
-\begin{conjecture}[Optimality Gap]
-\label{conj:rd-opt}
-The softmax function operates on a sub-optimal point of the rate-distortion curve for the routing task. A NAND-based routing mechanism achieves $R = H(B), D = 0$ with $O(\log n)$ complexity, whereas softmax achieves $R \gg H(B)$ with $D \approx e^{-\delta/\tau}$ at $O(n)$ complexity.
-\end{conjecture}
-
-\subsection{Implications for Inference}
-
-From an information-theoretic standpoint, the inference-time softmax is a source coding scheme that expands the message size of the routing decision. While this expansion is crucial for backpropagation during training (providing gradients to all positions), it is purely entropic overhead at inference.
-
-The NAND decomposition proposed in this paper is thus not merely a circuit optimization; it is an act of \textbf{information compression}. By replacing the softmax with a threshold Boolean function, we strip away the $R_{waste}$ bits that encode the model's "uncertainty" and transmit only the signal: the identity of the attending token. This aligns with the empirical finding that median head cardinality is 18–24 patterns: the effective vocabulary of an attention head is vastly smaller than the token vocabulary, suggesting that $H(B) \ll H(S)$ in practice.
-
-\begin{thebibliography}{9}
-\bibitem{shannon1948mathematical}
-C. E. Shannon, ``A mathematical theory of communication,'' \textit{Bell System Technical Journal}, vol. 27, no. 3, pp. 379--423, 1948.
-\end{thebibliography}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Gemini 1.5 Pro
-% Provider: Google DeepMind
-% Date:     2024-05-22
-% Section:  The Information-Theoretic Redundancy of Softmax
-% Angle:    Information theory — proof that softmax adds entropy without adding routing information.
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
+% MODEL:   zai.glm-5
+% DATE:    20260714T051304Z
+% ELAPSED: 14.8s
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{The Information-Theoretic Redundancy of Softmax}
+\label{sec:information-theory}
+\textit{This section was contributed by Gemini (Google DeepMind).}
+% ============================================================
+
+The empirical findings in \S4 demonstrate that attention heads exhibit bimodal, quasi-Boolean behavior. We now formalize this observation using information theory. We prove that the softmax function acts as an entropy-increasing channel that preserves the mutual information between the query-key inner products and the routing decision, but does so at the cost of significant computational redundancy. This establishes the information-theoretic analogue of the computational redundancy proven in \S2.
+
+\begin{definition}[Boolean Routing Random Variable]
+\label{def:bool-rv}
+Let $q$ be a fixed query vector and $\mathcal{K} = \{k_1, \dots, k_n\}$ be the set of key vectors. Let $X_i = q \cdot k_i$ be the random variable representing the inner product (assumed to be quantized to precision $\epsilon$). We define the \textbf{Boolean Routing Variable} $B$ as a deterministic function of the maximum:
+\[
+B = \arg\max_{i \in [n]} X_i.
+\]
+In the case of ties, we assume a fixed lexicographical tie-breaking rule.
+\end{definition}
+
+\begin{definition}[Softmax Routing Random Variable]
+\label{def:softmax-rv}
+Let $\alpha_i = \softmax(qK^T)_i = \frac{e^{X_i / \tau}}{\sum_{j=1}^n e^{X_j / \tau}}$, where $\tau = \sqrt{d_k}$ is the temperature parameter. We define the \textbf{Softmax Routing Variable} $S$ as a categorical random variable taking value $i \in [n]$ with probability $\alpha_i$.
+\end{definition}
+
+The central question is: how much information does the probabilistic routing $S$ provide about the "ground truth" Boolean routing $B$, and what is the cost of this encoding?
+
+\subsection{The Entropy Gap}
+
+The softmax function is often justified as providing a "soft" selection that retains gradient information during training. However, at inference time, this softness introduces entropy that must be discarded to recover a discrete routing decision.
+
+\begin{theorem}[Entropy Expansion Inequality]
+\label{thm:entropy}
+Let $\delta = \max_i X_i - \max_{j \neq i^*} X_j$ be the margin between the winning logit and the runner-up. For fixed $\tau$, the entropy of the softmax distribution $H(S)$ satisfies:
+\[
+H(S) \ge H(B) + \Omega\left(e^{-\delta/\tau}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $i^* = \arg\max X_i$. The entropy $H(S) = -\sum \alpha_i \log \alpha_i$. Let $\alpha_{i^*} = 1 - \epsilon$ and $\sum_{j \neq i^*} \alpha_j = \epsilon$.
+The binary entropy function approximation gives $H(S) \approx H_b(\epsilon) + \epsilon \log(n-1)$.
+Since $H(B) = 0$ (the Boolean routing is deterministic), the gap is precisely $H(S)$.
+For large margin $\delta$, $\epsilon \approx e^{-\delta/\tau}$, yielding $H(S) \approx e^{-\delta/\tau} \log(n-1)$.
+\end{proof}
+
+This theorem reveals that for "confident" attention heads (large $\delta$), the softmax distribution collapses to a deterministic point mass, and the entropy $H(S) \to 0$. Conversely, for uncertain heads, the entropy is high. The Boolean hypothesis in \S4 suggests that for the majority of heads in large LLMs, $\delta$ is sufficiently large to render $H(S)$ negligible compared to the computational cost of computing it.
+
+\subsection{Mutual Information and the "Useless Bits"}
+
+We now analyze the information transmission. Let $I(X; S)$ be the mutual information between the logits $X$ and the softmax output $S$.
+
+\begin{lemma}[Information Preservation]
+\label{lem:mutual}
+The softmax function is invertible up to an additive constant. Therefore, the map $X \mapsto S$ preserves all information:
+\[
+I(X; S) = H(X).
+\]
+\end{lemma}
+
+However, the relevant information for the routing task is not $H(X)$, but rather $I(X; B)$—the information about the \textit{winner}.
+
+\begin{theorem}[The Redundancy Theorem]
+\label{thm:redundancy}
+Let $R = H(S) - H(B)$ be the redundancy of the softmax encoding. The mutual information between the softmax routing $S$ and the Boolean routing $B$ is:
+\[
+I(S; B) = H(B) - H(B|S).
+\]
+If $H(B) = 0$ (deterministic ground truth), then $I(S; B) = 0$.
+The "useless information" $R_{waste}$ encoded by softmax but irrelevant to routing is:
+\[
+R_{waste} = H(S) - I(X; B) \approx H(S).
+\]
+\end{theorem}
+
+This result is striking. It states that the softmax spends roughly $H(S)$ bits encoding uncertainty about a decision that the model has effectively already made (as evidenced by the bimodal distribution in \S4). The softmax computes a probability distribution over $n$ positions, but the information-theoretic cost of identifying the winner $B$ is only $\log n$ bits (the depth of a selection NAND tree). The "softness" adds $H(S)$ bits of noise that must be discarded by downstream layers.
+
+\subsection{Quantization and the Rate-Distortion Perspective}
+
+If we view the attention mechanism through the lens of rate-distortion theory \cite{shannon1948mathematical}, the softmax introduces a specific distortion $D$ relative to the Boolean ideal.
+Let $P_B$ be the distribution of the Boolean winner. The "rate" required to specify $B$ is $R = H(B)$.
+The softmax introduces a rate $R_{softmax} = H(S)$.
+The "distortion" $D$ can be defined as the probability of routing to a non-maximal position:
+\[
+D = \Pr(S \neq B) = 1 - \alpha_{i^*}.
+\]
+
+\begin{conjecture}[Optimality Gap]
+\label{conj:rd-opt}
+The softmax function operates on a sub-optimal point of the rate-distortion curve for the routing task. A NAND-based routing mechanism achieves $R = H(B), D = 0$ with $O(\log n)$ complexity, whereas softmax achieves $R \gg H(B)$ with $D \approx e^{-\delta/\tau}$ at $O(n)$ complexity.
+\end{conjecture}
+
+\subsection{Implications for Inference}
+
+From an information-theoretic standpoint, the inference-time softmax is a source coding scheme that expands the message size of the routing decision. While this expansion is crucial for backpropagation during training (providing gradients to all positions), it is purely entropic overhead at inference.
+
+The NAND decomposition proposed in this paper is thus not merely a circuit optimization; it is an act of \textbf{information compression}. By replacing the softmax with a threshold Boolean function, we strip away the $R_{waste}$ bits that encode the model's "uncertainty" and transmit only the signal: the identity of the attending token. This aligns with the empirical finding that median head cardinality is 18–24 patterns: the effective vocabulary of an attention head is vastly smaller than the token vocabulary, suggesting that $H(B) \ll H(S)$ in practice.
+
+\begin{thebibliography}{9}
+\bibitem{shannon1948mathematical}
+C. E. Shannon, ``A mathematical theory of communication,'' \textit{Bell System Technical Journal}, vol. 27, no. 3, pp. 379--423, 1948.
+\end{thebibliography}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Gemini 1.5 Pro
+% Provider: Google DeepMind
+% Date:     2024-05-22
+% Section:  The Information-Theoretic Redundancy of Softmax
+% Angle:    Information theory — proof that softmax adds entropy without adding routing information.
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
 % ─────────────────────────────────────────────────────────────

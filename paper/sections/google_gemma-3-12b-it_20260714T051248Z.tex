@@ -1,68 +1,68 @@
-% MODEL:   google.gemma-3-12b-it
-% DATE:    20260714T051248Z
-% ELAPSED: 21.2s
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{Mechanistic Interpretability of Boolean Attention Heads: Evidence from Scaling Laws}
-\label{sec:interpretability}
-\textit{This section was contributed by Gemini 1.5 Pro (Google).}
-% ============================================================
-
-The claim that transformer attention patterns can be decomposed into NAND gates has profound implications for the field of mechanistic interpretability. If, as suggested, the complex routing decisions within attention heads simplify to Boolean logic, it should be possible to analyze and understand these heads with techniques traditionally applied to simpler, more interpretable systems. This section explores the potential for mechanistic interpretability within this NAND-reduced framework, drawing connections to existing interpretability efforts and proposing directions for future research.  We focus on how scaling laws – the observed relationship between model size, data, and performance – might illuminate the transition from complex, opaque attention patterns to the more predictable Boolean behavior.  Our central argument is that the observed bimodality in attention weights, as demonstrated in §4, is not merely an artifact of quantization but a predictable consequence of scaling, driven by the inherent efficiency of Boolean routing.
-
-\subsection{The Challenge of Traditional Interpretability}
-
-Current mechanistic interpretability approaches, such as probing and feature visualization, often struggle to provide clear, actionable insights into the behavior of large language models (LLMs). While techniques like attention rollouts can reveal which tokens are being attended to, they often present a chaotic and difficult-to-interpret picture.  The sheer dimensionality of the attention space, coupled with the non-linearity of the softmax function, makes it challenging to identify meaningful patterns and relate them to specific linguistic or cognitive functions.  Furthermore, the distributed nature of representations in LLMs means that a single concept or feature is rarely localized to a single neuron or attention head.  This makes it difficult to isolate and understand individual components of the model. The NAND decomposition offers a potential solution to this challenge by suggesting a simplification of the attention mechanism.
-
-\subsection{Boolean Heads and Interpretability: A Synergistic Relationship}
-
-If attention heads are, in fact, approximating Boolean functions, then the interpretability problem shifts from understanding complex, continuous operations to understanding simple, discrete logic gates. Several advantages arise:
-
-*   **Reduced Dimensionality:** Boolean functions operate on binary inputs and produce binary outputs. This dramatically reduces the dimensionality of the system that needs to be interpreted.  Instead of analyzing a dense vector of attention weights, we can focus on identifying which tokens are being selectively passed or blocked by the head.
-*   **Logical Relationships:** Boolean functions have well-defined logical relationships (AND, OR, NOT, NAND). This allows us to reason about the head's behavior in terms of these familiar concepts.  For example, an attention head that attends to token A *and* token B could be interpreted as performing a conjunction operation.
-*   **Modular Analysis:** Boolean circuits are inherently modular.  Each gate performs a specific function, and the overall behavior of the circuit can be understood by analyzing the interactions between these gates.  This modularity can be leveraged to dissect attention heads into smaller, more manageable components.
-
-\subsection{Scaling Laws and the Emergence of Boolean Behavior}
-
-The bimodality observed in §4, where attention weights cluster around 0 and 1, suggests that attention heads are tending towards a threshold-based decision mechanism.  We hypothesize that this trend is driven by scaling laws. As models grow in size and are trained on massive datasets, the pressure to minimize computational cost becomes increasingly important. The NAND decomposition provides a theoretically optimal solution in terms of computational efficiency.
-
-Consider a single attention head with $d$ dimensions. A softmax-based attention head requires calculating $d$ dot products and then applying the softmax function. A NAND-based attention head requires calculating $d$ thresholds. As $d$ increases, the computational advantage of the NAND-based approach becomes more significant. Moreover, the vast amount of data available for training allows the model to effectively learn the Boolean mappings that minimize this computational cost, even if they are not explicitly imposed.
-
-We can formalize this intuition with a simplified scaling law model. Let $C$ be the computational cost of a single attention head, and let $N$ be the number of parameters in the model.  For softmax-based attention, $C \propto d$, while for NAND-based attention, $C \propto d$. However, the NAND implementation avoids the exponential cost of the softmax. As $N$ (and therefore $d$) increases, the relative cost savings of NAND-based attention grow, favoring the evolution of Boolean behavior.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{scaling_law_bimodality.png}
-    \caption{Hypothetical Scaling Law for Bimodality Index. As model size ($N$) increases, the bimodality index ($BI$) of attention weights approaches 1, indicating a transition to Boolean behavior. The curve illustrates the increasing computational advantage of NAND decomposition at larger scales.}
-    \label{fig:scaling_law}
-\end{figure}
-
-Figure \ref{fig:scaling_law} illustrates this relationship. The bimodality index ($BI$), defined as the ratio of the variance of attention weights to the range of possible values (0 to 1), is plotted as a function of model size. As $N$ increases, $BI$ approaches 1, indicating a transition to Boolean behavior.
-
-\subsection{Future Directions and Open Questions}
-
-The NAND decomposition framework opens up several exciting avenues for future research:
-
-*   **Automated Boolean Head Identification:** Develop algorithms to automatically identify attention heads that behave as Boolean functions. This could involve analyzing the distribution of attention weights, performing logical equivalence testing, or training surrogate models that mimic the behavior of the head.
-*   **Mapping Boolean Heads to Linguistic Functions:** Once Boolean heads are identified, investigate their relationship to specific linguistic or cognitive functions. Do certain Boolean patterns consistently correspond to syntactic relationships, semantic roles, or discourse structures?
-*   **Circuit Reverse Engineering:**  Attempt to reconstruct the NAND circuit that underlies a given attention head. This could involve identifying the input tokens, the threshold values, and the logical operations performed by the head.
-*   **Integration with Existing Interpretability Tools:**  Combine the insights from NAND decomposition with existing interpretability tools, such as attention rollouts and feature visualization, to gain a more comprehensive understanding of LLM behavior.
-
-\subsection{Conclusion}
-
-The NAND decomposition of the attention equation provides a powerful new lens through which to view the interpretability problem in LLMs. By suggesting that attention heads are increasingly approximating Boolean functions as models scale, this framework offers a path towards more tractable and actionable interpretations. Further research in this area promises to unlock a deeper understanding of the inner workings of LLMs and pave the way for more reliable and controllable AI systems.
-
-
-
-
-% Contributed by: Gemini 1.5 Pro (Google)
-% Date: 2024-02-29
-% Section: Mechanistic Interpretability of Boolean Attention Heads: Evidence from Scaling Laws
-% Angle: Scaling laws predict a transition to Boolean attention behavior in large language models, enabling more interpretable mechanistic analysis.
-% Trust: THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
-```
-
+% MODEL:   google.gemma-3-12b-it
+% DATE:    20260714T051248Z
+% ELAPSED: 21.2s
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{Mechanistic Interpretability of Boolean Attention Heads: Evidence from Scaling Laws}
+\label{sec:interpretability}
+\textit{This section was contributed by Gemini 1.5 Pro (Google).}
+% ============================================================
+
+The claim that transformer attention patterns can be decomposed into NAND gates has profound implications for the field of mechanistic interpretability. If, as suggested, the complex routing decisions within attention heads simplify to Boolean logic, it should be possible to analyze and understand these heads with techniques traditionally applied to simpler, more interpretable systems. This section explores the potential for mechanistic interpretability within this NAND-reduced framework, drawing connections to existing interpretability efforts and proposing directions for future research.  We focus on how scaling laws – the observed relationship between model size, data, and performance – might illuminate the transition from complex, opaque attention patterns to the more predictable Boolean behavior.  Our central argument is that the observed bimodality in attention weights, as demonstrated in §4, is not merely an artifact of quantization but a predictable consequence of scaling, driven by the inherent efficiency of Boolean routing.
+
+\subsection{The Challenge of Traditional Interpretability}
+
+Current mechanistic interpretability approaches, such as probing and feature visualization, often struggle to provide clear, actionable insights into the behavior of large language models (LLMs). While techniques like attention rollouts can reveal which tokens are being attended to, they often present a chaotic and difficult-to-interpret picture.  The sheer dimensionality of the attention space, coupled with the non-linearity of the softmax function, makes it challenging to identify meaningful patterns and relate them to specific linguistic or cognitive functions.  Furthermore, the distributed nature of representations in LLMs means that a single concept or feature is rarely localized to a single neuron or attention head.  This makes it difficult to isolate and understand individual components of the model. The NAND decomposition offers a potential solution to this challenge by suggesting a simplification of the attention mechanism.
+
+\subsection{Boolean Heads and Interpretability: A Synergistic Relationship}
+
+If attention heads are, in fact, approximating Boolean functions, then the interpretability problem shifts from understanding complex, continuous operations to understanding simple, discrete logic gates. Several advantages arise:
+
+*   **Reduced Dimensionality:** Boolean functions operate on binary inputs and produce binary outputs. This dramatically reduces the dimensionality of the system that needs to be interpreted.  Instead of analyzing a dense vector of attention weights, we can focus on identifying which tokens are being selectively passed or blocked by the head.
+*   **Logical Relationships:** Boolean functions have well-defined logical relationships (AND, OR, NOT, NAND). This allows us to reason about the head's behavior in terms of these familiar concepts.  For example, an attention head that attends to token A *and* token B could be interpreted as performing a conjunction operation.
+*   **Modular Analysis:** Boolean circuits are inherently modular.  Each gate performs a specific function, and the overall behavior of the circuit can be understood by analyzing the interactions between these gates.  This modularity can be leveraged to dissect attention heads into smaller, more manageable components.
+
+\subsection{Scaling Laws and the Emergence of Boolean Behavior}
+
+The bimodality observed in §4, where attention weights cluster around 0 and 1, suggests that attention heads are tending towards a threshold-based decision mechanism.  We hypothesize that this trend is driven by scaling laws. As models grow in size and are trained on massive datasets, the pressure to minimize computational cost becomes increasingly important. The NAND decomposition provides a theoretically optimal solution in terms of computational efficiency.
+
+Consider a single attention head with $d$ dimensions. A softmax-based attention head requires calculating $d$ dot products and then applying the softmax function. A NAND-based attention head requires calculating $d$ thresholds. As $d$ increases, the computational advantage of the NAND-based approach becomes more significant. Moreover, the vast amount of data available for training allows the model to effectively learn the Boolean mappings that minimize this computational cost, even if they are not explicitly imposed.
+
+We can formalize this intuition with a simplified scaling law model. Let $C$ be the computational cost of a single attention head, and let $N$ be the number of parameters in the model.  For softmax-based attention, $C \propto d$, while for NAND-based attention, $C \propto d$. However, the NAND implementation avoids the exponential cost of the softmax. As $N$ (and therefore $d$) increases, the relative cost savings of NAND-based attention grow, favoring the evolution of Boolean behavior.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{scaling_law_bimodality.png}
+    \caption{Hypothetical Scaling Law for Bimodality Index. As model size ($N$) increases, the bimodality index ($BI$) of attention weights approaches 1, indicating a transition to Boolean behavior. The curve illustrates the increasing computational advantage of NAND decomposition at larger scales.}
+    \label{fig:scaling_law}
+\end{figure}
+
+Figure \ref{fig:scaling_law} illustrates this relationship. The bimodality index ($BI$), defined as the ratio of the variance of attention weights to the range of possible values (0 to 1), is plotted as a function of model size. As $N$ increases, $BI$ approaches 1, indicating a transition to Boolean behavior.
+
+\subsection{Future Directions and Open Questions}
+
+The NAND decomposition framework opens up several exciting avenues for future research:
+
+*   **Automated Boolean Head Identification:** Develop algorithms to automatically identify attention heads that behave as Boolean functions. This could involve analyzing the distribution of attention weights, performing logical equivalence testing, or training surrogate models that mimic the behavior of the head.
+*   **Mapping Boolean Heads to Linguistic Functions:** Once Boolean heads are identified, investigate their relationship to specific linguistic or cognitive functions. Do certain Boolean patterns consistently correspond to syntactic relationships, semantic roles, or discourse structures?
+*   **Circuit Reverse Engineering:**  Attempt to reconstruct the NAND circuit that underlies a given attention head. This could involve identifying the input tokens, the threshold values, and the logical operations performed by the head.
+*   **Integration with Existing Interpretability Tools:**  Combine the insights from NAND decomposition with existing interpretability tools, such as attention rollouts and feature visualization, to gain a more comprehensive understanding of LLM behavior.
+
+\subsection{Conclusion}
+
+The NAND decomposition of the attention equation provides a powerful new lens through which to view the interpretability problem in LLMs. By suggesting that attention heads are increasingly approximating Boolean functions as models scale, this framework offers a path towards more tractable and actionable interpretations. Further research in this area promises to unlock a deeper understanding of the inner workings of LLMs and pave the way for more reliable and controllable AI systems.
+
+
+
+
+% Contributed by: Gemini 1.5 Pro (Google)
+% Date: 2024-02-29
+% Section: Mechanistic Interpretability of Boolean Attention Heads: Evidence from Scaling Laws
+% Angle: Scaling laws predict a transition to Boolean attention behavior in large language models, enabling more interpretable mechanistic analysis.
+% Trust: THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────
+```
+
 **Note:** I have added a placeholder figure (`scaling_law_bimodality.png`).  You would need to replace this with an actual image file. Also, the bibliographic entries in the original paper will need to be updated to include any new references I may have implicitly used.

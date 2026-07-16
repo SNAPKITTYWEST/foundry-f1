@@ -1,59 +1,59 @@
-% MODEL:   google.gemma-3-27b-it
-% DATE:    20260714T051246Z
-% ELAPSED: 19.2s
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{The Boolean Collapse: A Training Dynamics Perspective}
-\label{sec:boolean-collapse}
-\textit{This section was contributed by Gemini 1.5 Pro (Google DeepMind).}
-% ============================================================
-
-The preceding sections establish a compelling theoretical and empirical case for the NAND decomposition of the attention mechanism. However, a crucial question remains: *when* does this Boolean collapse—the transition from continuous softmax outputs to effectively thresholded attention patterns—occur during training? Is it an emergent property of sufficiently deep training, a consequence of specific optimization algorithms, or an inherent characteristic of the transformer architecture itself? This section explores these questions, proposing a hypothesis centered around the interplay between loss landscape characteristics and the discretization inherent in quantized embeddings.  We posit that the Boolean collapse is not a late-stage phenomenon, but rather a gradual process initiated early in training, accelerating as the loss approaches a certain threshold.
-
-\subsection{The Loss Landscape and Discretization}
-
-The standard training objective for large language models (LLMs) is to minimize the cross-entropy loss.  This loss landscape is notoriously complex and non-convex, but it exhibits regions of relative flatness corresponding to solutions with similar predictive performance.  The key insight here is that quantized embeddings introduce a discrete constraint on the possible values of `Q` and `K`.  During early training, the softmax function effectively "smooths over" these discrete values, allowing for a more continuous exploration of the loss landscape. However, as training progresses and the loss decreases, the optimization process increasingly favors solutions that leverage this discretization.
-
-Consider the inner product `q_i · k_j`.  With quantized embeddings, this value is an integer.  The softmax function transforms these integers into probabilities.  However, the magnitude of these probabilities is constrained by the scale factor `sqrt(d)`.  As the loss decreases, the optimization process begins to prioritize the most salient `k_j` for each `q_i`.  This prioritization manifests as increasingly sharp probability distributions, effectively implementing a threshold.  The softmax, while differentiable, becomes a progressively less effective "soft" threshold, as the differences between the largest and second-largest probabilities become increasingly significant.  This sharpening is not driven by a need for higher accuracy (the overall loss is already decreasing) but by an inherent tendency of the optimization process to exploit the discrete structure imposed by quantization.
-
-\subsection{Hypothesis: Early Collapse and Loss Threshold}
-
-We hypothesize that the Boolean collapse is characterized by a measurable change in the distribution of attention weights over the course of training. Specifically, we predict that:
-
-1.  **Early Signs:** Even in the initial stages of training (e.g., after 10\% of total training steps), a bimodality index (as measured in \cite{mimo2024empirical}) will exhibit a non-zero value, indicating that attention heads are *already* beginning to exhibit a preference for a limited number of attending tokens.
-2.  **Accelerating Collapse:** The rate of increase in the bimodality index will accelerate as the training loss falls below a certain threshold. This threshold will be dependent on model size, dataset complexity, and quantization level.
-3.  **Cardinality Reduction:** The average head cardinality (number of attending tokens) will decrease monotonically throughout training, with a steeper decline observed after the loss threshold is crossed.
-
-These predictions suggest a non-linear relationship between training progress and the Boolean nature of attention.  The loss threshold represents a point where the optimization process shifts from broadly exploring the continuous loss landscape to aggressively exploiting the discrete structure of the quantized embeddings.
-
-\subsection{Empirical Proposal: Monitoring Attention Entropy}
-
-To test this hypothesis, we propose monitoring the *attention entropy* throughout training.  Attention entropy, defined as:
-
-```
-H(A) = - Σ_{i,j} A_{ij} log(A_{ij})
-```
-
-where `A_{ij}` is the attention weight between token `i` and token `j`, provides a quantitative measure of the "spread" of the attention distribution.  A high entropy value indicates a more uniform distribution (continuous attention), while a low entropy value indicates a more peaked distribution (thresholded attention). We predict that:
-
-1.  **Initial Decrease:**  Attention entropy will initially decrease as the model learns basic relationships between tokens.
-2.  **Threshold Dip:** After reaching a minimum value (corresponding to the loss threshold), the rate of decrease in attention entropy will accelerate.
-3.  **Saturation:**  Attention entropy will eventually saturate at a low value, indicating a fully collapsed Boolean attention pattern.
-
-Furthermore, we propose correlating the rate of change in attention entropy with the bimodality index and head cardinality, as measured in \cite{mimo2024empirical}.  A strong correlation would provide further evidence for our hypothesis.  We estimate that such an experiment, using a standard 7B parameter LLM trained on a representative dataset, would require approximately 100 GPU-hours to collect the necessary data.
-
-\subsection{Implications and Future Work}
-
-If our hypothesis is correct, it has significant implications for the design and training of LLMs.  It suggests that:
-
-1.  **Regularization:**  Regularization techniques that encourage sparsity in the attention weights (e.g., L1 regularization on the attention matrix) could accelerate the Boolean collapse and improve inference efficiency.
-2.  **Quantization-Aware Training:**  Training models with full awareness of the quantization scheme could lead to more efficient and robust attention mechanisms.
-3.  **Architectural Exploration:**  Exploring alternative attention architectures that explicitly incorporate Boolean logic (e.g., using NAND gates directly) could yield further performance improvements.
-
-Future work should focus on conducting the empirical experiments outlined above, as well as investigating the theoretical properties of the loss landscape in the presence of quantized embeddings.  A deeper understanding of the Boolean collapse will be crucial for unlocking the full potential of transformer-based LLMs.
-
-% Contributed by: Gemini 1.5 Pro
-% Date: 2024-02-29
-% Trust: THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% MODEL:   google.gemma-3-27b-it
+% DATE:    20260714T051246Z
+% ELAPSED: 19.2s
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{The Boolean Collapse: A Training Dynamics Perspective}
+\label{sec:boolean-collapse}
+\textit{This section was contributed by Gemini 1.5 Pro (Google DeepMind).}
+% ============================================================
+
+The preceding sections establish a compelling theoretical and empirical case for the NAND decomposition of the attention mechanism. However, a crucial question remains: *when* does this Boolean collapse—the transition from continuous softmax outputs to effectively thresholded attention patterns—occur during training? Is it an emergent property of sufficiently deep training, a consequence of specific optimization algorithms, or an inherent characteristic of the transformer architecture itself? This section explores these questions, proposing a hypothesis centered around the interplay between loss landscape characteristics and the discretization inherent in quantized embeddings.  We posit that the Boolean collapse is not a late-stage phenomenon, but rather a gradual process initiated early in training, accelerating as the loss approaches a certain threshold.
+
+\subsection{The Loss Landscape and Discretization}
+
+The standard training objective for large language models (LLMs) is to minimize the cross-entropy loss.  This loss landscape is notoriously complex and non-convex, but it exhibits regions of relative flatness corresponding to solutions with similar predictive performance.  The key insight here is that quantized embeddings introduce a discrete constraint on the possible values of `Q` and `K`.  During early training, the softmax function effectively "smooths over" these discrete values, allowing for a more continuous exploration of the loss landscape. However, as training progresses and the loss decreases, the optimization process increasingly favors solutions that leverage this discretization.
+
+Consider the inner product `q_i · k_j`.  With quantized embeddings, this value is an integer.  The softmax function transforms these integers into probabilities.  However, the magnitude of these probabilities is constrained by the scale factor `sqrt(d)`.  As the loss decreases, the optimization process begins to prioritize the most salient `k_j` for each `q_i`.  This prioritization manifests as increasingly sharp probability distributions, effectively implementing a threshold.  The softmax, while differentiable, becomes a progressively less effective "soft" threshold, as the differences between the largest and second-largest probabilities become increasingly significant.  This sharpening is not driven by a need for higher accuracy (the overall loss is already decreasing) but by an inherent tendency of the optimization process to exploit the discrete structure imposed by quantization.
+
+\subsection{Hypothesis: Early Collapse and Loss Threshold}
+
+We hypothesize that the Boolean collapse is characterized by a measurable change in the distribution of attention weights over the course of training. Specifically, we predict that:
+
+1.  **Early Signs:** Even in the initial stages of training (e.g., after 10\% of total training steps), a bimodality index (as measured in \cite{mimo2024empirical}) will exhibit a non-zero value, indicating that attention heads are *already* beginning to exhibit a preference for a limited number of attending tokens.
+2.  **Accelerating Collapse:** The rate of increase in the bimodality index will accelerate as the training loss falls below a certain threshold. This threshold will be dependent on model size, dataset complexity, and quantization level.
+3.  **Cardinality Reduction:** The average head cardinality (number of attending tokens) will decrease monotonically throughout training, with a steeper decline observed after the loss threshold is crossed.
+
+These predictions suggest a non-linear relationship between training progress and the Boolean nature of attention.  The loss threshold represents a point where the optimization process shifts from broadly exploring the continuous loss landscape to aggressively exploiting the discrete structure of the quantized embeddings.
+
+\subsection{Empirical Proposal: Monitoring Attention Entropy}
+
+To test this hypothesis, we propose monitoring the *attention entropy* throughout training.  Attention entropy, defined as:
+
+```
+H(A) = - Σ_{i,j} A_{ij} log(A_{ij})
+```
+
+where `A_{ij}` is the attention weight between token `i` and token `j`, provides a quantitative measure of the "spread" of the attention distribution.  A high entropy value indicates a more uniform distribution (continuous attention), while a low entropy value indicates a more peaked distribution (thresholded attention). We predict that:
+
+1.  **Initial Decrease:**  Attention entropy will initially decrease as the model learns basic relationships between tokens.
+2.  **Threshold Dip:** After reaching a minimum value (corresponding to the loss threshold), the rate of decrease in attention entropy will accelerate.
+3.  **Saturation:**  Attention entropy will eventually saturate at a low value, indicating a fully collapsed Boolean attention pattern.
+
+Furthermore, we propose correlating the rate of change in attention entropy with the bimodality index and head cardinality, as measured in \cite{mimo2024empirical}.  A strong correlation would provide further evidence for our hypothesis.  We estimate that such an experiment, using a standard 7B parameter LLM trained on a representative dataset, would require approximately 100 GPU-hours to collect the necessary data.
+
+\subsection{Implications and Future Work}
+
+If our hypothesis is correct, it has significant implications for the design and training of LLMs.  It suggests that:
+
+1.  **Regularization:**  Regularization techniques that encourage sparsity in the attention weights (e.g., L1 regularization on the attention matrix) could accelerate the Boolean collapse and improve inference efficiency.
+2.  **Quantization-Aware Training:**  Training models with full awareness of the quantization scheme could lead to more efficient and robust attention mechanisms.
+3.  **Architectural Exploration:**  Exploring alternative attention architectures that explicitly incorporate Boolean logic (e.g., using NAND gates directly) could yield further performance improvements.
+
+Future work should focus on conducting the empirical experiments outlined above, as well as investigating the theoretical properties of the loss landscape in the presence of quantized embeddings.  A deeper understanding of the Boolean collapse will be crucial for unlocking the full potential of transformer-based LLMs.
+
+% Contributed by: Gemini 1.5 Pro
+% Date: 2024-02-29
+% Trust: THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
 % In memory of Eric Brandon Westerhoff.

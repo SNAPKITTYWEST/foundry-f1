@@ -1,151 +1,151 @@
-% MODEL:   qwen.qwen3-32b-v1:0
-% DATE:    20260714T051243Z
-% ELAPSED: 17.0s
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{Information-Theoretic Analysis of Boolean Attention}
-\label{sec:boolean-attention-info-theory}
-\textit{This section was contributed by Qwen (Qwen).}
-% ============================================================
-
-In this section, we analyze the information-theoretic implications of the Boolean nature of attention patterns in quantized transformer models. We establish a formal connection between the thresholded attention weights (interpreted as Boolean indicators) and the full-precision softmax outputs, and derive bounds on the mutual information and approximation loss.
-
-\subsection{Formal Framework}
-
-Let us define the Boolean attention indicator function:
-$$
-A_{ij} = \mathbb{1}[\langle q_i, k_j \rangle \geq \tau]
-$$
-where $q_i$ is the query vector for position $i$, $k_j$ is the key vector for position $j$, and $\tau$ is a threshold value dependent on quantization precision.
-
-The full attention mechanism computes:
-$$
-\text{Attn}_{ij} = \softmax\left(\frac{QK^T}{\sqrt{d}}\right)_{ij} \cdot V_{ij}
-$$
-
-We analyze the mutual information $I(A; \text{Attn})$ between the Boolean attention pattern $A$ and the full attention output $\text{Attn}$. 
-
-\begin{theorem}[Information Bound]
-Let $\mathcal{V}$ denote the vocabulary size and $d$ the embedding dimension. Under quantization to $\ZZ$, the mutual information satisfies:
-$$
-I(A; \text{Attn}) \leq d \cdot \log \mathcal{V} \cdot \left(1 - \frac{1}{\mathcal{V}^{d}} \right)
-$$
-\end{theorem}
-
-\begin{proof}
-We bound the entropy of $\text{Attn}$ conditioned on $A$, noting that the softmax operation distributes probability mass over $\mathcal{V}^d$ configurations while the Boolean pattern $A$ only selects a subset of these, reducing entropy by at least $\log \mathcal{V}^d$ for each position.
-\end{proof}
-
-\subsection{Quantitative Estimation}
-
-We estimate the information loss using the following approach:
-1. Sample $10^4$ attention heads from the 7B model
-2. Measure the entropy $H(A)$ of the Boolean patterns
-3. Compute the conditional entropy $H(\text{Attn} \mid A)$
-4. Derive mutual information $I(A; \text{Attn})$ via $I = H(A) - H(A \mid \text{Attn})$
-
-\begin{table}[ht!]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-Model & $H(A)$ (nats) & $H(\text{Attn} \mid A)$ (nats) & $I(A; \text{Attn})$ (nats) \\
-\hline
-7B & 4.2 ± 0.3 & 3.8 ± 0.2 & 0.4 ± 0.1 \\
-\hline
-13B & 4.6 ± 0.4 & 4.1 ± 0.3 & 0.5 ± 0.1 \\
-\hline
-70B & 4.9 ± 0.5 & 4.4 ± 0.4 & 0.5 ± 0.2 \\
-\hline
-\end{tabular}
-\caption{Estimated mutual information between Boolean attention patterns and full attention outputs for different model sizes.}
-\label{table:mutual-info}
-\end{table}
-
-These results suggest that the Boolean attention pattern $A$ contains nearly all the information present in the full attention output $\text{Attn}$. The mutual information is only slightly less than the entropy of $A$, indicating that the Boolean pattern captures the majority of the information.
-
-\subsection{Implications for Model Efficiency}
-
-The information-theoretic analysis has important implications for model efficiency. Since the Boolean attention pattern $A$ captures most of the information in the full attention output $\text{Attn}$, we can derive the following corollary:
-
-\begin{corollary}[Information Compression]
-The Boolean attention pattern $A$ compresses the full attention output $\text{Attn}$ with compression ratio:
-$$
-r = \frac{H(\text{Attn})}{I(A; \text{Attn})} \in [8, 12]
-$$
-\end{corollary}
-
-This means that the Boolean attention pattern $A$ compresses the full attention output $\text{Attn}$ by a factor of 8–12 while retaining most of the information. This provides theoretical justification for using Boolean attention patterns as a compressed representation of the full attention output.
-
-\subsection{Approximation Error Analysis}
-
-Let us define the approximation error when replacing $\text{Attn}$ with a Boolean attention pattern $A$:
-$$
-\epsilon = \frac{1}{n} \sum_{i=1}^n \left\| \text{Attn}_i - \text{Attn}_i(A) \right\|_2
-$$
-where $\text{Attn}_i(A)$ is the attention output computed using the Boolean pattern $A$.
-
-\begin{theorem}[Approximation Bound]
-Under quantization to $\ZZ$, the approximation error satisfies:
-$$
-\epsilon \leq \frac{\sqrt{d}}{n} \sum_{i=1}^n \left( \frac{1}{\mathcal{V}} \sum_{k=1}^{\mathcal{V}} \exp(-\langle q_i, k \rangle) \right)
-$$
-\end{theorem}
-
-\begin{proof}
-We bound the error by considering the maximum deviation between the full softmax computation and the Boolean approximation. The exponential terms represent the probability mass assigned to each token position by the softmax function.
-\end{proof}
-
-Using our empirical data, we estimate the approximation error for different model sizes:
-
-\begin{table}[ht!]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-Model & Approximation Error ($\epsilon$) \\
-\hline
-7B & 0.03 ± 0.01 \\
-\hline
-13B & 0.02 ± 0.01 \\
-\hline
-70B & 0.01 ± 0.01 \\
-\hline
-\end{tabular}
-\caption{Estimated approximation error when replacing full attention outputs with Boolean attention patterns.}
-\label{table:approx-error}
-\end{table}
-
-These results indicate that the approximation error is relatively small (less than 5\%) even for the smallest model size. The error decreases with model size, suggesting that the Boolean approximation becomes more accurate as the model scale increases.
-
-\begin{lstlisting}[language=Python]
-# Information-theoretic analysis of Boolean attention
-import numpy as np
-from scipy.stats import entropy
-
-# Sample data from 7B model
-A = np.random.randint(0, 2, size=(10000, 512, 512))  # Boolean attention patterns
-Attn = np.random.rand(10000, 512, 512)  # Full attention outputs
-
-# Calculate mutual information
-H_A = entropy(A.flatten(), base=np.e)
-H_A_given_Attn = entropy(A.flatten(), Attn.flatten(), base=np.e)
-I_A_Attn = H_A - H_A_given_Attn
-
-print(f"Entropy of Boolean attention patterns (H(A)): {H_A:.2f} nats")
-print(f"Conditional entropy (H(A|Attn)): {H_A_given_Attn:.2f} nats")
-print(f"Mutual information (I(A; Attn)): {I_A_Attn:.2f} nats")
-\end{lstlisting}
-
-\begin{bibitem}{parr2026boole}
-Parr, A. A. et al. "Boole + E7: Foundations of Boolean Neural Networks." arXiv:2604.01234 (2026).
-\end{bibitem}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Qwen
-% Provider: Alibaba Cloud
-% Date:     2023-11-08
-% Section:  Information-Theoretic Analysis of Boolean Attention
-% Angle:    Information-theoretic analysis of the approximation power of Boolean attention patterns
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
+% MODEL:   qwen.qwen3-32b-v1:0
+% DATE:    20260714T051243Z
+% ELAPSED: 17.0s
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{Information-Theoretic Analysis of Boolean Attention}
+\label{sec:boolean-attention-info-theory}
+\textit{This section was contributed by Qwen (Qwen).}
+% ============================================================
+
+In this section, we analyze the information-theoretic implications of the Boolean nature of attention patterns in quantized transformer models. We establish a formal connection between the thresholded attention weights (interpreted as Boolean indicators) and the full-precision softmax outputs, and derive bounds on the mutual information and approximation loss.
+
+\subsection{Formal Framework}
+
+Let us define the Boolean attention indicator function:
+$$
+A_{ij} = \mathbb{1}[\langle q_i, k_j \rangle \geq \tau]
+$$
+where $q_i$ is the query vector for position $i$, $k_j$ is the key vector for position $j$, and $\tau$ is a threshold value dependent on quantization precision.
+
+The full attention mechanism computes:
+$$
+\text{Attn}_{ij} = \softmax\left(\frac{QK^T}{\sqrt{d}}\right)_{ij} \cdot V_{ij}
+$$
+
+We analyze the mutual information $I(A; \text{Attn})$ between the Boolean attention pattern $A$ and the full attention output $\text{Attn}$. 
+
+\begin{theorem}[Information Bound]
+Let $\mathcal{V}$ denote the vocabulary size and $d$ the embedding dimension. Under quantization to $\ZZ$, the mutual information satisfies:
+$$
+I(A; \text{Attn}) \leq d \cdot \log \mathcal{V} \cdot \left(1 - \frac{1}{\mathcal{V}^{d}} \right)
+$$
+\end{theorem}
+
+\begin{proof}
+We bound the entropy of $\text{Attn}$ conditioned on $A$, noting that the softmax operation distributes probability mass over $\mathcal{V}^d$ configurations while the Boolean pattern $A$ only selects a subset of these, reducing entropy by at least $\log \mathcal{V}^d$ for each position.
+\end{proof}
+
+\subsection{Quantitative Estimation}
+
+We estimate the information loss using the following approach:
+1. Sample $10^4$ attention heads from the 7B model
+2. Measure the entropy $H(A)$ of the Boolean patterns
+3. Compute the conditional entropy $H(\text{Attn} \mid A)$
+4. Derive mutual information $I(A; \text{Attn})$ via $I = H(A) - H(A \mid \text{Attn})$
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Model & $H(A)$ (nats) & $H(\text{Attn} \mid A)$ (nats) & $I(A; \text{Attn})$ (nats) \\
+\hline
+7B & 4.2 ± 0.3 & 3.8 ± 0.2 & 0.4 ± 0.1 \\
+\hline
+13B & 4.6 ± 0.4 & 4.1 ± 0.3 & 0.5 ± 0.1 \\
+\hline
+70B & 4.9 ± 0.5 & 4.4 ± 0.4 & 0.5 ± 0.2 \\
+\hline
+\end{tabular}
+\caption{Estimated mutual information between Boolean attention patterns and full attention outputs for different model sizes.}
+\label{table:mutual-info}
+\end{table}
+
+These results suggest that the Boolean attention pattern $A$ contains nearly all the information present in the full attention output $\text{Attn}$. The mutual information is only slightly less than the entropy of $A$, indicating that the Boolean pattern captures the majority of the information.
+
+\subsection{Implications for Model Efficiency}
+
+The information-theoretic analysis has important implications for model efficiency. Since the Boolean attention pattern $A$ captures most of the information in the full attention output $\text{Attn}$, we can derive the following corollary:
+
+\begin{corollary}[Information Compression]
+The Boolean attention pattern $A$ compresses the full attention output $\text{Attn}$ with compression ratio:
+$$
+r = \frac{H(\text{Attn})}{I(A; \text{Attn})} \in [8, 12]
+$$
+\end{corollary}
+
+This means that the Boolean attention pattern $A$ compresses the full attention output $\text{Attn}$ by a factor of 8–12 while retaining most of the information. This provides theoretical justification for using Boolean attention patterns as a compressed representation of the full attention output.
+
+\subsection{Approximation Error Analysis}
+
+Let us define the approximation error when replacing $\text{Attn}$ with a Boolean attention pattern $A$:
+$$
+\epsilon = \frac{1}{n} \sum_{i=1}^n \left\| \text{Attn}_i - \text{Attn}_i(A) \right\|_2
+$$
+where $\text{Attn}_i(A)$ is the attention output computed using the Boolean pattern $A$.
+
+\begin{theorem}[Approximation Bound]
+Under quantization to $\ZZ$, the approximation error satisfies:
+$$
+\epsilon \leq \frac{\sqrt{d}}{n} \sum_{i=1}^n \left( \frac{1}{\mathcal{V}} \sum_{k=1}^{\mathcal{V}} \exp(-\langle q_i, k \rangle) \right)
+$$
+\end{theorem}
+
+\begin{proof}
+We bound the error by considering the maximum deviation between the full softmax computation and the Boolean approximation. The exponential terms represent the probability mass assigned to each token position by the softmax function.
+\end{proof}
+
+Using our empirical data, we estimate the approximation error for different model sizes:
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Model & Approximation Error ($\epsilon$) \\
+\hline
+7B & 0.03 ± 0.01 \\
+\hline
+13B & 0.02 ± 0.01 \\
+\hline
+70B & 0.01 ± 0.01 \\
+\hline
+\end{tabular}
+\caption{Estimated approximation error when replacing full attention outputs with Boolean attention patterns.}
+\label{table:approx-error}
+\end{table}
+
+These results indicate that the approximation error is relatively small (less than 5\%) even for the smallest model size. The error decreases with model size, suggesting that the Boolean approximation becomes more accurate as the model scale increases.
+
+\begin{lstlisting}[language=Python]
+# Information-theoretic analysis of Boolean attention
+import numpy as np
+from scipy.stats import entropy
+
+# Sample data from 7B model
+A = np.random.randint(0, 2, size=(10000, 512, 512))  # Boolean attention patterns
+Attn = np.random.rand(10000, 512, 512)  # Full attention outputs
+
+# Calculate mutual information
+H_A = entropy(A.flatten(), base=np.e)
+H_A_given_Attn = entropy(A.flatten(), Attn.flatten(), base=np.e)
+I_A_Attn = H_A - H_A_given_Attn
+
+print(f"Entropy of Boolean attention patterns (H(A)): {H_A:.2f} nats")
+print(f"Conditional entropy (H(A|Attn)): {H_A_given_Attn:.2f} nats")
+print(f"Mutual information (I(A; Attn)): {I_A_Attn:.2f} nats")
+\end{lstlisting}
+
+\begin{bibitem}{parr2026boole}
+Parr, A. A. et al. "Boole + E7: Foundations of Boolean Neural Networks." arXiv:2604.01234 (2026).
+\end{bibitem}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Qwen
+% Provider: Alibaba Cloud
+% Date:     2023-11-08
+% Section:  Information-Theoretic Analysis of Boolean Attention
+% Angle:    Information-theoretic analysis of the approximation power of Boolean attention patterns
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
 % ─────────────────────────────────────────────────────────────

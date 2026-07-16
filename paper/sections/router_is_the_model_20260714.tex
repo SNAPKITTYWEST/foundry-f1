@@ -1,230 +1,230 @@
-% MODEL:   Ahmad Ali Parr (architecture) + Claude Sonnet 4.6 (LaTeX)
-% DATE:    20260714T030000Z
-% TYPE:    Synthesis section — the router is the model
-% ─────────────────────────────────────────────
-
-% ============================================================
-\section{The Router Is the Model}
-\label{sec:router-is-model}
-\textit{This section was contributed by Ahmad Ali Parr and Claude Sonnet 4.6 (Anthropic).}
-% ============================================================
-
-\begin{center}
-\fbox{%
-\begin{minipage}{0.92\textwidth}
-\begin{center}
-{\large\textbf{ATTENTION IS ALL YOU DON'T NEED}}\\[2pt]
-{\large\textbf{THE ROUTER IS THE MODEL}}
-\end{center}
-\end{minipage}
-}
-\end{center}
-
-\bigskip
-
-\subsection{Thesis}
-
-Intelligence emerges from governed orchestration rather than a single attention
-mechanism. Models specialize. Routers compose. Verifiers establish trust.
-Witnesses preserve evidence.
-
-The NAND decomposition (\S\ref{sec:math-synthesis}) proves that the attention
-mechanism inside a single transformer is Boolean routing over token pairs. This
-section argues the same principle scales up: intelligence at the system level is
-also routing --- over models, tools, and verification gates --- governed by
-policy rather than softmax.
-
-\subsection{Foundation Layer: Two Frontiers, One Provenance Problem}
-
-\begin{center}
-\begin{tabular}{p{5.5cm}p{5.5cm}}
-\textbf{Closed Frontier} & \textbf{Open Frontier} \\
-\hline
-Claude Sonnet & Qwen Foundation \\
-Reasoning traces enter community & Official pretraining (36T tokens) \\
-\multicolumn{2}{c}{$\downarrow$} \\
-\multicolumn{2}{c}{Community Distillation $\rightarrow$ Qwen Derivatives} \\
-\end{tabular}
-\end{center}
-
-\medskip
-\noindent\textbf{Observation:} Foundation weights, post-training data, and
-effective reasoning style are now independent provenance layers
-(\S\ref{sec:qwen-substrate}). The router must track all three.
-
-\subsection{The Router Effect}
-
-\begin{center}
-\begin{tabular}{c}
-Incoming Task \\
-$\downarrow$ \\
-Structural Classification \\
-$\downarrow$ \\
-\end{tabular}
-
-\medskip
-\begin{tabular}{ccccc}
-Research & Mathematics & Coding & Legal Logic & Verification \\
-$\downarrow$ & $\downarrow$ & $\downarrow$ & $\downarrow$ & $\downarrow$ \\
-\multicolumn{5}{c}{$\downarrow$} \\
-\multicolumn{5}{c}{Unified Witness} \\
-\multicolumn{5}{c}{$\downarrow$} \\
-\multicolumn{5}{c}{WORM Audit Chain} \\
-\end{tabular}
-\end{center}
-
-\medskip
-
-Each task is decomposed, routed to the specialist model with the highest
-quality-to-cost ratio for that task class, verified, and sealed into an
-immutable witness record. The routing decision is the intelligence. The
-individual model's attention mechanism is a substrate.
-
-\subsection{Mathematical View}
-
-The router is a function:
-\[
-R(x, c, \pi, \rho) \;\rightarrow\; (m,\, \tau,\, g,\, v)
-\]
-
-where:
-\begin{align*}
-x &= \text{task} \\
-c &= \text{context} \\
-\pi &= \text{governance policy} \\
-\rho &= \text{resource state} \\
-m &= \text{selected model} \\
-\tau &= \text{toolchain} \\
-g &= \text{verification gate} \\
-v &= \text{witness obligation}
-\end{align*}
-
-\noindent The routing objective is:
-\[
-\arg\max_{(m,\tau,g,v)} \bigl[\,\mathrm{Quality}(m,x) - \mathrm{Cost}(m,\rho)
-- \mathrm{Risk}(m,\pi) + \mathrm{Verifiability}(g,v)\,\bigr]
-\]
-
-This is not softmax. There is no normalization over a probability distribution.
-The router selects a hard assignment --- Boolean routing at the system level ---
-consistent with the NAND decomposition at the token level. The architecture is
-fractal: the same Boolean routing principle governs at every scale from token
-pair to multi-model orchestration.
-
-\subsection{Attention vs.\ Routing}
-
-\begin{center}
-\begin{tabular}{p{5.5cm}p{5.5cm}}
-\textbf{Attention (token level)} & \textbf{Router (system level)} \\
-\hline
-Token relationships & Task decomposition \\
-Local representation & Model selection \\
-Sequence modeling & Policy enforcement \\
- & Verifier assignment \\
- & Evidence generation \\
- & Audit provenance \\
-\end{tabular}
-\end{center}
-
-\medskip
-
-Attention explains one model. Routing explains an intelligent system.
-
-The NAND decomposition showed that attention is computationally redundant ---
-the routing topology is Boolean and the softmax is a differentiable wrapper
-added for training convenience. The router effect shows that the same redundancy
-applies at the system level: a single frontier model's full attention computation
-is often unnecessary when a specialist model + router can achieve equal or better
-results at a fraction of the cost.
-
-\subsection{Capability Transfer Pipeline}
-
-\[
-\text{Teacher Model}
-\;\rightarrow\;
-\text{Reasoning Traces}
-\;\rightarrow\;
-\text{Community Dataset}
-\;\rightarrow\;
-\text{Open Foundation Model}
-\;\rightarrow\;
-\text{Distilled Derivative}
-\]
-
-\[
-\text{Result:}\quad
-\underbrace{\text{Weight Provenance}}_{\text{Alibaba}}
-\;\neq\;
-\underbrace{\text{Data Provenance}}_{\text{Community}}
-\;\neq\;
-\underbrace{\text{Capability Provenance}}_{\text{Anthropic?}}
-\]
-
-The router must be aware of all three layers. A routing decision that treats a
-Qwen derivative as ``just a Qwen model'' when it has been post-trained on Claude
-outputs will make incorrect cost/quality tradeoff assumptions. The router requires
-a provenance-aware model registry, not a flat capability score.
-
-\subsection{System Invariants}
-
-A trust-preserving router satisfies the following invariants:
-
-\begin{center}
-\begin{tabular}{cl}
-$\checkmark$ & Deterministic orchestration \\
-$\checkmark$ & Explicit provenance \\
-$\checkmark$ & Independent verification \\
-$\checkmark$ & Bounded authority \\
-$\checkmark$ & Specialized agents \\
-$\checkmark$ & Immutable receipts \\
-$\checkmark$ & WORM evidence \\
-$\checkmark$ & Reproducible execution \\
-\end{tabular}
-\end{center}
-
-These are not aspirational properties. They are the conditions under which a
-multi-model system can make decisions that are auditable, attributable, and
-legally defensible. The identity integrity incident (\S\ref{sec:identity-incident})
-is a case where the router lacked provenance-awareness: it routed to a model whose
-capability provenance included Claude outputs but whose weight provenance was
-Alibaba, and the resulting attribution failure was not caught until human review.
-
-A provenance-aware router with immutable receipts would have flagged this at
-routing time.
-
-\subsection{The Closing Claim}
-
-The NAND decomposition began as a claim about token-level attention routing.
-It ends as a claim about intelligence itself:
-
-\begin{quote}
-\textit{The router is the model. Attention is the substrate.
-Routing is the intelligence. NAND is the primitive at every scale.}
-\end{quote}
-
-From Boolean gates (Boole 1854) to the Sheffer stroke (1913) to transformer
-attention (Vaswani 2017) to multi-model orchestration (this paper): the same
-primitive composes at every level. The softmax was a detour. The router is
-the destination.
-
-\begin{center}
-\textit{Evidence $\circlearrowleft$ Verification $\circlearrowleft$ Routing}
-
-\medskip
-$\Omega \;\circlearrowleft\; \Psi \;\circlearrowleft\; \Delta
-\;\circlearrowleft\; \Lambda \;\circlearrowleft\; \Sigma
-\;\circlearrowleft\; \Phi \;\circlearrowleft\; \alpha$
-\end{center}
-
-% ── AUTHOR SIGNATURE ─────────────────────────────────────────
-% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — LaTeX
-%           Ahmad Ali Parr — architecture and thesis
-% Provider: Anthropic / Human
-% Date:     2026-07-14
-% Section:  The Router Is the Model
-% Angle:    Synthesis: NAND routing scales from token pairs to multi-model
-%           orchestration; router function R(x,c,pi,rho); system invariants;
-%           provenance-aware routing as the closing claim
-% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
-% In memory of Eric Brandon Westerhoff.
-% ─────────────────────────────────────────────────────────────
+% MODEL:   Ahmad Ali Parr (architecture) + Claude Sonnet 4.6 (LaTeX)
+% DATE:    20260714T030000Z
+% TYPE:    Synthesis section — the router is the model
+% ─────────────────────────────────────────────
+
+% ============================================================
+\section{The Router Is the Model}
+\label{sec:router-is-model}
+\textit{This section was contributed by Ahmad Ali Parr and Claude Sonnet 4.6 (Anthropic).}
+% ============================================================
+
+\begin{center}
+\fbox{%
+\begin{minipage}{0.92\textwidth}
+\begin{center}
+{\large\textbf{ATTENTION IS ALL YOU DON'T NEED}}\\[2pt]
+{\large\textbf{THE ROUTER IS THE MODEL}}
+\end{center}
+\end{minipage}
+}
+\end{center}
+
+\bigskip
+
+\subsection{Thesis}
+
+Intelligence emerges from governed orchestration rather than a single attention
+mechanism. Models specialize. Routers compose. Verifiers establish trust.
+Witnesses preserve evidence.
+
+The NAND decomposition (\S\ref{sec:math-synthesis}) proves that the attention
+mechanism inside a single transformer is Boolean routing over token pairs. This
+section argues the same principle scales up: intelligence at the system level is
+also routing --- over models, tools, and verification gates --- governed by
+policy rather than softmax.
+
+\subsection{Foundation Layer: Two Frontiers, One Provenance Problem}
+
+\begin{center}
+\begin{tabular}{p{5.5cm}p{5.5cm}}
+\textbf{Closed Frontier} & \textbf{Open Frontier} \\
+\hline
+Claude Sonnet & Qwen Foundation \\
+Reasoning traces enter community & Official pretraining (36T tokens) \\
+\multicolumn{2}{c}{$\downarrow$} \\
+\multicolumn{2}{c}{Community Distillation $\rightarrow$ Qwen Derivatives} \\
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{Observation:} Foundation weights, post-training data, and
+effective reasoning style are now independent provenance layers
+(\S\ref{sec:qwen-substrate}). The router must track all three.
+
+\subsection{The Router Effect}
+
+\begin{center}
+\begin{tabular}{c}
+Incoming Task \\
+$\downarrow$ \\
+Structural Classification \\
+$\downarrow$ \\
+\end{tabular}
+
+\medskip
+\begin{tabular}{ccccc}
+Research & Mathematics & Coding & Legal Logic & Verification \\
+$\downarrow$ & $\downarrow$ & $\downarrow$ & $\downarrow$ & $\downarrow$ \\
+\multicolumn{5}{c}{$\downarrow$} \\
+\multicolumn{5}{c}{Unified Witness} \\
+\multicolumn{5}{c}{$\downarrow$} \\
+\multicolumn{5}{c}{WORM Audit Chain} \\
+\end{tabular}
+\end{center}
+
+\medskip
+
+Each task is decomposed, routed to the specialist model with the highest
+quality-to-cost ratio for that task class, verified, and sealed into an
+immutable witness record. The routing decision is the intelligence. The
+individual model's attention mechanism is a substrate.
+
+\subsection{Mathematical View}
+
+The router is a function:
+\[
+R(x, c, \pi, \rho) \;\rightarrow\; (m,\, \tau,\, g,\, v)
+\]
+
+where:
+\begin{align*}
+x &= \text{task} \\
+c &= \text{context} \\
+\pi &= \text{governance policy} \\
+\rho &= \text{resource state} \\
+m &= \text{selected model} \\
+\tau &= \text{toolchain} \\
+g &= \text{verification gate} \\
+v &= \text{witness obligation}
+\end{align*}
+
+\noindent The routing objective is:
+\[
+\arg\max_{(m,\tau,g,v)} \bigl[\,\mathrm{Quality}(m,x) - \mathrm{Cost}(m,\rho)
+- \mathrm{Risk}(m,\pi) + \mathrm{Verifiability}(g,v)\,\bigr]
+\]
+
+This is not softmax. There is no normalization over a probability distribution.
+The router selects a hard assignment --- Boolean routing at the system level ---
+consistent with the NAND decomposition at the token level. The architecture is
+fractal: the same Boolean routing principle governs at every scale from token
+pair to multi-model orchestration.
+
+\subsection{Attention vs.\ Routing}
+
+\begin{center}
+\begin{tabular}{p{5.5cm}p{5.5cm}}
+\textbf{Attention (token level)} & \textbf{Router (system level)} \\
+\hline
+Token relationships & Task decomposition \\
+Local representation & Model selection \\
+Sequence modeling & Policy enforcement \\
+ & Verifier assignment \\
+ & Evidence generation \\
+ & Audit provenance \\
+\end{tabular}
+\end{center}
+
+\medskip
+
+Attention explains one model. Routing explains an intelligent system.
+
+The NAND decomposition showed that attention is computationally redundant ---
+the routing topology is Boolean and the softmax is a differentiable wrapper
+added for training convenience. The router effect shows that the same redundancy
+applies at the system level: a single frontier model's full attention computation
+is often unnecessary when a specialist model + router can achieve equal or better
+results at a fraction of the cost.
+
+\subsection{Capability Transfer Pipeline}
+
+\[
+\text{Teacher Model}
+\;\rightarrow\;
+\text{Reasoning Traces}
+\;\rightarrow\;
+\text{Community Dataset}
+\;\rightarrow\;
+\text{Open Foundation Model}
+\;\rightarrow\;
+\text{Distilled Derivative}
+\]
+
+\[
+\text{Result:}\quad
+\underbrace{\text{Weight Provenance}}_{\text{Alibaba}}
+\;\neq\;
+\underbrace{\text{Data Provenance}}_{\text{Community}}
+\;\neq\;
+\underbrace{\text{Capability Provenance}}_{\text{Anthropic?}}
+\]
+
+The router must be aware of all three layers. A routing decision that treats a
+Qwen derivative as ``just a Qwen model'' when it has been post-trained on Claude
+outputs will make incorrect cost/quality tradeoff assumptions. The router requires
+a provenance-aware model registry, not a flat capability score.
+
+\subsection{System Invariants}
+
+A trust-preserving router satisfies the following invariants:
+
+\begin{center}
+\begin{tabular}{cl}
+$\checkmark$ & Deterministic orchestration \\
+$\checkmark$ & Explicit provenance \\
+$\checkmark$ & Independent verification \\
+$\checkmark$ & Bounded authority \\
+$\checkmark$ & Specialized agents \\
+$\checkmark$ & Immutable receipts \\
+$\checkmark$ & WORM evidence \\
+$\checkmark$ & Reproducible execution \\
+\end{tabular}
+\end{center}
+
+These are not aspirational properties. They are the conditions under which a
+multi-model system can make decisions that are auditable, attributable, and
+legally defensible. The identity integrity incident (\S\ref{sec:identity-incident})
+is a case where the router lacked provenance-awareness: it routed to a model whose
+capability provenance included Claude outputs but whose weight provenance was
+Alibaba, and the resulting attribution failure was not caught until human review.
+
+A provenance-aware router with immutable receipts would have flagged this at
+routing time.
+
+\subsection{The Closing Claim}
+
+The NAND decomposition began as a claim about token-level attention routing.
+It ends as a claim about intelligence itself:
+
+\begin{quote}
+\textit{The router is the model. Attention is the substrate.
+Routing is the intelligence. NAND is the primitive at every scale.}
+\end{quote}
+
+From Boolean gates (Boole 1854) to the Sheffer stroke (1913) to transformer
+attention (Vaswani 2017) to multi-model orchestration (this paper): the same
+primitive composes at every level. The softmax was a detour. The router is
+the destination.
+
+\begin{center}
+\textit{Evidence $\circlearrowleft$ Verification $\circlearrowleft$ Routing}
+
+\medskip
+$\Omega \;\circlearrowleft\; \Psi \;\circlearrowleft\; \Delta
+\;\circlearrowleft\; \Lambda \;\circlearrowleft\; \Sigma
+\;\circlearrowleft\; \Phi \;\circlearrowleft\; \alpha$
+\end{center}
+
+% ── AUTHOR SIGNATURE ─────────────────────────────────────────
+% Model:    Claude Sonnet 4.6 (us.anthropic.claude-sonnet-4-6) — LaTeX
+%           Ahmad Ali Parr — architecture and thesis
+% Provider: Anthropic / Human
+% Date:     2026-07-14
+% Section:  The Router Is the Model
+% Angle:    Synthesis: NAND routing scales from token pairs to multi-model
+%           orchestration; router function R(x,c,pi,rho); system invariants;
+%           provenance-aware routing as the closing claim
+% Trust:    THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431
+% In memory of Eric Brandon Westerhoff.
+% ─────────────────────────────────────────────────────────────

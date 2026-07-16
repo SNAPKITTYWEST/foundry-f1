@@ -232,6 +232,43 @@ rg "dispatch" docs/bridge tools
 node -e "const f=require('fs'); const j=JSON.parse(f.readFileSync('docs/bridge/foundry-connector.json','utf8')); console.log(j.status, j.receives.map(r=>r.from).join(' + '))"
 ```
 
+## Solved Mathematicians
+
+At the bottom of the repo, the branded lineage card now names the actual
+mathematician-linked closures this tree can defend without bluffing.
+
+<div align="center">
+  <img src="./docs/brand/solved-mathematicians-lineage.svg" alt="Solved mathematicians lineage for Foundry F1" width="100%" />
+</div>
+
+It currently shows:
+
+- **Augustus De Morgan** — `OM-001`, where the open benchmark proof debt was
+  closed by witness construction rather than theorem rewriting
+- **Gunaydin / Koepsell / Nicolai** — `SKW-001`, where the commutative-ring
+  `State56` lane proves `I₄(c·Ψ) = c⁴·I₄(Ψ)` cleanly with `ring`
+
+And it says the important quiet part explicitly:
+
+- **Boole remains lineage**, not a falsely claimed direct closure in this repo
+- **the Float State108 path remains open**, so the repo does not pretend the
+  entire I₄ frontier is already done
+
+---
+
+<div align="center">
+
+<img src="./docs/brand/snapkitty-quantum-vacuum-swarm.svg" alt="SnapKitty quantum vacuum swarm brand mark" width="720" />
+
+**The cage holds.**
+
+```
+Ω ← TRUST ∧ CODE
+∀ k : seal_k.prev = hash(seal_{k-1})
+∀ C : accepted(C) ↔ NT(C) ∧ ALG(C) ∧ IT(C)
+q_t = ‖Ξ_t‖ + ‖Λ_t‖ · ‖T‖ < 1 - ε
+```
+
 ### Ask the repo guide
 
 Open [RYAN.md](./RYAN.md), paste it into an LLM session, and ask:
