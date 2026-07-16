@@ -46,6 +46,8 @@ Or open a Claude chat and just say:
 | `asm/sha256_nasm.asm` | NASM SHA-256 (portable C++ fallback in `src/sha256.cpp`) |
 | `CMakeLists.txt` | Build system |
 | `sorry-engine/` | Sledgehammer + sorry hunter + 1,465 indexed targets |
+| `docs/bridge/CLAUDE_HANDOFF.md` | Quantum bridge receiver handoff for Claude and agent wiring |
+| `docs/bridge/foundry-connector.json` | Machine-readable connector contract linking GKN, Foundry Intel, and Foundry F1 |
 | `sorry-engine/sledgehammer.py` | Tactic ladder engine — closes Lean sorrys |
 | `sorry-engine/roster_sweep.py` | Multi-repo sweep runner |
 | `sorry-engine/rosters/` | 4 rosters: Lean 300, Lean-real 21, Isabelle 360, Multi-prover 707 |

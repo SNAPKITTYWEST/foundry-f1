@@ -1,0 +1,48 @@
+{
+  "id": "FOUNDRY-F1-BRIDGE-RECEIVER-20260716",
+  "status": "CONNECTED_RECEIVER",
+  "generated_at": "2026-07-16T15:45:00Z",
+  "repo": "SNAPKITTYWEST/foundry-f1",
+  "branch": "master",
+  "receives": [
+    {
+      "from": "SNAPKITTYWEST/gkn-i4-e7-lean",
+      "branch": "main",
+      "delivery_commit": "de968509b5fc695f2d33e665959c6b86f5456be1",
+      "source_scan_head": "0e3cd5c0a0e01f24a8604882513640f42327cff8",
+      "latch_id": "GKN-QB-LATCH-20260716",
+      "latch_manifest": "bridge/quantum-latch-manifest.json",
+      "handoff_id": "GKN-TYPE-LIQUID-HANDOFF-20260716",
+      "handoff_status": "READY_FOR_CLAUDE",
+      "handoff_path": "bridge/type-liquid-handoff.json"
+    },
+    {
+      "from": "SNAPKITTYWEST/foundry-intel-2026-07-11",
+      "branch": "master",
+      "connector_manifest": "tools/foundry-connector/connector-manifest.json",
+      "q5_manifest": "tools/q5-adr-parser/adr_manifest.json",
+      "q5_total": "8 + 3*phi",
+      "q5_note": "Q(phi) weights are metadata classifications, not independent mathematical proof claims."
+    }
+  ],
+  "f1_responsibilities": [
+    "Expose the Claude handoff before TypeScript, Liquid Haskell, or sorry-engine wiring begins.",
+    "Use GKN Lean theorem names as anchors for receiver-side runtime/refinement work.",
+    "Keep sorry-engine output routed through governance before presenting closure as final.",
+    "Preserve Foundry F1 WORM/provenance/license boundaries.",
+    "Send new proof/runtime evidence back to Foundry Intel ADR governance."
+  ],
+  "first_refinement_targets": [
+    "QuantumPartitionBridge.free_energy_legendre",
+    "RiemannMetatron.logit_simplex_sums_to_one",
+    "GKN_I4_CommRing.FTS56.I4_homogeneous"
+  ],
+  "governance_boundaries": [
+    "ADR-055 remains OPEN_CRUX.",
+    "ADR-062 remains SILENCE_PENDING.",
+    "RH/GUE bridge material remains open unless a new zero-sorry Lean theorem closes it.",
+    "Liquid Haskell refinements do not replace Lean proof authority.",
+    "Q(phi) classifier output is metadata, not independent proof."
+  ],
+  "local_check": "node tools/check-bridge-connector.mjs"
+}

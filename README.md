@@ -51,6 +51,14 @@
 > It is the compact system statement for the paper thesis:
 > routing, not isolated attention, is the trustworthy systems layer.
 
+> [!IMPORTANT]
+> **Quantum Bridge Receiver**
+> Foundry F1 is now wired as the receiver for the GKN quantum latch and Foundry
+> Intel Q(phi) ADR classifier. Agents wiring TypeScript, Liquid Haskell, or
+> sorry-engine work should start at
+> [`CLAUDE_HANDOFF.md`](./docs/bridge/CLAUDE_HANDOFF.md) and the machine-readable
+> [`foundry-connector.json`](./docs/bridge/foundry-connector.json).
+
 ---
 
 ## ⟦ Ω ⟧ THE SHARED PRIMORDIAL FOUNDATION — FOUNDRY F1
