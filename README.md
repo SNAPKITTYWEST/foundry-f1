@@ -2,7 +2,7 @@
 <div align="center">
 
 <a href="https://www.youtube.com/watch?v=xRz00jloRpU">
-  <img src="./docs/brand/snapkitty-sovereign-mark.svg" alt="Foundry F1 mathematical certainty video" width="920" />
+  <img src="./docs/brand/snapkittywest-inverted-monorepo.svg" alt="SNAPKITTYWEST inverted monorepo production architecture" width="920" />
 </a>
 
 **Watch the Foundry F1 demo:** [Mathematical Certainty in Motion](https://www.youtube.com/watch?v=xRz00jloRpU)
