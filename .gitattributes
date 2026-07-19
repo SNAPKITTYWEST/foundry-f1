@@ -1,0 +1,9 @@
+# Tell GitHub Linguist to ignore these — they skew language detection
+paper/**/*.tex     linguist-documentation
+paper/**/*.pdf     linguist-documentation
+paper/**/*.py      linguist-documentation
+docs/**            linguist-documentation
+legal/**           linguist-documentation
+assets/**          linguist-documentation
+*.tex              linguist-documentation
+*.pdf              linguist-documentation
