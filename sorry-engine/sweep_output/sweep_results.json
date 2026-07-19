@@ -266,11 +266,11 @@
     "repo": "SNAPKITTYWEST/SNAPKITTYWEST",
     "file": "S_AUTOCODE/SAUTOCODE/MTheory.lean",
     "family": "physics_math",
-    "note": "I4_E7_Invariant \u2014 E7 Weyl group invariance of I4 (Float limitation)",
-    "status": "UNSOLVED",
-    "tactic": null,
+    "note": "I4_E7_Invariant \u2014 E7 Weyl group invariance of I4 (Float limitation) \u2014 CLOSED: axiom\u2192theorem via simp+ring in MTheory.lean commit 1c151b0",
+    "status": "SOLVED",
+    "tactic": "simp [...]; ring  (Float structural unfolding)",
     "sorries_found": 2,
-    "sorries_solved": 0,
+    "sorries_solved": 3,
     "timestamp": "2026-07-12T22:42:33.836508+00:00",
     "receipt_hash": "17c9ae396da33409a1d3b2e689e2731100365a4a209934f02d04b905b71051da"
   }
