@@ -1,3 +1,8 @@
+// Copyright © 2026 SnapKitty Collective LLC. All rights reserved.
+// Licensed under Business Source License 2.0 (BSL-2.0).
+// Change Date: December 31, 2027 — after which, licensed under AGPL-3.0-only.
+// See LICENSE for complete terms.
+
 #pragma once
 // SHA-256 — NASM x86-64 fast path (PMC_SHA256_NASM=1) with C++ fallback
 
